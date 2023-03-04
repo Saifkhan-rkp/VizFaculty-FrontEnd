@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import AdminDeptDashboard from '../layouts/AdminDeptDashboard';
+import FacultyDashboard from '../layouts/FacultyDashboard';
+import HodDashboard from '../layouts/HodDasboard';
 import ErrorPage from '../pages/ErrorPage';
 import Landing from "../pages/Landing";
 
@@ -21,14 +23,14 @@ export const router = createBrowserRouter([
     //Hod Dept Dashboard
     {
         path:'/dashboard-Dept',
-        element:<AdminDeptDashboard />,
+        element:<HodDashboard/>,
         errorElement:<ErrorPage/>,
     },
 
     //Faculty Dashboard
     {
         path:'/dashboard-Faculty',
-        element:<AdminDeptDashboard />,
+        element:<FacultyDashboard />,
         errorElement:<ErrorPage/>,
     },
 ]);
