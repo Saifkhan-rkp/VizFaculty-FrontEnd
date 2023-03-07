@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBrowserRouter } from 'react-router-dom'
 import AdminDeptDashboard from '../layouts/AdminDeptDashboard';
 import FacultyDashboard from '../layouts/FacultyDashboard';
