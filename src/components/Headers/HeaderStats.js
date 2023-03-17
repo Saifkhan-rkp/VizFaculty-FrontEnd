@@ -5,6 +5,19 @@ import React from "react";
 import CardStats from "../Cards/CardsStats";
 import PropTypes from 'prop-types';
 
+const userTypes ={
+  "faculty":{
+
+  },
+  "hod":{
+
+  },
+  "adminDept":{
+
+  }
+}
+
+
 export default function HeaderStats({
   userType,
   state1,
