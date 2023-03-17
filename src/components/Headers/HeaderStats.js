@@ -3,7 +3,7 @@ import React from "react";
 // components
 
 import CardStats from "../Cards/CardsStats";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const userTypes ={
   "faculty":{
@@ -23,9 +23,8 @@ export default function HeaderStats({
   state1,
   state2,
   state3,
-  state4
+  state4,
 }) {
-  
   return (
     <>
       {/* Header */}
@@ -90,17 +89,17 @@ export default function HeaderStats({
   );
 }
 
-HeaderStats.defaultProps ={
-  userType:"Faculty",
-  state1:"qwerty",
-  state2:"qwerty",
-  state3:"qwerty",
-  state4:"qwerty"
+HeaderStats.defaultProps = {
+  userType: "Faculty",
+  state1: "qwerty",
+  state2: "qwerty",
+  state3: "qwerty",
+  state4: "qwerty",
 };
 HeaderStats.propTypes = {
-  userType: PropTypes.oneOf(["faculty","hod","adminDept"]),
+  userType: PropTypes.oneOf(["faculty", "hod", "adminDept"]),
   state1: PropTypes.string,
   state2: PropTypes.string,
   state3: PropTypes.string,
   state4: PropTypes.string,
-}
+};

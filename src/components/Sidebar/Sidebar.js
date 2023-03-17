@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>
@@ -79,7 +79,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-slate-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-              Admin Layout Pages
+              {props.heading}
             </h6>
             {/* Navigation */}
 
@@ -102,7 +102,7 @@ export default function Sidebar() {
                         : "text-slate-300")
                     }
                   ></i>{" "}
-                  Dashboard
+                  {props.item1}
                 </Link>
               </li>
 
@@ -124,7 +124,7 @@ export default function Sidebar() {
                         : "text-slate-300")
                     }
                   ></i>{" "}
-                  Settings
+                  {props.item2}
                 </Link>
               </li>
 
@@ -146,7 +146,7 @@ export default function Sidebar() {
                         : "text-slate-300")
                     }
                   ></i>{" "}
-                  Salary Applications
+                  {props.item3}
                 </Link>
               </li>
 
@@ -168,7 +168,7 @@ export default function Sidebar() {
                         : "text-slate-300")
                     }
                   ></i>{" "}
-                  Maps
+                  {props.item4}
                 </Link>
               </li>
             </ul>
