@@ -15,7 +15,9 @@ export default function HodDashboard() {
       />
       <div className="relative md:ml-64 bg-slate-100">
         <AdminNavBar />
-        <HeaderStats />
+        <HeaderStats 
+          userType="hod"
+        />
       </div>
     </>
   );
