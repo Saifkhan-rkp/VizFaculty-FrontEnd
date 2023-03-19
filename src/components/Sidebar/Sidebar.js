@@ -50,7 +50,7 @@ export default function Sidebar(props) {
                     className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    Notus React
+                    VizFaculty
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">

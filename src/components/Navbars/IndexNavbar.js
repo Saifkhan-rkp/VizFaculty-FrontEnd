@@ -21,6 +21,8 @@ export default function Navbar(props) {
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
+              onFocus={()=> setNavbarOpen(true)}
+              onBlur ={()=> setNavbarOpen(false)}
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
               <i className="fas fa-bars"></i>
