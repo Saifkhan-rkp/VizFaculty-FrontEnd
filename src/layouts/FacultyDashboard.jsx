@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import AdminNavBar from "../components/Navbars/AdminNavbar";
 import HeaderStats from "../components/Headers/HeaderStats";
+import AttendenceForm from "../components/AttendenceForm/AttendenceForm";
 
 export default function FacultyDashboard() {
   return (
@@ -15,9 +16,8 @@ export default function FacultyDashboard() {
       />
       <div className="relative md:ml-64 bg-slate-100">
         <AdminNavBar />
-        <HeaderStats 
-          userType="faculty"
-        />
+        <HeaderStats userType="faculty" />
+        <AttendenceForm />
       </div>
     </>
   );
