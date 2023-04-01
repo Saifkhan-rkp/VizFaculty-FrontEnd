@@ -1,18 +1,54 @@
+import axios from "axios";
+import Cookies from "js-cookie"
 import React from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
+export default function Login() {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ mode: 'onChange' });
+  const navigate = useNavigate();
+  const location = useLocation
+  const from = location.state?.from?.pathname || '/';
+  const onSubmit = (data) => {
+    console.log(data);
+    // mutate(data);
 
-export default function Register() {
+    axios
+      .post(`${process.env.REACT_APP_API_KEY}/api/auth/login`, data)
+      .then((res) => {
+        if (res.data.success) {
+          toast.success(res.data.message);
+          console.log(res.data.token);
+          Cookies.set('token', res.data.token);
+          console.log(res.data);
+          navigate(from, { replace: true });
+        }
+        if (!res.data.success) {
+          toast.error(res.data.message);
+        }
+
+      })
+      // .then(() => refetch())
+      .catch((e) => {
+        // console.log(e);
+        toast.error(e.response.data.message);
+      });
+  };
   return (
     <>
       <div className="container mx-auto px-4 h-full">
         <div className="flex content-center items-center justify-center h-full">
-          <div className="w-full lg:w-6/12 px-4">
+          <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-200 border-0">
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-slate-500 text-sm font-bold">
-                    Sign up with
+                    Sign in with
                   </h6>
                 </div>
                 <div className="btn-wrapper text-center">
@@ -43,23 +79,12 @@ export default function Register() {
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <div className="text-slate-400 text-center mb-3 font-bold">
-                  <small>Or sign up with credentials</small>
+                  <small>Or sign in with credentials</small>
                 </div>
-                <form>
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Name
-                    </label>
-                    <input
-                      type="email"
-                      className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Name"
-                    />
-                  </div>
-
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  action="#"
+                >
                   <div className="relative w-full mb-3">
                     <label
                       className="block uppercase text-slate-600 text-xs font-bold mb-2"
@@ -71,7 +96,13 @@ export default function Register() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      {...register('email', {
+                        required: '*Email Address is required',
+                      })}
                     />
+                    {errors.email && (
+                      <p className="text-red-600">{errors.email?.message}</p>
+                    )}
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -82,28 +113,21 @@ export default function Register() {
                       Password
                     </label>
                     <input
-                      id="password"
                       type="password"
                       className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      {...register('password', {
+                        required: '*Password is required',
+                        minLength: {
+                          value: 8,
+                          message: 'Password must be 8 characters or longer',
+                        },
+                      })}
                     />
+                    {errors.password && (
+                      <p className="text-red-600">{errors.password?.message}</p>
+                    )}
                   </div>
-
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      ReType Password
-                    </label>
-                    <input
-                      type="password"
-                      className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      placeholder="Retype Password"
-                      // onChange={(self)=>{ document.getElementById("password").value === self.value}}
-                    />
-                  </div>
-
                   <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
@@ -112,14 +136,7 @@ export default function Register() {
                         className="form-checkbox border-0 rounded text-slate-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
                       />
                       <span className="ml-2 text-sm font-semibold text-slate-600">
-                        I agree with the{" "}
-                        <a
-                          href="#pablo"
-                          className="text-sky-500"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          Privacy Policy
-                        </a>
+                        Remember me
                       </span>
                     </label>
                   </div>
@@ -127,18 +144,27 @@ export default function Register() {
                   <div className="text-center mt-6">
                     <button
                       className="bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                      type="button"
+                      type="submit"
                     >
-                      Create Account
+                      Sign In
                     </button>
                   </div>
                 </form>
               </div>
             </div>
             <div className="flex flex-wrap mt-6 relative">
-            <div className="w-1/2 text-right">
-                <Link to="/auth/login" className="text-slate-200">
-                  <small>Already have an account ?</small>
+              <div className="w-1/2">
+                <a
+                  href="#pablo"
+                  onClick={(e) => navigate('/auth/forget-password')}
+                  className="text-slate-200"
+                >
+                  <small>Forgot password?</small>
+                </a>
+              </div>
+              <div className="w-1/2 text-right">
+                <Link to="/auth/register" className="text-slate-200">
+                  <small>Create new account</small>
                 </Link>
               </div>
             </div>

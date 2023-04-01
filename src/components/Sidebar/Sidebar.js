@@ -21,10 +21,10 @@ export default function Sidebar(props) {
           </button>
           {/* Brand */}
           <Link
-            className="md:block text-left md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+            className="md:block items-center md:pb-2 text-slate-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             to="/"
           >
-            VizFaculty
+            <img className="object-scale-down h-20 w-20" src={require("../../assets/img/VizFaculty_logo.png")} alt="VizFacluty"/>
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
