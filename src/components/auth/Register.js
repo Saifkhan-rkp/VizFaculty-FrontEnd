@@ -33,7 +33,7 @@ export default function Register() {
     },
     onError: (err) => {
       setSubmitting(false);
-      toast.error(err.message)
+      toast.error(err.response.data.message);
     },
   })
 

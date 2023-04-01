@@ -34,7 +34,8 @@ export default function ForgetPassword() {
                 }
             })
             .catch((e) => {
-                console.log(e);
+                // console.log(e);
+                toast.error(e.response.data.message);
             });
         setSubmitting(false);
     };

@@ -21,15 +21,22 @@ export default function Login() {
     axios
       .post(`${process.env.REACT_APP_API_KEY}/api/auth/login`, data)
       .then((res) => {
-        toast.success(res.data.message);
-        console.log(res.data.token);
-        Cookies.set('token', res.data.token);
+        if (res.data.success) {
+          toast.success(res.data.message);
+          console.log(res.data.token);
+          Cookies.set('token', res.data.token);
+          console.log(res.data);
+          navigate(from, { replace: true });
+        }
+        if (!res.data.success) {
+          toast.error(res.data.message);
+        }
 
-        navigate(from, { replace: true });
       })
       // .then(() => refetch())
       .catch((e) => {
-        console.log(e);
+        // console.log(e);
+        toast.error(e.response.data.message);
       });
   };
   return (
