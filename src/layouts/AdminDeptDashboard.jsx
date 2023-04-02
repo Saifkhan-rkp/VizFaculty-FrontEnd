@@ -3,7 +3,9 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import AdminNavBar from "../components/Navbars/AdminNavbar";
 import CardExpenceTable from "../components/Cards/CardExpenceTable";
 import HeaderStats from "../components/Headers/HeaderStats";
+
 import FooterAdmin from "../components/Footers/FooterAdmin";
+import CardWhatever from "../components/Cards/CardWhatever";
 
 export default function AdminDeptDashboard() {
   return (
