@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom'
-import AdminDeptDashboard from '../layouts/AdminDeptDashboard';
+import AdminDeptDashboard from '../layouts/adminDeptLayouts/AdminDeptDashboard';
 import Auth from '../layouts/Auth';
 import FacultyDashboard from '../layouts/FacultyDashboard';
 import HodDashboard from '../layouts/HodDasboard';
@@ -10,6 +10,7 @@ import ErrorPage from '../pages/ErrorPage';
 import Landing from "../pages/Landing";
 import ForgetPassword from '../components/auth/ForgetPassword';
 import ResetPassword from '../components/auth/ResetPassword';
+import DashboardIndexAD from '../layouts/adminDeptLayouts/DashboardIndex';
 
 export const router = createBrowserRouter([
     {
@@ -20,9 +21,19 @@ export const router = createBrowserRouter([
     
     //Admin Dept Dashboard
     {
-        path:'/dashboard-adminDept',
+        path:'/adminDept',
         element:<AdminDeptDashboard />,
         errorElement:<ErrorPage/>,
+        children:[
+            {
+                index: true,
+                element:<DashboardIndexAD></DashboardIndexAD>
+            },
+            {
+                path:"/adminDept/applications",
+                element:<><p>element here</p></>
+            },
+        ]
     },
     
     //Hod Dept Dashboard
