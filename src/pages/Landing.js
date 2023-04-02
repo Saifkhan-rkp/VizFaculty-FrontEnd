@@ -71,10 +71,9 @@ export default function Landing() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                       <i className="fas fa-award"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Awarded Agency</h6>
+                    <h6 className="text-xl font-semibold">Automated Salary Management</h6>
                     <p className="mt-2 mb-4 text-slate-500">
-                      Divide details about your product or agency work into
-                      parts. A paragraph describing a feature will be enough.
+                      Revolutionize how educational institutions manage salaries for visiting faculty members with VizFaculty - the web application that streamlines the process, simplifies tasks, and increases efficiency through automation
                     </p>
                   </div>
                 </div>
@@ -86,10 +85,9 @@ export default function Landing() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-sky-400">
                       <i className="fas fa-retweet"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Free Revisions</h6>
+                    <h6 className="text-xl font-semibold">User-friendly Interface</h6>
                     <p className="mt-2 mb-4 text-slate-500">
-                      Keep you user engaged by providing meaningful information.
-                      Remember that by this time, the user is curious.
+                      Experience hassle-free management of visiting faculty member salaries with VizFaculty's user-friendly interface - designed to simplify tasks and provide a seamless experience for educational institutions.
                     </p>
                   </div>
                 </div>
@@ -101,10 +99,9 @@ export default function Landing() {
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                       <i className="fas fa-fingerprint"></i>
                     </div>
-                    <h6 className="text-xl font-semibold">Verified Company</h6>
+                    <h6 className="text-xl font-semibold">Accurate Record-Keeping</h6>
                     <p className="mt-2 mb-4 text-slate-500">
-                      Write a few lines about each one. A paragraph describing a
-                      feature will be enough. Keep you user engaged!
+                      Stay on top of attendance and payment details with VizFaculty's accurate record-keeping - the web application that provides educational institutions with reliable data management and reporting.
                     </p>
                   </div>
                 </div>
@@ -117,22 +114,15 @@ export default function Landing() {
                   <i className="fas fa-user-friends text-xl"></i>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                  Working with us is a pleasure
+                  Say goodbye to tedious salary management for visiting faculty members
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-slate-600">
-                  Don't let your uses guess by attaching tooltips and popoves to
-                  any element. Just make sure you enable them first via
-                  JavaScript.
+                  Hello to VizFaculty - the web application that automates the process, simplifies tasks, and increases efficiency. With its user-friendly interface and accurate record-keeping,
                 </p>
                 <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-slate-600">
-                  The kit comes with three pre-built pages to help you get
-                  started faster. You can change the text and images and you're
-                  good to go. Just make sure you enable them first via
-                  JavaScript.
+                  VizFaculty revolutionizes how educational institutions manage salaries - making data management and reporting reliable and hassle-free.
                 </p>
-                <Link to="/" className="font-bold text-slate-700 mt-8">
-                  Check Notus React!
-                </Link>
+
               </div>
 
               <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -204,11 +194,9 @@ export default function Landing() {
                   <div className="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-sky-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">A growing company</h3>
+                  <h3 className="text-3xl font-semibold">A Salary Management Web-App</h3>
                   <p className="mt-4 text-lg leading-relaxed text-slate-500">
-                    The extension comes with three pre-built pages to help you
-                    get started faster. You can change the text and images and
-                    you're good to go.
+
                   </p>
                   <ul className="list-none mt-6">
                     <li className="py-2">
@@ -220,7 +208,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-slate-500">
-                            Carefully crafted components
+                            User-friendly Interface
                           </h4>
                         </div>
                       </div>
@@ -234,7 +222,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-slate-500">
-                            Amazing page examples
+                            Automated Salary Management
                           </h4>
                         </div>
                       </div>
@@ -248,7 +236,7 @@ export default function Landing() {
                         </div>
                         <div>
                           <h4 className="text-slate-500">
-                            Dynamic components
+                            Accurate Record-Keeping
                           </h4>
                         </div>
                       </div>
@@ -259,7 +247,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-
+        {/* contributors section  */}
         <section className="pt-20 pb-48">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center text-center mb-24">
@@ -281,7 +269,7 @@ export default function Landing() {
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Ryan Tompson</h5>
+                    <h5 className="text-xl font-bold">Saif Khan Pathan</h5>
                     <p className="mt-1 text-sm text-slate-400 uppercase font-semibold">
                       Web Developer
                     </p>
@@ -316,7 +304,7 @@ export default function Landing() {
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Romina Hadid</h5>
+                    <h5 className="text-xl font-bold">Ishan Dede</h5>
                     <p className="mt-1 text-sm text-slate-400 uppercase font-semibold">
                       Marketing Specialist
                     </p>
@@ -345,7 +333,7 @@ export default function Landing() {
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Alexa Smith</h5>
+                    <h5 className="text-xl font-bold">Hardik Thakare</h5>
                     <p className="mt-1 text-sm text-slate-400 uppercase font-semibold">
                       UI/UX Designer
                     </p>
@@ -380,7 +368,7 @@ export default function Landing() {
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
-                    <h5 className="text-xl font-bold">Jenna Kardi</h5>
+                    <h5 className="text-xl font-bold">Devashish </h5>
                     <p className="mt-1 text-sm text-slate-400 uppercase font-semibold">
                       Founder and CEO
                     </p>
