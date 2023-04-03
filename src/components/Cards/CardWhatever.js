@@ -1,4 +1,5 @@
 import React from "react";
+import AddUserForm from "../../models/AddUserForm";
 // import Chart from "chart.js";
 
 export default function CardWhatever() {
@@ -118,6 +119,7 @@ export default function CardWhatever() {
           {/* Chart */}
           <div className="relative h-350-px">
             {/* <canvas id="bar-chart"></canvas> */}
+            <AddUserForm />
           </div>
         </div>
       </div>
