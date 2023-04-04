@@ -3,7 +3,7 @@ const deptStatic = [
   {
     deptHead: {
       avatar: require('../../assets/img/team-4-470x470.png'),
-      name: "Latesh Malik",
+      name: "dont know",
       email: "lgm@gcoen.ac.in"
     },
     deptName: "CSE",

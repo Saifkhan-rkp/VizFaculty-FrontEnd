@@ -4,6 +4,7 @@ import AdminNavBar from "../components/Navbars/AdminNavbar";
 import HeaderStats from "../components/Headers/HeaderStats";
 import AttendenceForm from "../components/AttendenceForm/AttendenceForm";
 import FooterAdmin from "../components/Footers/FooterAdmin";
+import CardCalendar from "../components/Cards/CardCalendar";
 
 export default function FacultyDashboard() {
   return (
@@ -22,6 +23,9 @@ export default function FacultyDashboard() {
           <div className="flex flex-wrap">
             <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
               <AttendenceForm />
+            </div>
+            <div className="w-full xl:w-4/12 px-4">
+              <CardCalendar />
             </div>
           </div>
           <FooterAdmin />
