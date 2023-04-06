@@ -11,6 +11,7 @@ import Landing from "../pages/Landing";
 import ForgetPassword from '../components/auth/ForgetPassword';
 import ResetPassword from '../components/auth/ResetPassword';
 import DashboardIndexAD from '../layouts/adminDeptLayouts/DashboardIndex';
+import SalaryApplicationLayout from '../layouts/adminDeptLayouts/SalaryApplicationLayout';
 
 export const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path:"/adminDept/applications",
-                element:<><p>element here</p></>
+                element:<SalaryApplicationLayout/>
             },
         ]
     },

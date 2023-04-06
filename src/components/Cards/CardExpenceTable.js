@@ -158,3 +158,55 @@ export default function CardExpenceTable() {
     </>
   );
 }
+
+
+// import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+
+// const data = [
+//   {
+//     department:"abxsdv",
+//     expenditure:78333
+//   },
+//   {
+//     department:"vzxdf",
+//     expenditure:74333
+//   },
+//   {
+//     department:"zdxfbdfb",
+//     expenditure:72333
+//   },
+//   {
+//     department:"fbzdfbfd",
+//     expenditure:79333
+//   },
+//   {
+//     department:"iulugfh",
+//     expenditure:67889
+//   },
+//   {
+//     department:"rehhzd",
+//     expenditure:78333
+//   },
+//   {
+//     department:"etjsbatr",
+//     expenditure:78333
+//   },
+//   {
+//     department:"tncvsrj",
+//     expenditure:78333
+//   },
+// ]
+
+// {/* Chart */}
+// {/* <div className="relative h-350-px overflow-x-auto">
+// <div className="w-full max-w-md">
+//     <BarChart width={500} height={300} data={data} margin={{top:20,right:30,left:20,bottom:5}}>
+//       <CartesianGrid strokeDasharray={"3 3"}/>
+//       <XAxis dataKey={"department"}/>
+//       <YAxis/>
+//       <Tooltip></Tooltip>
+//       <Legend/>
+//       <Bar dataKey={"expenditure"} fill="#8884d8"/>
+//     </BarChart>
+// </div>
+// </div> */}
