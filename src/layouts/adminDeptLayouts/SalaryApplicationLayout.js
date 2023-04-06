@@ -1,11 +1,11 @@
 import React from 'react'
-import CardPage from '../../components/Cards/CardPage'
+import CardSalaryApplications from '../../components/Cards/CardSalaryApplications'
 
 export default function SalaryApplicationLayout() {
   return (
     <>
         <div className="flex flex-wrap">
-            <CardPage />
+            <CardSalaryApplications />
         </div>
     </>
   )
