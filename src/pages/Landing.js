@@ -1,19 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // components
 
 import Navbar from "../components/Navbars/AuthNavbar";
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
+import Landingban from "../components/Carousel/Landingban";
 
 
 
 export default function Landing() {
   return (
     <>
-      <Navbar transparent />
-      <main>
+
+
+      <Navbar  />
+      <main className=" w-full ">
+      {/* <Landingban> </Landingban> */}
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -24,7 +28,7 @@ export default function Landing() {
           >
             <span
               id="blackOverlay"
-              className="w-full h-full absolute opacity-50 bg-black"
+              className="w-full h-full absolute opacity-50 bg-black "
             ></span>
           </div>
           <div className="container relative mx-auto">
@@ -159,13 +163,13 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20">
+        <section className="relative py-20  ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
           >
             <svg
-              className="absolute bottom-0 overflow-hidden"
+              className="absolute bottom-0 overflow-hidden h-6/12"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
               version="1.1"
@@ -248,7 +252,9 @@ export default function Landing() {
           </div>
         </section>
         {/* contributors section  */}
-            
+              
+
+              <h1 className="align-middle justify-center text-center text-5xl m-5 ">Blogs</h1>
             <BlogCards> </BlogCards>
 
 
@@ -329,6 +335,10 @@ export default function Landing() {
             </div>
           </div>
         </section>
+
+
+
+        {/* Contact Us */}
         <section className="relative block py-24 lg:pt-0 bg-slate-800">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
