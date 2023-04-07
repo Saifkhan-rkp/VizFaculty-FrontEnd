@@ -407,7 +407,7 @@ export default function Attendance() {
             </div>
             <button
               type="button"
-              class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+              className="text-white bg-gray-800  font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-gray-700 dark:border-gray-700"
             >
               Download
             </button>
@@ -415,110 +415,110 @@ export default function Attendance() {
         </div>
       </div>
 
-      <div class="relative overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <div className="relative overflow-x-auto">
+        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Date
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Day
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Subject
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 YearAndBranch
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 teachingType
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 timeFrom
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 timeTo
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 totalHours
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 rate
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 amount
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 {attendenceData[0].date}
               </th>
-              <td class="px-6 py-4">{attendenceData[0].day}</td>
-              <td class="px-6 py-4">{attendenceData[0].subject}</td>
-              <td class="px-6 py-4">{attendenceData[0].yearAndBranch}</td>
-              <td class="px-6 py-4">{attendenceData[0].teachingType}</td>
-              <td class="px-6 py-4">{attendenceData[0].timeFrom}</td>
-              <td class="px-6 py-4">{attendenceData[0].timeTo}</td>
-              <td class="px-6 py-4">{attendenceData[0].totalHours}</td>
-              <td class="px-6 py-4">{attendenceData[0].rate}</td>
-              <td class="px-6 py-4">{attendenceData[0].amount}</td>
+              <td className="px-6 py-4">{attendenceData[0].day}</td>
+              <td className="px-6 py-4">{attendenceData[0].subject}</td>
+              <td className="px-6 py-4">{attendenceData[0].yearAndBranch}</td>
+              <td className="px-6 py-4">{attendenceData[0].teachingType}</td>
+              <td className="px-6 py-4">{attendenceData[0].timeFrom}</td>
+              <td className="px-6 py-4">{attendenceData[0].timeTo}</td>
+              <td className="px-6 py-4">{attendenceData[0].totalHours}</td>
+              <td className="px-6 py-4">{attendenceData[0].rate}</td>
+              <td className="px-6 py-4">{attendenceData[0].amount}</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 {attendenceData[1].date}
               </th>
-              <td class="px-6 py-4">{attendenceData[1].day}</td>
-              <td class="px-6 py-4">{attendenceData[1].subject}</td>
-              <td class="px-6 py-4">{attendenceData[1].yearAndBranch}</td>
-              <td class="px-6 py-4">{attendenceData[1].teachingType}</td>
-              <td class="px-6 py-4">{attendenceData[1].timeFrom}</td>
-              <td class="px-6 py-4">{attendenceData[1].timeTo}</td>
-              <td class="px-6 py-4">{attendenceData[1].totalHours}</td>
-              <td class="px-6 py-4">{attendenceData[1].rate}</td>
-              <td class="px-6 py-4">{attendenceData[1].amount}</td>
+              <td className="px-6 py-4">{attendenceData[1].day}</td>
+              <td className="px-6 py-4">{attendenceData[1].subject}</td>
+              <td className="px-6 py-4">{attendenceData[1].yearAndBranch}</td>
+              <td className="px-6 py-4">{attendenceData[1].teachingType}</td>
+              <td className="px-6 py-4">{attendenceData[1].timeFrom}</td>
+              <td className="px-6 py-4">{attendenceData[1].timeTo}</td>
+              <td className="px-6 py-4">{attendenceData[1].totalHours}</td>
+              <td className="px-6 py-4">{attendenceData[1].rate}</td>
+              <td className="px-6 py-4">{attendenceData[1].amount}</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 {attendenceData[2].date}
               </th>
-              <td class="px-6 py-4">{attendenceData[2].day}</td>
-              <td class="px-6 py-4">{attendenceData[2].subject}</td>
-              <td class="px-6 py-4">{attendenceData[2].yearAndBranch}</td>
-              <td class="px-6 py-4">{attendenceData[2].teachingType}</td>
-              <td class="px-6 py-4">{attendenceData[2].timeFrom}</td>
-              <td class="px-6 py-4">{attendenceData[2].timeTo}</td>
-              <td class="px-6 py-4">{attendenceData[2].totalHours}</td>
-              <td class="px-6 py-4">{attendenceData[2].rate}</td>
-              <td class="px-6 py-4">{attendenceData[2].amount}</td>
+              <td className="px-6 py-4">{attendenceData[2].day}</td>
+              <td className="px-6 py-4">{attendenceData[2].subject}</td>
+              <td className="px-6 py-4">{attendenceData[2].yearAndBranch}</td>
+              <td className="px-6 py-4">{attendenceData[2].teachingType}</td>
+              <td className="px-6 py-4">{attendenceData[2].timeFrom}</td>
+              <td className="px-6 py-4">{attendenceData[2].timeTo}</td>
+              <td className="px-6 py-4">{attendenceData[2].totalHours}</td>
+              <td className="px-6 py-4">{attendenceData[2].rate}</td>
+              <td className="px-6 py-4">{attendenceData[2].amount}</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
                 scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 {attendenceData[3].date}
               </th>
-              <td class="px-6 py-4">{attendenceData[3].day}</td>
-              <td class="px-6 py-4">{attendenceData[3].subject}</td>
-              <td class="px-6 py-4">{attendenceData[3].yearAndBranch}</td>
-              <td class="px-6 py-4">{attendenceData[3].teachingType}</td>
-              <td class="px-6 py-4">{attendenceData[3].timeFrom}</td>
-              <td class="px-6 py-4">{attendenceData[3].timeTo}</td>
-              <td class="px-6 py-4">{attendenceData[3].totalHours}</td>
-              <td class="px-6 py-4">{attendenceData[3].rate}</td>
-              <td class="px-6 py-4">{attendenceData[3].amount}</td>
+              <td className="px-6 py-4">{attendenceData[3].day}</td>
+              <td className="px-6 py-4">{attendenceData[3].subject}</td>
+              <td className="px-6 py-4">{attendenceData[3].yearAndBranch}</td>
+              <td className="px-6 py-4">{attendenceData[3].teachingType}</td>
+              <td className="px-6 py-4">{attendenceData[3].timeFrom}</td>
+              <td className="px-6 py-4">{attendenceData[3].timeTo}</td>
+              <td className="px-6 py-4">{attendenceData[3].totalHours}</td>
+              <td className="px-6 py-4">{attendenceData[3].rate}</td>
+              <td className="px-6 py-4">{attendenceData[3].amount}</td>
             </tr>
           </tbody>
         </table>
