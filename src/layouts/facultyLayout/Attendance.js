@@ -428,8 +428,8 @@ export default function Attendance() {
               <th scope="col" className="px-6 py-3">
                 Subject
               </th>
-              <th scope="col" className="px-6 py-3">
-                YearAndBranch
+              <th scope="col" class="px-6 py-3">
+                Year/Branch
               </th>
               <th scope="col" className="px-6 py-3">
                 teachingType
@@ -452,74 +452,25 @@ export default function Attendance() {
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {attendenceData[0].date}
-              </th>
-              <td className="px-6 py-4">{attendenceData[0].day}</td>
-              <td className="px-6 py-4">{attendenceData[0].subject}</td>
-              <td className="px-6 py-4">{attendenceData[0].yearAndBranch}</td>
-              <td className="px-6 py-4">{attendenceData[0].teachingType}</td>
-              <td className="px-6 py-4">{attendenceData[0].timeFrom}</td>
-              <td className="px-6 py-4">{attendenceData[0].timeTo}</td>
-              <td className="px-6 py-4">{attendenceData[0].totalHours}</td>
-              <td className="px-6 py-4">{attendenceData[0].rate}</td>
-              <td className="px-6 py-4">{attendenceData[0].amount}</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {attendenceData[1].date}
-              </th>
-              <td className="px-6 py-4">{attendenceData[1].day}</td>
-              <td className="px-6 py-4">{attendenceData[1].subject}</td>
-              <td className="px-6 py-4">{attendenceData[1].yearAndBranch}</td>
-              <td className="px-6 py-4">{attendenceData[1].teachingType}</td>
-              <td className="px-6 py-4">{attendenceData[1].timeFrom}</td>
-              <td className="px-6 py-4">{attendenceData[1].timeTo}</td>
-              <td className="px-6 py-4">{attendenceData[1].totalHours}</td>
-              <td className="px-6 py-4">{attendenceData[1].rate}</td>
-              <td className="px-6 py-4">{attendenceData[1].amount}</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {attendenceData[2].date}
-              </th>
-              <td className="px-6 py-4">{attendenceData[2].day}</td>
-              <td className="px-6 py-4">{attendenceData[2].subject}</td>
-              <td className="px-6 py-4">{attendenceData[2].yearAndBranch}</td>
-              <td className="px-6 py-4">{attendenceData[2].teachingType}</td>
-              <td className="px-6 py-4">{attendenceData[2].timeFrom}</td>
-              <td className="px-6 py-4">{attendenceData[2].timeTo}</td>
-              <td className="px-6 py-4">{attendenceData[2].totalHours}</td>
-              <td className="px-6 py-4">{attendenceData[2].rate}</td>
-              <td className="px-6 py-4">{attendenceData[2].amount}</td>
-            </tr>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                {attendenceData[3].date}
-              </th>
-              <td className="px-6 py-4">{attendenceData[3].day}</td>
-              <td className="px-6 py-4">{attendenceData[3].subject}</td>
-              <td className="px-6 py-4">{attendenceData[3].yearAndBranch}</td>
-              <td className="px-6 py-4">{attendenceData[3].teachingType}</td>
-              <td className="px-6 py-4">{attendenceData[3].timeFrom}</td>
-              <td className="px-6 py-4">{attendenceData[3].timeTo}</td>
-              <td className="px-6 py-4">{attendenceData[3].totalHours}</td>
-              <td className="px-6 py-4">{attendenceData[3].rate}</td>
-              <td className="px-6 py-4">{attendenceData[3].amount}</td>
-            </tr>
+            {attendenceData.map((data) => (
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {data.date}
+                </th>
+                <td class="px-6 py-4">{data.day}</td>
+                <td class="px-6 py-4">{data.subject}</td>
+                <td class="px-6 py-4">{data.yearAndBranch}</td>
+                <td class="px-6 py-4">{data.teachingType}</td>
+                <td class="px-6 py-4">{data.timeFrom}</td>
+                <td class="px-6 py-4">{data.timeTo}</td>
+                <td class="px-6 py-4">{data.totalHours}</td>
+                <td class="px-6 py-4">{data.rate}</td>
+                <td class="px-6 py-4">{data.amount}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

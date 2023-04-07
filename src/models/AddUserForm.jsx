@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import Head from "next/head";
 
 function AddUserForm() {
@@ -23,7 +23,7 @@ function AddUserForm() {
         <>
             <button onClick={setPopup} className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
 
-            <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0">
+            <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0 hidden">
                 <div onClick={setPopup} className="w-full h-full bg-transparent z-0 absolute inset-0" />
                 <div className="mx-auto container">
                     <div className="flex items-center justify-center h-full w-full">
@@ -73,7 +73,7 @@ function AddUserForm() {
                                     <button onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
                                         Cancel
                                     </button>
-                                    <button className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
+                                    <button className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
                                 </div>
                             </div>
                         </div>
