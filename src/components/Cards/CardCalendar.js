@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "../../assets/styles/calendar.css";
+import "src/assets/styles/calendar.css";
 
 export default function CardCalendar() {
     const [value, setValue] = useState(new Date());
@@ -28,7 +28,7 @@ export default function CardCalendar() {
                             <div className="border-b pb-4 border-gray-400 border-dashed">
                                 <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
                                 <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Zoom call with design team</p>
-                                <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
+                                <p className="text-sm pt-2 leading-4  text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
                             </div>
                             <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                                 <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">10:00 AM</p>
@@ -37,7 +37,7 @@ export default function CardCalendar() {
                             <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                                 <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
                                 <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">Zoom call with design team</p>
-                                <p className="text-sm pt-2 leading-4 leading-none text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
+                                <p className="text-sm pt-2 leading-4  text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
                             </div>
                         </div>
                     </div>
