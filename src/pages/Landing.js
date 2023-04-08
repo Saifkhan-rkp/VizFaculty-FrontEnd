@@ -17,7 +17,7 @@ export default function Landing() {
 
       <Navbar  />
       <main className=" w-full ">
-      {/* <Landingban> </Landingban> */}
+        {/* <Landingban> </Landingban> */}
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -35,11 +35,12 @@ export default function Landing() {
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
                 <div className="pr-12">
-                  <h1 className="text-white font-semibold text-5xl">
+                  <h1 className="text-white font-semibold text-5xl writer-text">
                     Vizfaculty
                   </h1>
-                  <p className="mt-4 text-lg text-slate-200">
-                    lorem25
+                  <p className="mt-4 text-lg text-slate-200 will-change-transform ">
+                    VizFaculty is a web-based application that simplifies the management break
+                    of salaries and attendance of visiting faculty members in educational institutions, providing accurate and efficient record-keeping.
                   </p>
                 </div>
               </div>
@@ -252,10 +253,10 @@ export default function Landing() {
           </div>
         </section>
         {/* contributors section  */}
-              
 
-              <h1 className="align-middle justify-center text-center text-5xl m-5 ">Blogs</h1>
-            <BlogCards> </BlogCards>
+
+        <h1 className="align-middle justify-center text-center text-5xl m-5 ">Blogs</h1>
+        <BlogCards> </BlogCards>
 
 
 
@@ -274,7 +275,7 @@ export default function Landing() {
               x="0"
               y="0"
             >
-            {/*2560 0 2560 100 0 100  */}
+              {/*2560 0 2560 100 0 100  */}
               <polygon
                 className="text-slate-800 fill-current"
                 points="2560 0 2560 100 0 100"
@@ -301,7 +302,7 @@ export default function Landing() {
                   <i className="fas fa-medal text-xl"></i>
                 </div>
                 <h6 className="text-xl mt-5 font-semibold text-white">
-                  Excelent Services
+                  Streamlining Your Institution's Payroll Process with VizFaculty
                 </h6>
                 <p className="mt-2 mb-4 text-slate-400">
                   Some quick example text to build on the card title and make up
@@ -313,7 +314,7 @@ export default function Landing() {
                   <i className="fas fa-poll text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
+                  The Importance of Accurate Record-Keeping in Education
                 </h5>
                 <p className="mt-2 mb-4 text-slate-400">
                   Some quick example text to build on the card title and make up
@@ -325,7 +326,7 @@ export default function Landing() {
                   <i className="fas fa-lightbulb text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
+                  Why Visiting Faculty Members are an Essential Part of Modern Education
                 </h5>
                 <p className="mt-2 mb-4 text-slate-400">
                   Some quick example text to build on the card title and make up

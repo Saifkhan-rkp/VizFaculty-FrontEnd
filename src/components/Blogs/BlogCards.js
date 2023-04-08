@@ -19,16 +19,15 @@ export default function BlogCards(params) {
                 href="javascript:void(0)"
                 class="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
               >
-                50+ Best creative website themes & templates
+                Streamlining Your Institution's Payroll Process with VizFaculty
               </a>
             </h3>
             <p class="text-body-color mb-7 text-base leading-relaxed">
-              Lorem ipsum dolor sit amet pretium consectetur adipiscing elit.
-              Lorem consectetur adipiscing elit.
+            Learn how VizFaculty can make managing the salaries of visiting faculty members simpler and more efficient.
             </p>
             <a
               href="javascript:void(0)"
-              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white"
+              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white hover:bg-slate-800"
             >
               View Details
             </a>
@@ -48,16 +47,15 @@ export default function BlogCards(params) {
                 href="javascript:void(0)"
                 class="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
               >
-                The ultimate UX and UI guide to card design
+               The Benefits of Automation for Educational Institutions
               </a>
             </h3>
             <p class="text-body-color mb-7 text-base leading-relaxed">
-              Lorem ipsum dolor sit amet pretium consectetur adipiscing elit.
-              Lorem consectetur adipiscing elit.
+            Explore the advantages of using automated systems like VizFaculty for streamlining administrative tasks.
             </p>
             <a
               href="javascript:void(0)"
-              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white"
+              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white hover:bg-slate-800"
             >
               View Details
             </a>
@@ -77,16 +75,15 @@ export default function BlogCards(params) {
                 href="javascript:void(0)"
                 class="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
               >
-                Creative Card Component designs graphic elements
+                The Importance of Accurate Record-Keeping in Education
               </a>
             </h3>
             <p class="text-body-color mb-7 text-base leading-relaxed">
-              Lorem ipsum dolor sit amet pretium consectetur adipiscing elit.
-              Lorem consectetur adipiscing elit.
+            Highlight the significance of maintaining accurate attendance and payment records for visiting faculty members and how VizFaculty can help.
             </p>
             <a
               href="javascript:void(0)"
-              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white"
+              class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white hover:bg-slate-800"
             >
               View Details
             </a>
