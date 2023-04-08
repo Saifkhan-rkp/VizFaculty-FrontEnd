@@ -14,10 +14,10 @@ export default function Landing() {
   return (
     <>
 
-      
+
       <main className=" w-full ">
         {/* <Landingban> </Landingban> */}
-        
+
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
           <div
@@ -27,12 +27,12 @@ export default function Landing() {
                 "url('https://images.unsplash.com/photo-1626446636985-c583c1d5b237?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29tcHV0ZXIlMkNtb2JpbGUlMkNjYWxjdWxhdG9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')",
             }}
           >
-<Navbar/>
+            <Navbar />
             {/* <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black "
             ></span> */}
-            
+
           </div>
           <div className="container relative mx-auto">
             <div className="items-center flex flex-wrap">
