@@ -1,0 +1,13 @@
+/* Change background color */
+.react-calendar {
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important;
+    border: none !important;
+    color: gray;
+}
+
+/* Change height */
+.react-calendar {
+    width: 100% !important;
+    height: auto !important;
+    /* padding: 1.5rem; */
+}
