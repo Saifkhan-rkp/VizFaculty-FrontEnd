@@ -7,6 +7,7 @@ import Navbar from "../components/Navbars/AuthNavbar";
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
 import Landingban from "../components/Carousel/Landingban";
+import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 
 
 
@@ -15,11 +16,11 @@ export default function Landing() {
     <>
 
 
-<Navbar />
-      <main className=" w-full ">
+      {/* <Navbar /> */}
+      <main className=" w-full  bg-slate-300">
         {/* <Landingban> </Landingban> */}
-
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+        <LeftAlignContainer></LeftAlignContainer>
+        {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover" id="blackOverlay"
@@ -69,7 +70,7 @@ export default function Landing() {
               ></polygon>
             </svg>
           </div>
-        </div>
+        </div> */}
 
         {/* <section className="pb-20 bg-slate-200 -mt-24">
           <div className="container mx-auto px-4">
@@ -265,7 +266,7 @@ export default function Landing() {
 
 
 
-        <section className="pb-20 relative block bg-white">
+        <section className="pb-20 relative block bg-slate-300">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20 "
             style={{ transform: "translateZ(0)" }}
@@ -344,7 +345,7 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-24 lg:pt-0 bg-slate-800">
+        <section className="relative py-24 lg:pt-0 bg-slate-200">
           <div className="container mr-auto px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
