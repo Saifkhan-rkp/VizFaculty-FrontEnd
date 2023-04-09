@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <SalaryApplicationLayout />
       },
       {
-        path: "/adminDept/deparmentsAndfaculties",
+        path: "/adminDept/departmentsAndfaculties",
         element: <DepartmentsAndFaculties />
       },
     ]
