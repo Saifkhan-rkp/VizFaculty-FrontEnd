@@ -15,6 +15,7 @@ export default function Landing() {
     <>
 
 
+
       <main className=" w-full ">
         {/* <Landingban> </Landingban> */}
 
@@ -28,10 +29,10 @@ export default function Landing() {
             }}
           >
             <Navbar />
-            {/* <span
+            <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black "
-            ></span> */}
+            ></span>
 
           </div>
           <div className="container relative mx-auto">
