@@ -15,7 +15,7 @@ export default function Landing() {
     <>
 
 
-
+<Navbar />
       <main className=" w-full ">
         {/* <Landingban> </Landingban> */}
 
@@ -28,7 +28,7 @@ export default function Landing() {
                 "url('https://images.unsplash.com/photo-1626446636985-c583c1d5b237?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y29tcHV0ZXIlMkNtb2JpbGUlMkNjYWxjdWxhdG9yfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')",
             }}
           >
-            <Navbar />
+            
             <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black "

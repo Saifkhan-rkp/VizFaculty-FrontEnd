@@ -96,7 +96,7 @@ export default function Navbar(props) {
       </nav> */
 
 
-        <nav class="  w-full  bg-slate-700 bg-transparent ">
+        <nav class="  w-full  bg-slate-700  ">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 align-middle ">
             <a href="#" class="flex items-center">
               {/* <img src="" class="h-8 mr-3 text-white" alt="Viz Logo" /> */}
