@@ -1,29 +1,32 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 // import Head from "next/head";
 
-function AddUserForm() {
-    const [flag,setFlag] = useState(false);
+function AddUserForm({type}) {
+
+    const [flag, setFlag] = useState(false);
     const setPopup = () => {
         setFlag(!flag)
-        if (flag) {
-            document.getElementById("POPUP").classList.add("hidden");
-        } else {
-            document.getElementById("POPUP").classList.remove("hidden");
-        }
+        // if (flag) {
+        //     document.getElementById("POPUP").classList.add("hidden");
+        // } else {
+        //     document.getElementById("POPUP").classList.remove("hidden");
+        // }
     }
-    // // useEffect(()=>{
-    //     console.log(document.getElementById("POPUP"));
-    //     if (popup) {
-    //         document.getElementById("POPUP").classList.remove("hidden");
-    //     } else {
-    //         document.getElementById("POPUP").classList.add("hidden");
-    //     }
-    // // },[popup]);
     return (
         <>
-            <button onClick={setPopup} className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
-
-            <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0 hidden">
+            {/* <button onClick={setPopup} className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button> */}
+            <button
+                className={(type==="dept"?"bg-gray-500 text-white active:bg-gray-600 ":"bg-blue-500 text-white active:bg-blue-600 ")+"text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"}
+                type="button"
+                onClick={setPopup}
+            >
+                <i className='fas fa-plus' style={{ color: "white" }} />
+                Add {(type==="dept"?" Department":" Faculty")}
+            </button>
+            {flag 
+            &&  
+            <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0">
                 <div onClick={setPopup} className="w-full h-full bg-transparent z-0 absolute inset-0" />
                 <div className="mx-auto container">
                     <div className="flex items-center justify-center h-full w-full">
@@ -31,10 +34,7 @@ function AddUserForm() {
                             <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
                                 <p className="text-base font-semibold">Create New User</p>
                                 <button onClick={setPopup} className="focus:outline-none">
-                                    <svg width={28} height={28} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21 7L7 21" stroke="#A1A1AA" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                                        <path d="M7 7L21 21" stroke="#A1A1AA" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
+                                    <i className="fas fa-xmark fa-xl" style={{color:"gray"}}/>
                                 </button>
                             </div>
                             <div className="px-4 md:px-10 pt-6 md:pt-12 md:pb-4 pb-7">
@@ -50,6 +50,7 @@ function AddUserForm() {
                                 </div>
                                 <form className="mt-11">
                                     <div className="flex items-center space-x-9">
+
                                         <input placeholder="Full Name" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                         <input placeholder="Age" type="number" min={0} className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                     </div>
@@ -57,7 +58,7 @@ function AddUserForm() {
                                         <input placeholder="Email" type="email" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                         <div className="w-1/2 bg-white border rounded border-gray-200 py-2.5 px-3">
                                             <select className="text-sm text-gray-500 w-full focus:outline-none">
-                                                <option selected disabled value>
+                                                <option defaultValue disabled value>
                                                     Category
                                                 </option>
                                                 <option>Designer</option>
@@ -73,15 +74,24 @@ function AddUserForm() {
                                     <button onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
                                         Cancel
                                     </button>
-                                    <button className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add User</button>
+                                    <button className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add {(type==="dept"?" Department":" Faculty")}</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            }
         </>
     );
+}
+
+AddUserForm.defaultProps ={
+    type:"faculty"
+}
+
+AddUserForm.propTypes = {
+    type : PropTypes.oneOf(["faculty", "dept"]) 
 }
 
 export default AddUserForm;

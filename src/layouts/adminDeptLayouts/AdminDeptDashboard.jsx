@@ -5,16 +5,20 @@ import AdminNavBar from "../../components/Navbars/AdminNavbar";
 import HeaderStats from "../../components/Headers/HeaderStats";
 import FooterAdmin from "../../components/Footers/FooterAdmin"
 
+const links = [
+    {heading:"My Dashboard",link:"/adminDept", icon:"fas fa-tv"},
+    {heading:"Settings", link:"/adminDept/settings", icon:"fas fa-tools"},
+    {heading:"SALARY APPLICATIONS", link:"/adminDept/applications",icon:"fas fa-table"},
+    {heading:"Depts. and Faculties", link:"/adminDept/departmentsAndfaculties",icon:"fas fa-map-marked"},
+    // {heading:"Settings", link:"/adminDept/settings", icon:""},
+];
 export default function AdminDeptDashboard() {
 
     return (
         <>
             <Sidebar
                 heading="Quick Accessibility"
-                item1="My Dashboard"
-                item2="Settings"
-                item3="Salary Applications"
-                item4="Manage Departments"
+                linksAndHeadings={links}
             />
             <div className="relative md:ml-64 bg-slate-100">
                 <AdminNavBar />
