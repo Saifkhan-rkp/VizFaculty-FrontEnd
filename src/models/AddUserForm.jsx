@@ -50,6 +50,7 @@ function AddUserForm({type}) {
                                 </div>
                                 <form className="mt-11">
                                     <div className="flex items-center space-x-9">
+
                                         <input placeholder="Full Name" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                         <input placeholder="Age" type="number" min={0} className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                     </div>
@@ -57,7 +58,7 @@ function AddUserForm({type}) {
                                         <input placeholder="Email" type="email" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                         <div className="w-1/2 bg-white border rounded border-gray-200 py-2.5 px-3">
                                             <select className="text-sm text-gray-500 w-full focus:outline-none">
-                                                <option selected disabled value>
+                                                <option defaultValue disabled value>
                                                     Category
                                                 </option>
                                                 <option>Designer</option>
