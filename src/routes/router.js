@@ -12,42 +12,43 @@ import ResetPassword from "../components/auth/ResetPassword";
 import DashboardIndexAD from "../layouts/adminDeptLayouts/DashboardIndex";
 import DashboardIndexFaculty from "../layouts/facultyLayout/DashboardIndexFaculty";
 import FacultyDashboard from "../layouts/facultyLayout/FacultyDashboard";
+import Settings from "../layouts/facultyLayout/Settings";
 import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
-import SalaryApplicationLayout from '../layouts/adminDeptLayouts/SalaryApplicationLayout';
+import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Landing />,
     errorElement: <ErrorPage />,
   },
 
   //Admin Dept Dashboard
   {
-    path: '/adminDept',
+    path: "/adminDept",
     element: <AdminDeptDashboard />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <DashboardIndexAD></DashboardIndexAD>
+        element: <DashboardIndexAD></DashboardIndexAD>,
       },
       {
         path: "/adminDept/applications",
-        element: <SalaryApplicationLayout />
+        element: <SalaryApplicationLayout />,
       },
       {
         path: "/adminDept/departmentsAndfaculties",
-        element: <DepartmentsAndFaculties />
+        element: <DepartmentsAndFaculties />,
       },
-    ]
+    ],
   },
 
   //Hod Dept Dashboard
   {
-    path: '/dashboard-Dept',
+    path: "/dashboard-Dept",
     element: <HodDashboard />,
     errorElement: <ErrorPage />,
   },
@@ -63,12 +64,16 @@ export const router = createBrowserRouter([
         element: <DashboardIndexFaculty />,
       },
       {
-        path: "/faculty/attendance",
-        element: <Attendance />,
+        path: "/faculty/settings",
+        element: <Settings />,
       },
       {
-        path: "/faculty/salary",
+        path: "/faculty/salaryStatus",
         element: <Salary />,
+      },
+      {
+        path: "/faculty/attendance",
+        element: <Attendance />,
       },
     ],
   },
