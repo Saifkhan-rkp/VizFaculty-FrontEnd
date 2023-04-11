@@ -22,6 +22,16 @@ export const router = createBrowserRouter([
     path: '/',
     element: <Landing />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <DashboardIndexAD></DashboardIndexAD>
+      },
+      {
+        path: "/applications",
+        element: <SalaryApplicationLayout />
+      },
+    ]
   },
 
   //Admin Dept Dashboard

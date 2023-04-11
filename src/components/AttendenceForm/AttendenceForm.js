@@ -146,7 +146,7 @@ export default function AttendenceForm() {
             </label>
 
             <div>
-              <h2 className="uppercase my-10 text-slate-700 font-semibold uppercase">
+              <h2 className="uppercase my-10 text-slate-700 font-semibold ">
                 Mode
               </h2>
               <div className="grid grid-cols-2 divide-x">

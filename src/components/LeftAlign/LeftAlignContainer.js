@@ -30,12 +30,12 @@ function IndexPage() {
                                         <a href="">Blogs</a>
                                     </li>
                                     <li>
-                                        <a href="#LogIn" >
+                                        <a href="/" >
                                             <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mr-1 mb-1">Log In</button>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="..\..\components\auth\Register.js">
+                                        <a href="/">
                                             <button type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mr-1 mb-1">Register</button>
                                         </a>
                                     </li>
