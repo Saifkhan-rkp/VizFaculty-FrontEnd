@@ -17,6 +17,7 @@ import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
+import SettingsLayout from "../layouts/SettingsLayout";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardIndexAD></DashboardIndexAD>,
+      },
+      {
+        path:"/adminDept/dashboard",
+        element: <DashboardIndexAD></DashboardIndexAD>
+      },
+      {
+        path: "/adminDept/settings",
+        element: <SettingsLayout/>
       },
       {
         path: "/adminDept/applications",

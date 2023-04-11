@@ -8,6 +8,7 @@ const deptStatic = [
             email: "lgm@gcoen.ac.in"
         },
         deptName: "CSE",
+        code:"MM",
         vizFaculties: 9,
         totalExpence: 72345,
     },
@@ -18,6 +19,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ETC",
+        code:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -28,6 +30,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ELECTRICAL",
+        code:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -38,6 +41,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "CIVIL",
+        code:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -48,6 +52,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "MECH",
+        code:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -80,7 +85,7 @@ export default function CardFaculties() {
                         </div>
                     </div>
                 </div>
-                <div className="py-8 px-2">
+                <div className="py-8 px-4 lg:px-4 md:px-2 sm:px-1">
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500">{/**dark:text-gray-400 */}
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50">{/*dark:bg-gray-700 dark:text-gray-400*/}
@@ -96,8 +101,7 @@ export default function CardFaculties() {
                                     </th>
                                     <th scope="col" className="px-4 py-3">
                                         <div className="flex items-center">
-                                            Total Faculties
-                                            <a href="#whohooo"> <i className="fa-solid fa-sort" /></a>
+                                            Abbrivation
                                         </div>
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -124,9 +128,9 @@ export default function CardFaculties() {
                                             {data.deptName}
                                         </td>
                                         <td className="px-4 py-3">
-                                            {data.vizFaculties}
+                                            {data.code}
                                         </td>
-                                        <td className="px-6 py-4">
+                                        <td className="px-3 py-4">
                                             <div className='space-x-2 items-center lg:space-x-3 xl:space-x-4'>
                                                 <button
                                                     type="button"

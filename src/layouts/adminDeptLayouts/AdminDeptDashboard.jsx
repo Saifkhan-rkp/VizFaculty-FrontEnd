@@ -6,7 +6,7 @@ import HeaderStats from "../../components/Headers/HeaderStats";
 import FooterAdmin from "../../components/Footers/FooterAdmin"
 
 const links = [
-    {heading:"My Dashboard",link:"/adminDept", icon:"fas fa-tv"},
+    {heading:"My Dashboard",link:"/adminDept/dashboard", icon:"fas fa-tv"},
     {heading:"Settings", link:"/adminDept/settings", icon:"fas fa-tools"},
     {heading:"SALARY APPLICATIONS", link:"/adminDept/applications",icon:"fas fa-table"},
     {heading:"Depts. and Faculties", link:"/adminDept/departmentsAndfaculties",icon:"fas fa-map-marked"},
