@@ -12,12 +12,11 @@ import ResetPassword from "../components/auth/ResetPassword";
 import DashboardIndexAD from "../layouts/adminDeptLayouts/DashboardIndex";
 import DashboardIndexFaculty from "../layouts/facultyLayout/DashboardIndexFaculty";
 import FacultyDashboard from "../layouts/facultyLayout/FacultyDashboard";
-import Settings from "../layouts/facultyLayout/Settings";
+import SettingsLayout from "../layouts/SettingsLayout";
 import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
-import SettingsLayout from "../layouts/SettingsLayout";
 
 export const router = createBrowserRouter([
   {
@@ -37,12 +36,12 @@ export const router = createBrowserRouter([
         element: <DashboardIndexAD></DashboardIndexAD>,
       },
       {
-        path:"/adminDept/dashboard",
-        element: <DashboardIndexAD></DashboardIndexAD>
+        path: "/adminDept/dashboard",
+        element: <DashboardIndexAD></DashboardIndexAD>,
       },
       {
         path: "/adminDept/settings",
-        element: <SettingsLayout/>
+        element: <SettingsLayout />,
       },
       {
         path: "/adminDept/applications",
@@ -74,7 +73,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/faculty/settings",
-        element: <Settings />,
+        element: <SettingsLayout />,
       },
       {
         path: "/faculty/salaryStatus",

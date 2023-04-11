@@ -81,24 +81,24 @@ export default function AttendenceForm() {
     //   </div>
     // </>
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-        <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded">
+        <div className="rounded-t mb-0 px-4 mt-10 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-slate-400 mb-1 text-xs font-semibold">
                 Attendence
               </h6>
-              <h2 className="uppercase text-slate-700 text-xl font-semibold">
+              <h2 className="uppercase text-slate-700 mb-10 text-xl font-semibold">
                 Today's Schedule
               </h2>
             </div>
           </div>
         </div>
         <div className="p-4 flex-auto">
-          <h2 className="my-10 text-slate-700 font-semibold uppercase">
+          <h2 className="mb-4 text-slate-700 font-semibold uppercase">
             Theory
           </h2>
-          <div className="grid grid-cols-2 divide-x">
+          <div className="mb-10 grid grid-cols-2 divide-x">
             <div>
               <input
                 id="Theory-checkbox-1"
@@ -129,24 +129,24 @@ export default function AttendenceForm() {
             </div>
           </div>
           <div className="relative h-350-px">
-            <h2 className="my-10 text-slate-700 font-semibold uppercase">
+            <h2 className="mb-4 text-slate-700 font-semibold uppercase">
               Practical
             </h2>
             <input
               id="default-checkbox"
               type="checkbox"
               value=""
-              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              className="mb-10 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
               for="default-checkbox"
-              class="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
+              className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
             >
               Default checkbox
             </label>
 
             <div>
-              <h2 className="uppercase my-10 text-slate-700 font-semibold uppercase">
+              <h2 className="uppercase mb-5 text-slate-700 font-semibold uppercase">
                 Mode
               </h2>
               <div className="grid grid-cols-2 divide-x">
@@ -160,7 +160,7 @@ export default function AttendenceForm() {
                   />
                   <label
                     for="default-radio-mode-1"
-                    className="ml-2 my-10 text-sm font-medium text-black-900 dark:text-black-300"
+                    className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
                   >
                     Online
                   </label>
@@ -188,7 +188,7 @@ export default function AttendenceForm() {
           <div className="flex content-center items-center justify-center bottom-3">
             <a
               href="/"
-              className="flex content-center mx-50 bottom-20 justify-center items-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="mb-5 flex content-center mx-50 bottom-20 justify-center items-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
             </a>
