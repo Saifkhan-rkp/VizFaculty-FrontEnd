@@ -6,7 +6,7 @@ import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
 
 
-export default function Sidebar({ linksAndHeadings, ...props }) {
+export default function Sidebar({ linksAndHeadings }) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
     <>

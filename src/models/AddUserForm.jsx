@@ -5,6 +5,42 @@ import PropTypes from "prop-types";
 function AddUserForm({ type }) {
 
     const [flag, setFlag] = useState(false);
+    const comps = {
+        faculty: [
+            { label: "Faculty Name", placeholder: "Name (Optional)" },
+            { label: "Abbrivation", placeholder: "Ex. CJ (Must be unique)" },
+            {
+                label: "Department", input:
+                    (
+                    // <div className="bg-white border rounded border-gray-200 py-2.5 px-3">
+                        <select className="border-0 px-3 py-3 placeholder-slate-300 text-sm text-slate-600 w-full bg-white rounded shadow focus:outline-none focus:ring ease-linear transition-all duration-150">
+                            <option defaultValue value>
+                                Must Be Select
+                            </option>
+                            <option>CSE</option>
+                            <option>MECH</option>
+                            <option>ELECTRIC</option>
+                            <option>ETC</option>
+                            <option>CIVIL</option>
+                        </select>
+                    // </div>
+                    )
+            },
+        ],
+        department: [
+            { label: "Department Name", placeholder: "Department of Com. Science and Engineering" },
+            { label: "Code", placeholder: "CSE" },
+            {
+                label: "Head Name", input:
+                    (<input
+                        type="text"
+                        placeholder="Name (Optional)"
+                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    />)
+            },
+        ]
+    }
+    const [inputes] = useState(type === "dept" ? comps.department : comps.faculty);
     const setPopup = () => {
         setFlag(!flag)
         // if (flag) {
@@ -30,14 +66,14 @@ function AddUserForm({ type }) {
                     <div onClick={setPopup} className="w-full h-full bg-transparent z-0 absolute inset-0" />
                     <div className="mx-auto container">
                         <div className="flex items-center justify-center h-full w-full">
-                            <div className="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
+                            <div className="bg-white rounded-md shadow fixed overflow-x-auto overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
                                 <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
                                     <p className="text-base font-semibold">Create New {(type === "dept" ? " Department" : " Faculty")}</p>
                                     <button onClick={setPopup} className="focus:outline-none">
                                         <i className="fas fa-xmark fa-xl" style={{ color: "gray" }} />
                                     </button>
                                 </div>
-                                <div className="px-4 md:px-10 pt-6 md:pt-12 md:pb-4 pb-7">
+                                <div className="px-4 md:px-10 pt-6 md:pt-12 md:pb-4 pb-7 bg-slate-50">
                                     <div className="flex items-center justify-center">
                                         <div className="w-40 h-40 p-16 bg-gray-100 rounded-md flex items-center justify-center">
                                             <svg width={36} height={36} viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,12 +86,59 @@ function AddUserForm({ type }) {
                                     </div>
                                     <form className="mt-11">
                                         <div className="flex items-center space-x-9">
-
-                                            <input placeholder="Full Name" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
-                                            <input placeholder="Age" type="number" min={0} className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                                            <div className="relative w-full mb-3">
+                                                <label
+                                                    className="text-left block uppercase text-slate-600 text-xs font-bold mb-2"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    {inputes[0].label}
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    placeholder={inputes[0].placeholder}
+                                                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                />
+                                            </div>
+                                            <div className="relative w-full mb-3">
+                                                <label
+                                                    className="text-left block uppercase text-slate-600 text-xs font-bold mb-2"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    {inputes[1].label}
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    placeholder={inputes[1].placeholder}
+                                                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                />
+                                            </div>
+                                            {/* <input placeholder="Full Name" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                                            <input placeholder="Age" type="number" min={0} className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" /> */}
                                         </div>
-                                        <div className="flex items-center space-x-9 mt-8">
-                                            <input placeholder="Email" type="email" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
+                                        <div className="flex items-center space-x-9 mt-5">
+                                            <div className="relative w-full mb-3">
+                                                <label
+                                                    className="text-left block uppercase text-slate-600 text-xs font-bold mb-2"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    Email
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    placeholder="example@mail.com"
+                                                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                />
+                                            </div>
+                                            <div className="relative w-full mb-3">
+                                                <label
+                                                    className="text-left block uppercase text-slate-600 text-xs font-bold mb-2"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    {inputes[2].label}
+                                                </label>
+                                                {inputes[2].input}
+                                            </div>
+                                            {/* <input placeholder="Email" type="email" className="w-1/2 focus:outline-none placeholder-gray-500 py-3 px-3 text-sm leading-none text-gray-800 bg-white border rounded border-gray-200" />
                                             <div className="w-1/2 bg-white border rounded border-gray-200 py-2.5 px-3">
                                                 <select className="text-sm text-gray-500 w-full focus:outline-none">
                                                     <option defaultValue disabled value>
@@ -64,10 +147,23 @@ function AddUserForm({ type }) {
                                                     <option>Department</option>
                                                     <option>Faculty</option>
                                                 </select>
-                                            </div>
+                                            </div> */}
                                         </div>
-                                        <div className="mt-8">
-                                            <textarea placeholder="Remarks that to mentioned in email..." className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none" defaultValue={""} />
+                                        <div className="mt-5">
+                                            <div className="relative w-full mb-3">
+                                                <label
+                                                    className="text-left block uppercase text-slate-600 text-xs font-bold mb-2"
+                                                    htmlFor="grid-password"
+                                                >
+                                                    Note
+                                                </label>
+                                                <textarea
+                                                    type="text"
+                                                    placeholder="Remarks that to mentioned in email..."
+                                                    className="border-0 h-25 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                ></textarea>
+                                            </div>
+                                            {/* <textarea  className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none" defaultValue={""} /> */}
                                         </div>
                                         <div className="flex items-center justify-between mt-9">
                                             <button onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
