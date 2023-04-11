@@ -111,10 +111,10 @@ function IndexPage() {
                         </div>
                         <div className="w-1/2 sm:w-2/5 h-64 md:h-auto m-auto flex items-center overflow-hidden">
                             {/* <img class="h-full" src="https://cdn.tuk.dev/assets/components/111220/Hero4/Rectangle.png" alt="Device"> */}
-                            {/* <img className="md:absolute md:w-1/2 md:-ml-28" src="https://cdn.tuk.dev/assets/components/111220/Hero4/Device - Macbook Pro.png" alt /> */}
+                            <img className="md:absolute md:w-1/2 md:-ml-28" src={require("../../assets/img/Mockup_VF_Macbook.png")} alt />
                            
                            
-                            <div className="md:absolute md:w-1/2 md:-ml-28" style={Mystyle}><img src="https://media.giphy.com/media/UeFFL2K5p6s0UJQUci/giphy.gif" width="100%" height="100%" style={{position:"absolute"}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div>
+                            {/* <div className="md:absolute md:w-1/2 md:-ml-28" style={Mystyle}><img src="https://media.giphy.com/media/UeFFL2K5p6s0UJQUci/giphy.gif" width="100%" height="100%" style={{position:"absolute"}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div> */}
                             {/* style="width:100%;height:0;padding-bottom:100%;position:relative;" */}
                         </div>
                     </div>
