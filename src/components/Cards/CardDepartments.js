@@ -9,6 +9,7 @@ const deptStatic = [
             email: "lgm@gcoen.ac.in"
         },
         deptName: "CSE",
+        cade:"MM",
         vizFaculties: 9,
         totalExpence: 72345,
     },
@@ -19,6 +20,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ETC",
+        cade:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -29,6 +31,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ELECTRICAL",
+        cade:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -39,6 +42,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "CIVIL",
+        cade:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -49,6 +53,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "MECH",
+        cade:"MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -88,7 +93,7 @@ export default function CardDepartments() {
                         </div>
                     </div>
                 </div>
-                <div className="py-8 px-2">
+                <div className="py-8 px-4 lg:px-4 md:px-2 sm:px-1">
                     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -108,7 +113,7 @@ export default function CardDepartments() {
                                             <a href="#whohooo"> <i className="fa-solid fa-sort" /></a>
                                         </div>
                                     </th>
-                                    <th scope="col" className="px-6 py-3">
+                                    <th scope="col" className="px-4 py-3">
                                         <div className="flex items-center">
                                             Action
                                         </div>
@@ -134,7 +139,7 @@ export default function CardDepartments() {
                                         <td className="px-4 py-3">
                                             {data.vizFaculties}
                                         </td>
-                                        <td className="px-6 py-4">
+                                        <td className="px-3 py-4">
                                             <div className='space-x-2 items-center lg:space-x-3 xl:space-x-4'>
                                                 <button
                                                     type="button"
