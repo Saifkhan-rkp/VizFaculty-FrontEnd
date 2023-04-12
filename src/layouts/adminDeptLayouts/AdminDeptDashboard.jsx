@@ -6,10 +6,10 @@ import HeaderStats from "../../components/Headers/HeaderStats";
 import FooterAdmin from "../../components/Footers/FooterAdmin"
 
 const links = [
-    {heading:"My Dashboard",link:"/adminDept/dashboard", icon:"fas fa-tv"},
-    {heading:"Settings", link:"/adminDept/settings", icon:"fas fa-tools"},
-    {heading:"SALARY APPLICATIONS", link:"/adminDept/applications",icon:"fas fa-table"},
-    {heading:"Depts. and Faculties", link:"/adminDept/departmentsAndfaculties",icon:"fas fa-map-marked"},
+    {heading:"My Dashboard",link:"/faculty", icon:"fas fa-tv"},
+    {heading:"Settings", link:"/faculty/settings", icon:"fas fa-tools"},
+    {heading:"Attendance ", link:"/faculty/attendance",icon:"fas fa-table"},
+    {heading:"Salary Status", link:"/faculty/salary",icon:"fas fa-map-marked"},
     // {heading:"Settings", link:"/adminDept/settings", icon:""},
 ];
 export default function AdminDeptDashboard() {

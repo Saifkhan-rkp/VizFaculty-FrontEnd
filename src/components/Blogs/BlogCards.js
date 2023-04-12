@@ -5,7 +5,7 @@ export default function BlogCards(params) {
         {/* <!-- ====== Cards Section Start --> */}
 <section class="bg-slate-200 pt-20 pb-10 lg:pt-[120px] lg:pb-20 rounded-lg ">
   <div class="container mx-auto">
-    <div class="-mx-4 flex flex-wrap">
+    <div class="-mx-4 flex flex-wrap p-8">
       <div class="w-full px-4 md:w-1/2 xl:w-1/3">
         <div class="mb-10 overflow-hidden rounded-lg bg-white">
           <img
