@@ -17,7 +17,7 @@ export default function Landing() {
 
 
       {/* <Navbar /> */}
-      <main className=" w-full  bg-slate-300">
+      <main className=" w-full">
 
         <LeftAlignContainer></LeftAlignContainer>
         {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
@@ -169,7 +169,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20  ">
+        <section className="relative py-20 bg-slate-300 shadow-lg z-10">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
@@ -257,8 +257,8 @@ export default function Landing() {
         {/* contributors section  */}
 
 
-        <h1 className="align-middle justify-center text-center text-5xl m-5 ">Blogs</h1>
-        <BlogCards> </BlogCards>
+        
+        <BlogCards id="blogCards"> </BlogCards>
 
 
 
@@ -288,10 +288,9 @@ export default function Landing() {
                 <h2 className="text-4xl font-semibold text-black">
                   Build something
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-black">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
+                <p className="text-xl leading-relaxed mt-4 mb-4 text-black">
+                Empowering education through effortless salary management. 
+                <p>Join us in simplifying academia with VizFaculty</p>
                 </p>
               </div>
             </div>
@@ -339,7 +338,7 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-20 lg:pt-0 bg-slate-200">
+        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl" id="contact">
           <div className="container mr-auto px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
@@ -361,7 +360,7 @@ export default function Landing() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 hover:shadow-lg"
                         placeholder="Full Name"
                       />
                     </div>

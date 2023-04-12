@@ -84,18 +84,18 @@
 
 
 /* Links animation */
-nav ul li::after{
+nav ul .link::after{
   content: '';
   width: 0%;
-  height: 2px;
-  background: rgb(255, 94, 94);
+  height: 3px;
+  background: #1976d2;
   display: block;
   margin: auto;
   transition: 0.5s;
   
 }
-nav ul li:hover::after{
+nav ul .link:hover::after{
   width: 100%;
-  size: 20px;
+  size: 40px;
 
 }
