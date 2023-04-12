@@ -80,3 +80,22 @@
       border-color: rgb(17, 17, 16); 
   }
 }
+
+
+
+/* Links animation */
+nav ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: rgb(255, 94, 94);
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+  
+}
+nav ul li:hover::after{
+  width: 100%;
+  size: 20px;
+
+}
