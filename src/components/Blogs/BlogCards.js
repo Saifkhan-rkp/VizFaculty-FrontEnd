@@ -3,9 +3,10 @@ import React from "react";
 export default function BlogCards(params) {
     return(<>  
         {/* <!-- ====== Cards Section Start --> */}
-<section class="bg-slate-200 pt-20 pb-10 lg:pt-[120px] lg:pb-20 rounded-lg ">
+<section class="bg-slate-200 pt-12 pb-6 lg:pt-[120px] lg:pb-20 shadow-lg shadow-black " >
+<h1 className="align-middle justify-center text-center text-5xl  ">Blogs</h1>
   <div class="container mx-auto">
-    <div class="-mx-4 flex flex-wrap p-8">
+    <div class="-mx-4 flex flex-wrap p-4">
       <div class="w-full px-4 md:w-1/2 xl:w-1/3">
         <div class="mb-10 overflow-hidden rounded-lg bg-white">
           <img
