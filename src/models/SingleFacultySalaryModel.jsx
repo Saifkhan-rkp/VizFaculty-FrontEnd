@@ -391,8 +391,8 @@ const attendenceData = [
 
 function SingleFacultySalaryModel({ faculty, id, hidden }) {
   // const []
-  console.log(hidden);
-  console.log(id);
+  // console.log(hidden);
+  // console.log(id);
   const [flag, setFlag] = useState(false);
   const setPopup = () => {
     setFlag(!flag)
@@ -434,7 +434,8 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
       onClick={setPopup}
     >
     </button>
-    {flag &&
+    {flag 
+      &&
       <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0">
         <div onClick={setPopup} className="w-full h-full bg-transparent z-0 absolute inset-0" />
         <div className="mx-auto container md:h-screen sm:h-screen">
