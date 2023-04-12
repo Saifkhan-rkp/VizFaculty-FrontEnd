@@ -3,11 +3,11 @@ import React from "react";
 
 // components
 
-import Navbar from "../components/Navbars/AuthNavbar";
+import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
-import Landingban from "../components/Carousel/Landingban";
-import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
+
+
 
 
 
@@ -18,7 +18,7 @@ export default function Landing() {
 
       {/* <Navbar /> */}
       <main className=" w-full  bg-slate-300">
-        {/* <Landingban> </Landingban> */}
+
         <LeftAlignContainer></LeftAlignContainer>
         {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
@@ -183,10 +183,7 @@ export default function Landing() {
               x="0"
               y="0"
             >
-              <polygon
-                className="text-white fill-current"
-                points="1300 0 2560 100 0 100"
-              ></polygon>
+             
             </svg>
           </div>
 
@@ -199,7 +196,7 @@ export default function Landing() {
                   src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
                 />
               </div>
-              <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
+              <div className="w-full md:w-5/12 ml-auto mr-auto px-4 text-2xl">
                 <div className="md:pr-12">
                   <div className="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-sky-300">
                     <i className="fas fa-rocket text-xl"></i>
@@ -271,7 +268,7 @@ export default function Landing() {
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20 "
             style={{ transform: "translateZ(0)" }}
           >
-            <svg
+            {/* <svg
               className="absolute bottom-0 overflow-hidden"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -280,12 +277,9 @@ export default function Landing() {
               x="0"
               y="0"
             >
-              {/*2560 0 2560 100 0 100  */}
-              <polygon
-                className="text-slate-800 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
+             
+              
+            </svg> */}
           </div>
 
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-64 ">
@@ -345,11 +339,11 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-24 lg:pt-0 bg-slate-200">
+        <section className="relative py-20 lg:pt-0 bg-slate-200">
           <div className="container mr-auto px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-200">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
                       Contact Us
@@ -367,7 +361,7 @@ export default function Landing() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Full Name"
                       />
                     </div>
@@ -381,7 +375,7 @@ export default function Landing() {
                       </label>
                       <input
                         type="email"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-black rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-slate-50 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
                       />
                     </div>
@@ -396,7 +390,7 @@ export default function Landing() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Type a message..."
                       />
                     </div>
