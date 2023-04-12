@@ -12,27 +12,19 @@ import ResetPassword from "../components/auth/ResetPassword";
 import DashboardIndexAD from "../layouts/adminDeptLayouts/DashboardIndex";
 import DashboardIndexFaculty from "../layouts/facultyLayout/DashboardIndexFaculty";
 import FacultyDashboard from "../layouts/facultyLayout/FacultyDashboard";
-import SettingsLayout from "../layouts/SettingsLayout";
 import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
+import Landing2 from "../pages/Landing2";
+import FacultySetting from "../layouts/facultyLayout/FacultySetting";
+import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
+    element: <Landing2 />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <DashboardIndexAD></DashboardIndexAD>
-      },
-      {
-        path: "/applications",
-        element: <SalaryApplicationLayout />
-      },
-    ]
   },
 
   //Admin Dept Dashboard
@@ -51,7 +43,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/adminDept/settings",
-        element: <SettingsLayout />,
+        element: <AdminDeptSetting />,
       },
       {
         path: "/adminDept/applications",
@@ -83,7 +75,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/faculty/settings",
-        element: <SettingsLayout />,
+        element: <FacultySetting />,
       },
       {
         path: "/faculty/salaryStatus",

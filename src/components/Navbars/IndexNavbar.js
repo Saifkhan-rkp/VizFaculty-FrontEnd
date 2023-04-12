@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 // components
 
-import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
+import IndexDropdown from "../Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -21,8 +21,8 @@ export default function Navbar(props) {
             <button
               className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
-              onFocus={()=> setNavbarOpen(true)}
-              onBlur ={()=> setNavbarOpen(false)}
+              onFocus={() => setNavbarOpen(true)}
+              onBlur={() => setNavbarOpen(false)}
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
               <i className="fas fa-bars"></i>
