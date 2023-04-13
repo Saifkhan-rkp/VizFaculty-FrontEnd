@@ -5,6 +5,9 @@ import { Toaster } from 'react-hot-toast';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
+
+
 function App() {
   const client = new QueryClient({
     defaultOptions: {

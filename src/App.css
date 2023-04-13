@@ -99,3 +99,6 @@ nav ul .link:hover::after{
   size: 40px;
 
 }
+.vis{
+  visibility: visible;
+}
