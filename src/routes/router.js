@@ -16,6 +16,7 @@ import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
+
 import Landing2 from "../pages/Landing2";
 import FacultySetting from "../layouts/facultyLayout/FacultySetting";
 import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
@@ -23,7 +24,7 @@ import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing2 />,
+    element: <Landing />,
     errorElement: <ErrorPage />,
   },
 
