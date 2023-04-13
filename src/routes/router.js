@@ -24,7 +24,7 @@ import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
+    element: <Landing2 />,
     errorElement: <ErrorPage />,
   },
 
