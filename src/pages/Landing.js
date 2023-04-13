@@ -6,12 +6,22 @@ import React from "react";
 import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+ 
 
 
 
 
 
 export default function Landing() {
+//  function componentDidMount(){
+    AOS.init({
+     
+    });
+  // }
   return (
     <>
 
@@ -169,7 +179,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20 bg-slate-300 shadow-lg z-10">
+        <section  className="relative py-20 bg-slate-300 shadow-lg z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
@@ -190,7 +200,7 @@ export default function Landing() {
           <div className="container mx-auto px-4">
             <div className="items-center flex flex-wrap">
               <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-                <img
+                <img data-aos="fade-right" data-aos-duration="3000"
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
                   src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
@@ -258,7 +268,7 @@ export default function Landing() {
 
 
         
-        <BlogCards id="blogCards"> </BlogCards>
+        <BlogCards  id="blogCards"> </BlogCards>
 
 
 
@@ -338,12 +348,12 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl" id="contact">
+        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl visible" id="contact"  >
           <div className="container mr-auto px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300">
-                  <div className="flex-auto p-5 lg:p-10">
+                  <div className="flex-auto p-5 lg:p-10 visible" data-aos="fade-right" data-aos-duraion="2000">
                     <h4 className="text-2xl font-semibold">
                       Contact Us
                     </h4>
