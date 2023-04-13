@@ -8,8 +8,8 @@ routes for dashboards are -
 
         http://localhost:3000/  - For Landing page, Footer, Navbar (Devashish)
         http://localhost:3000/faculty  - (Hardik)
-        http://localhost:3000/dashboard-Dept  - for HoD (Ishan)
-        http://localhost:3000/dashboard-AdminDept  - for Admin Department
+        http://localhost:3000/Dept  - for HoD (Ishan)
+        http://localhost:3000/AdminDept  - for Admin Department
 
 ## Available Scripts
 
