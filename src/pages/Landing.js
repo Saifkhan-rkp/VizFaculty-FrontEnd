@@ -3,23 +3,34 @@ import React from "react";
 
 // components
 
-import Navbar from "../components/Navbars/AuthNavbar";
+import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
-import Landingban from "../components/Carousel/Landingban";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
+ 
+
+
 
 
 
 export default function Landing() {
+//  function componentDidMount(){
+    AOS.init({
+     
+    });
+  // }
   return (
     <>
 
 
-<Navbar />
-      <main className=" w-full ">
-        {/* <Landingban> </Landingban> */}
+      {/* <Navbar /> */}
+      <main className=" w-full">
 
-        <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
+        <LeftAlignContainer></LeftAlignContainer>
+        {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover" id="blackOverlay"
@@ -69,7 +80,7 @@ export default function Landing() {
               ></polygon>
             </svg>
           </div>
-        </div>
+        </div> */}
 
         {/* <section className="pb-20 bg-slate-200 -mt-24">
           <div className="container mx-auto px-4">
@@ -168,7 +179,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20  ">
+        <section  className="relative py-20 bg-slate-300 shadow-lg z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
@@ -182,23 +193,20 @@ export default function Landing() {
               x="0"
               y="0"
             >
-              <polygon
-                className="text-white fill-current"
-                points="1300 0 2560 100 0 100"
-              ></polygon>
+             
             </svg>
           </div>
 
           <div className="container mx-auto px-4">
             <div className="items-center flex flex-wrap">
               <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
-                <img
+                <img data-aos="fade-right" data-aos-duration="3000"
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
                   src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
                 />
               </div>
-              <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
+              <div className="w-full md:w-5/12 ml-auto mr-auto px-4 text-2xl">
                 <div className="md:pr-12">
                   <div className="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-sky-300">
                     <i className="fas fa-rocket text-xl"></i>
@@ -259,18 +267,18 @@ export default function Landing() {
         {/* contributors section  */}
 
 
-        <h1 className="align-middle justify-center text-center text-5xl m-5 ">Blogs</h1>
-        <BlogCards> </BlogCards>
+        
+        <BlogCards  id="blogCards"> </BlogCards>
 
 
 
 
-        <section className="pb-20 relative block bg-white">
+        <section className="pb-20 relative block bg-slate-300">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20 "
             style={{ transform: "translateZ(0)" }}
           >
-            <svg
+            {/* <svg
               className="absolute bottom-0 overflow-hidden"
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -279,12 +287,9 @@ export default function Landing() {
               x="0"
               y="0"
             >
-              {/*2560 0 2560 100 0 100  */}
-              <polygon
-                className="text-slate-800 fill-current"
-                points="2560 0 2560 100 0 100"
-              ></polygon>
-            </svg>
+             
+              
+            </svg> */}
           </div>
 
           <div className="container mx-auto px-4 lg:pt-24 lg:pb-64 ">
@@ -293,10 +298,9 @@ export default function Landing() {
                 <h2 className="text-4xl font-semibold text-black">
                   Build something
                 </h2>
-                <p className="text-lg leading-relaxed mt-4 mb-4 text-black">
-                  Put the potentially record low maximum sea ice extent tihs
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
+                <p className="text-xl leading-relaxed mt-4 mb-4 text-black">
+                Empowering education through effortless salary management. 
+                <p>Join us in simplifying academia with VizFaculty</p>
                 </p>
               </div>
             </div>
@@ -344,12 +348,12 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-24 lg:pt-0 bg-slate-800">
+        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl visible" id="contact"  >
           <div className="container mr-auto px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-200">
-                  <div className="flex-auto p-5 lg:p-10">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300">
+                  <div className="flex-auto p-5 lg:p-10 visible" data-aos="fade-right" data-aos-duraion="2000">
                     <h4 className="text-2xl font-semibold">
                       Contact Us
                     </h4>
@@ -366,7 +370,7 @@ export default function Landing() {
                       </label>
                       <input
                         type="text"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 hover:shadow-lg"
                         placeholder="Full Name"
                       />
                     </div>
@@ -380,7 +384,7 @@ export default function Landing() {
                       </label>
                       <input
                         type="email"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-black rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-slate-50 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
                       />
                     </div>
@@ -395,7 +399,7 @@ export default function Landing() {
                       <textarea
                         rows="4"
                         cols="80"
-                        className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Type a message..."
                       />
                     </div>

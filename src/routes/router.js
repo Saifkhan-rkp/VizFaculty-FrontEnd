@@ -12,23 +12,17 @@ import ResetPassword from "../components/auth/ResetPassword";
 import DashboardIndexAD from "../layouts/adminDeptLayouts/DashboardIndex";
 import DashboardIndexFaculty from "../layouts/facultyLayout/DashboardIndexFaculty";
 import FacultyDashboard from "../layouts/facultyLayout/FacultyDashboard";
+import SettingsLayout from "../layouts/SettingsLayout";
 import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
-import SalaryApplicationLayout from '../layouts/adminDeptLayouts/SalaryApplicationLayout';
+import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
 import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Landing />,
-    errorElement: <ErrorPage />,
-  },
-
-  //Admin Dept Dashboard
-  {
-    path: '/adminDept',
-    element: <AdminDeptDashboard />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -36,14 +30,39 @@ export const router = createBrowserRouter([
         element: <DashboardIndexAD></DashboardIndexAD>
       },
       {
-        path: "/adminDept/applications",
+        path: "/applications",
         element: <SalaryApplicationLayout />
+      },
+    ]
+  },
+
+  //Admin Dept Dashboard
+  {
+    path: "/adminDept",
+    element: <AdminDeptDashboard />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <DashboardIndexAD></DashboardIndexAD>,
+      },
+      {
+        path: "/adminDept/dashboard",
+        element: <DashboardIndexAD></DashboardIndexAD>,
+      },
+      {
+        path: "/adminDept/settings",
+        element: <SettingsLayout />,
+      },
+      {
+        path: "/adminDept/applications",
+        element: <SalaryApplicationLayout />,
       },
       {
         path: "/adminDept/departmentsAndfaculties",
-        element: <DepartmentsAndFaculties />
+        element: <DepartmentsAndFaculties />,
       },
-    ]
+    ],
   },
 
   //Hod Dept Dashboard
@@ -78,12 +97,16 @@ export const router = createBrowserRouter([
         element: <DashboardIndexFaculty />,
       },
       {
-        path: "/faculty/attendance",
-        element: <Attendance />,
+        path: "/faculty/settings",
+        element: <SettingsLayout />,
       },
       {
-        path: "/faculty/salary",
+        path: "/faculty/salaryStatus",
         element: <Salary />,
+      },
+      {
+        path: "/faculty/attendance",
+        element: <Attendance />,
       },
     ],
   },

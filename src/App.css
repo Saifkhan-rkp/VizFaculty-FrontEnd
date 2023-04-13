@@ -80,3 +80,25 @@
       border-color: rgb(17, 17, 16); 
   }
 }
+
+
+
+/* Links animation */
+nav ul .link::after{
+  content: '';
+  width: 0%;
+  height: 3px;
+  background: #1976d2;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+  
+}
+nav ul .link:hover::after{
+  width: 100%;
+  size: 40px;
+
+}
+.vis{
+  visibility: visible;
+}
