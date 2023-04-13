@@ -2,7 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
 import Auth from "../layouts/Auth";
-import HodDashboard from "../layouts/HodDasboard";
+import HodDashboard from "../layouts/deptLayout/HodDasboard";
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
 import ErrorPage from "../pages/ErrorPage";
@@ -16,6 +16,7 @@ import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from '../layouts/adminDeptLayouts/SalaryApplicationLayout';
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
+import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 
 export const router = createBrowserRouter([
   {
@@ -47,9 +48,23 @@ export const router = createBrowserRouter([
 
   //Hod Dept Dashboard
   {
-    path: '/dashboard-Dept',
+    path: '/Dept',
     element: <HodDashboard />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <DashboardIndexDept></DashboardIndexDept>
+      },
+      {
+        path: "/Dept/Timetables",
+        element: <SalaryApplicationLayout />
+      },
+      {
+        path: "/Dept/Faculties",
+        element: <><div>abc</div></>
+      },
+    ]
   },
 
   //Faculty Dashboard
