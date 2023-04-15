@@ -36,7 +36,7 @@ export default function Landing() {
 
       {/* <Navbar /> */}
       <main className=" w-full">
-        <LandingNav className="visible"></LandingNav>
+
         <LeftAlignContainer> </LeftAlignContainer>
 
         {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
@@ -358,9 +358,9 @@ export default function Landing() {
 
         {/* Contact Us */}
         <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl justify-between" id="contact"  >
-          <div className="container mr-auto px-4 ">
+          <div className="container  px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
-              <div className="w-full lg:w-6/12 px-4">
+              <div className="w-full lg:w-6/12 px-4 inline-flex">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300 ml-6">
                   <div className="flex-auto p-5 lg:p-10 visible" data-aos="fade-right" data-aos-duraion="2500">
                     <h4 className="text-2xl font-semibold">
@@ -422,14 +422,18 @@ export default function Landing() {
                     </div>
                   </div>
                 </div>
-                <div className=" h-40 bg-slate-100 inline-block">
 
-                </div>
+              </div>
+              <div className=" h-40 bg-slate-100 " data-aos="fade-left" data-aos-duration="2000">
+                <div className="bg-slate-200 inline-flex items-center" style={{ width: "120%", paddingTop: "80px" }}><img src="https://media.giphy.com/media/h5xrs0EiXM0bvlWxOd/giphy.gif" width="100%" height="100%" style={{}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div>
               </div>
             </div>
+
           </div>
 
-          
+          {/* <div className="flex-auto p-5 lg:p-10 visible aos-init aos-animate">
+        
+          </div> */}
         </section>
       </main>
       <Footer />
