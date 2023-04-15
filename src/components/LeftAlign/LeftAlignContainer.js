@@ -13,7 +13,7 @@ function IndexPage() {
 
     return (
         <>
-            <div className="lg:px-6 xl:px-0   bg-slate-200   shadow-lg shadow-black">
+            <div className="lg:px-6 xl:px-0   bg-slate-200 shadow-lg  shadow-md  shadow-inner shadow-black">
                 <div className="container  ">
                 
                     <nav className="w-full  fixed bg-fixed top-0 z-30    shadow-xl bg-slate-300">

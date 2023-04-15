@@ -3,7 +3,7 @@ import React from "react";
 export default function BlogCards(params) {
   return (<>
     {/* <!-- ====== Cards Section Start --> */}
-    <section class="bg-slate-200 pt-6 pb-6 lg:pt-[120px] lg:pb-20 shadow-lg shadow-black " >
+    <section class="bg-slate-200 pt-6 pb-6 lg:pt-[120px] lg:pb-20   shadow-md shadow-inner" >
       <h1 className="align-middle justify-center text-center text-5xl  p-6 font-medium" data-aos="zoom-out">Blogs</h1>
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap p-4">

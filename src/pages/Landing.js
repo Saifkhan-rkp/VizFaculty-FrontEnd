@@ -188,7 +188,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20 bg-slate-300 shadow-lg z-10 ">
+        <section className="relative py-20 bg-slate-300 shadow-lg  z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
@@ -357,12 +357,12 @@ export default function Landing() {
 
 
         {/* Contact Us */}
-        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-xl justify-between" id="contact"  >
+        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-md shadow-inner  justify-between" id="contact"  >
           <div className="container  px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4 inline-flex">
-                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300 ml-6">
-                  <div className="flex-auto p-5 lg:p-10 visible" data-aos="fade-right" data-aos-duraion="2500">
+                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 mt-16 shadow-lg rounded-lg bg-slate-300 ml-6 ">
+                  <div className="flex-auto p-5 lg:p-10 visible md:m-4 sm:m-2" data-aos="fade-right" data-aos-duraion="2500">
                     <h4 className="text-2xl font-semibold">
                       Contact Us
                     </h4>
@@ -424,8 +424,8 @@ export default function Landing() {
                 </div>
 
               </div>
-              <div className=" h-40 bg-slate-100 " data-aos="fade-left" data-aos-duration="2000">
-                <div className="bg-slate-200 inline-flex items-center" style={{ width: "120%", paddingTop: "80px" }}><img src="https://media.giphy.com/media/h5xrs0EiXM0bvlWxOd/giphy.gif" width="100%" height="100%" style={{}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div>
+              <div className="hidden lg:block  h-40 bg-slate-100 " data-aos="fade-left" data-aos-duration="2000">
+                <div className="bg-slate-200 inline-flex items-center " style={{ width: "120%", paddingTop: "80px" }}><img src="https://media.giphy.com/media/h5xrs0EiXM0bvlWxOd/giphy.gif" width="100%" height="100%" style={{}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div>
               </div>
             </div>
 
