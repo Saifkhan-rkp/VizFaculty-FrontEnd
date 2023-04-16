@@ -1,4 +1,5 @@
 import React from "react";
+// import React, { useRef, useEffect } from 'react';
 // import { Link } from "react-router-dom";
 
 // components
@@ -11,17 +12,16 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import LandingNav from "../components/Navbars/LandingNav";
 
-
-
-
-
-
-
 export default function Landing() {
 
+  // typedjs
+
+
+  // AOS animate
   AOS.init({
 
   });
+
   const Mystyle = {
     width: "100%",
     height: "0",
@@ -29,11 +29,8 @@ export default function Landing() {
     position: "relative",
   }
 
-
   return (
     <>
-
-
       {/* <Navbar /> */}
       <main className=" w-full">
 
@@ -220,7 +217,7 @@ export default function Landing() {
                   <div className="text-sky-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-sky-300">
                     <i className="fas fa-rocket text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">A Salary Management Web-App</h3>
+                  <h3 className="text-3xl font-semibold" >A Salary Management Web-App</h3>
                   <p className="mt-4 text-lg leading-relaxed text-slate-500">
 
                   </p>
@@ -233,7 +230,7 @@ export default function Landing() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-slate-500">
+                          <h4 className="text-slate-500" >
                             User-friendly Interface
                           </h4>
                         </div>
@@ -301,8 +298,8 @@ export default function Landing() {
             </svg> */}
           </div>
 
-          <div className="container mx-auto px-4 lg:pt-24 lg:pb-64 ">
-            <div className="flex flex-wrap text-center justify-center">
+          <div className="container mx-auto px-4 lg:pt-24 lg:pb-64 " data-aos="zoom-in-down" data-aos-duration="500">
+            <div className="flex flex-wrap text-center justify-center px-6" >
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold text-black">
                   Build something
@@ -313,8 +310,8 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-wrap mt-12 justify-center">
-              <div className="w-full lg:w-3/12 px-4 text-center">
+            <div className="flex flex-wrap mt-12 justify-center px-6">
+              <div className="w-full lg:w-3/12 px-4 text-center" data-aos="zoom-in" data-aos-duration="500">
                 <div className="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
                   <i className="fas fa-medal text-xl"></i>
                 </div>
@@ -326,7 +323,7 @@ export default function Landing() {
                   the bulk of the card's content.
                 </p>
               </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
+              <div className="w-full lg:w-3/12 px-4 text-center " data-aos="zoom-in" data-aos-duration="500">
                 <div className="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
                   <i className="fas fa-poll text-xl"></i>
                 </div>
@@ -338,7 +335,7 @@ export default function Landing() {
                   the bulk of the card's content.
                 </p>
               </div>
-              <div className="w-full lg:w-3/12 px-4 text-center">
+              <div className="w-full lg:w-3/12 px-4 text-center" data-aos="zoom-in" data-aos-duration="500">
                 <div className="text-slate-800 p-3 w-12 h-12 shadow-lg rounded-full bg-white inline-flex items-center justify-center">
                   <i className="fas fa-lightbulb text-xl"></i>
                 </div>
