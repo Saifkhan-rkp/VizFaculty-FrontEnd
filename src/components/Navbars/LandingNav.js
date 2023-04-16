@@ -8,7 +8,7 @@ export default function LandingNav() {
 
         return (
             <>
-                <div className="container  z-40">
+                <div className="container  z-40 absolute">
                     <nav className="w-full  fixed bg-fixed top-0 z-30    shadow-xl bg-slate-300">
                         <div className="  hidden lg:flex w-full f-f-p justify-between items-center py-3 relative ">
                             <div className="w-2/3">
