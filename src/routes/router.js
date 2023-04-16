@@ -21,11 +21,12 @@ import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 import Landing2 from "../pages/Landing2";
 import FacultySetting from "../layouts/facultyLayout/FacultySetting";
 import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
+import TimeTable from "../layouts/facultyLayout/TimeTable";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing2 />,
+    element: <Landing />,
     errorElement: <ErrorPage />,
   },
 
@@ -60,23 +61,27 @@ export const router = createBrowserRouter([
 
   //Hod Dept Dashboard
   {
-    path: '/Dept',
+    path: "/Dept",
     element: <HodDashboard />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <DashboardIndexDept></DashboardIndexDept>
+        element: <DashboardIndexDept></DashboardIndexDept>,
       },
       {
         path: "/Dept/Timetables",
-        element: <SalaryApplicationLayout />
+        element: <SalaryApplicationLayout />,
       },
       {
         path: "/Dept/Faculties",
-        element: <><div>abc</div></>
+        element: (
+          <>
+            <div>abc</div>
+          </>
+        ),
       },
-    ]
+    ],
   },
 
   //Faculty Dashboard
@@ -100,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: "/faculty/attendance",
         element: <Attendance />,
+      },
+      {
+        path: "/faculty/timetable",
+        element: <TimeTable />,
       },
     ],
   },
