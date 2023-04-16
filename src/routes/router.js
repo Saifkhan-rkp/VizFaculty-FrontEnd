@@ -12,28 +12,22 @@ import ResetPassword from "../components/auth/ResetPassword";
 import DashboardIndexAD from "../layouts/adminDeptLayouts/DashboardIndex";
 import DashboardIndexFaculty from "../layouts/facultyLayout/DashboardIndexFaculty";
 import FacultyDashboard from "../layouts/facultyLayout/FacultyDashboard";
-import SettingsLayout from "../layouts/SettingsLayout";
 import Attendance from "../layouts/facultyLayout/Attendance";
 import Salary from "../layouts/facultyLayout/Salary";
 import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicationLayout";
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
 import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 
+import Landing2 from "../pages/Landing2";
+import FacultySetting from "../layouts/facultyLayout/FacultySetting";
+import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
+import TimeTable from "../layouts/facultyLayout/TimeTable";
+
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <DashboardIndexAD></DashboardIndexAD>
-      },
-      {
-        path: "/applications",
-        element: <SalaryApplicationLayout />
-      },
-    ]
   },
 
   //Admin Dept Dashboard
@@ -52,7 +46,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/adminDept/settings",
-        element: <SettingsLayout />,
+        element: <AdminDeptSetting />,
       },
       {
         path: "/adminDept/applications",
@@ -67,23 +61,27 @@ export const router = createBrowserRouter([
 
   //Hod Dept Dashboard
   {
-    path: '/Dept',
+    path: "/Dept",
     element: <HodDashboard />,
     errorElement: <ErrorPage />,
     children: [
       {
         index: true,
-        element: <DashboardIndexDept></DashboardIndexDept>
+        element: <DashboardIndexDept></DashboardIndexDept>,
       },
       {
         path: "/Dept/Timetables",
-        element: <SalaryApplicationLayout />
+        element: <SalaryApplicationLayout />,
       },
       {
         path: "/Dept/Faculties",
-        element: <><div>abc</div></>
+        element: (
+          <>
+            <div>abc</div>
+          </>
+        ),
       },
-    ]
+    ],
   },
 
   //Faculty Dashboard
@@ -98,7 +96,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/faculty/settings",
-        element: <SettingsLayout />,
+        element: <FacultySetting />,
       },
       {
         path: "/faculty/salaryStatus",
@@ -107,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: "/faculty/attendance",
         element: <Attendance />,
+      },
+      {
+        path: "/faculty/timetable",
+        element: <TimeTable />,
       },
     ],
   },

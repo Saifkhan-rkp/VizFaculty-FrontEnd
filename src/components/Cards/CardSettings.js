@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
 // components
 
-export default function CardSettings() {
+export default function CardSettings(props) {
   const {
     register,
     handleSubmit,
@@ -44,7 +44,7 @@ export default function CardSettings() {
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Full Name
+                    {props.name}
                   </label>
                   <input
                     {...register("name", {
@@ -76,7 +76,7 @@ export default function CardSettings() {
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Email
+                    {props.Email}
                   </label>
                   <input
                     {...register("email", { required: true })}
@@ -94,7 +94,7 @@ export default function CardSettings() {
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Abbrevation
+                    {props.name2}
                   </label>
                   <input
                     type="text"
@@ -109,12 +109,13 @@ export default function CardSettings() {
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    Authentication Code
+                    {props.code}
                   </label>
                   <input
+                    Disabled
                     type="text"
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""
+                    defaultValue={props.codeVal}
                   />
                 </div>
               </div>

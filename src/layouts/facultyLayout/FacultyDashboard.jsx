@@ -19,7 +19,11 @@ const links = [
     link: "/faculty/attendance",
     icon: "fas fa-map-marked",
   },
-  // {heading:"Settings", link:"/adminDept/settings", icon:""},
+  {
+    heading: "TIME TABLE",
+    link: "/faculty/timetable",
+    icon: "fas fa-table",
+  },
 ];
 
 export default function FacultyDashboard() {
