@@ -169,7 +169,7 @@ function AddUserForm({ type }) {
                                             <button onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
                                                 Cancel
                                             </button>
-                                            <button className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add {(type === "dept" ? " Department" : " Faculty")}</button>
+                                            <button type="submit" className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add {(type === "dept" ? " Department" : " Faculty")}</button>
                                         </div>
                                     </form>
                                 </div>
