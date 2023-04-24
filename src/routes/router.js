@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
 import Auth from "../layouts/Auth";
 import HodDashboard from "../layouts/deptLayout/HodDasboard";
 import Login from "../components/auth/Login";
@@ -18,13 +17,13 @@ import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicati
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
 import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 
-import Landing2 from "../pages/Landing2";
 import FacultySetting from "../layouts/facultyLayout/FacultySetting";
 import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 import TimeTable from "../layouts/facultyLayout/TimeTable";
 import CompleteRegister from "../components/auth/CompleteRegister";
 import FacultyRoute from "./FacultyRoutes";
 import AdminDeptRoute from "./AdminDeptRoutes";
+const AdminDeptDashboard = lazy(()=> import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +35,7 @@ export const router = createBrowserRouter([
   //Admin Dept Dashboard
   {
     path: "/adminDept",
-    element:<AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute>,
+    element:<Suspense fallback={<div>loading...</div>}><AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute></Suspense>,
     errorElement: <ErrorPage />,
     children: [
       {
