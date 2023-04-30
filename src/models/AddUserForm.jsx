@@ -1,13 +1,62 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import Cookies from "js-cookie";
 // import Head from "next/head";
-
 function AddUserForm({ type, depts }) {
     const { register, handleSubmit, getValues, formState: { errors }, } = useForm({ mode: "onChange" });
     const [flag, setFlag] = useState(false);
+    // const [data , setData] = useState({})
     const onSubmit = () => {
-        console.log(getValues());
+        console.log("im clicked..!");
+        try {
+            const { deptName, headName, code, email, name, abbrivation, deptId } = getValues()
+            console.log(getValues());
+            if (type === "dept")
+                axios.post(`${process.env.REACT_APP_API_KEY}/api/dept`, getValues(), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': `Bearer ${Cookies.get('token')}`,
+                    },
+                    data: { deptName, headName, email, code }
+                }).then(res => {
+                    console.log("here..2");
+                    if (res?.success) {
+                        toast.success(res?.message);
+                    }
+                    if (!res?.success) {
+                        toast.error(res?.message)
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    toast.error(err); console.log("here..3");
+                });
+            if (type === "faculty")
+                axios.post(`${process.env.REACT_APP_API_KEY}/api/faculty`, getValues(), {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'authorization': `Bearer ${Cookies.get('token')}`,
+                    },
+                    data: { deptId, name, email, abbrivation }
+                }).then(res => {
+                    console.log("here..2",res);
+                    if (res?.data?.success) {
+                        toast.success(res?.data?.message);
+                    }
+                    if (!res?.data?.success) {
+                        toast.error(res?.data?.message)
+                    }
+                }).catch(err => {
+                    toast.error(err); console.log(err);
+                });
+        } catch (error) {
+            console.log("here..4");
+            toast.error(error?.message);
+        }
+
+
     };
     const comps = {
         faculty: [
@@ -18,7 +67,7 @@ function AddUserForm({ type, depts }) {
                     (
                         // <div className="bg-white border rounded border-gray-200 py-2.5 px-3">
                         <select className="border-0 px-3 py-3 placeholder-slate-300 text-sm text-slate-600 w-full bg-white rounded shadow focus:outline-none focus:ring ease-linear transition-all duration-150"
-                            {...register("deptId", { required: true })}
+                            {...(type !== "dept") && { ...register("deptId") }}
                         >
                             <option value='' disabled>
                                 Departments
@@ -38,12 +87,12 @@ function AddUserForm({ type, depts }) {
             {
                 label: "Head Name", input:
                     (<input
-                        {...register('name', {
-                            required: true,
+                        {...register('headName', {
                             maxLength: 40,
                             pattern: /^[A-Za-z]+\b/i,
                         })}
                         type="text"
+                        name="headName"
                         placeholder="Name (Optional)"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     />)
@@ -109,6 +158,8 @@ function AddUserForm({ type, depts }) {
                                                         maxLength: 40,
                                                     })}
                                                     type="text"
+                                                    id={(type === "dept" ? "deptName" : "name")}
+                                                    name={(type === "dept" ? "deptName" : "name")}
                                                     placeholder={inputes[0].placeholder}
                                                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 />
@@ -132,6 +183,8 @@ function AddUserForm({ type, depts }) {
                                                         pattern: /^[A-Z]/i,
                                                     })}
                                                     type="text"
+                                                    name={inputes[1].label.toLowerCase()}
+                                                    id={inputes[1].label.toLowerCase()}
                                                     placeholder={inputes[1].placeholder}
                                                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 />
@@ -156,6 +209,8 @@ function AddUserForm({ type, depts }) {
                                                 <input
                                                     {...register('email', { required: true })}
                                                     type="email"
+                                                    name="email"
+                                                    id="email"
                                                     placeholder="example@mail.com"
                                                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                 />
@@ -197,7 +252,7 @@ function AddUserForm({ type, depts }) {
                                             {/* <textarea  className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none" defaultValue={""} /> */}
                                         </div>
                                         <div className="flex items-center justify-between mt-9">
-                                            <button onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
+                                            <button type="cancel" onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
                                                 Cancel
                                             </button>
                                             <button type="submit" className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add {(type === "dept" ? " Department" : " Faculty")}</button>

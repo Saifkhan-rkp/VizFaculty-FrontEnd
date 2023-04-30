@@ -12,11 +12,11 @@ const AdminDeptRoute = ({ children }) => {
             </div>
         );
     }
-    if (user?.user?.role !== 'adminDept') {
-        return <Navigate to="/auth/login" state={{ from: location }} replace />;
+    if (user?.user?.role === 'adminDept') {
+        return children;
     }
-
-    return children;
+    
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 
 export default AdminDeptRoute;

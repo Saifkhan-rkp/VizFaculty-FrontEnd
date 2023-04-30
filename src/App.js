@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import store from "./authStore/store";
-
+import { Suspense } from "react";
 
 
 
@@ -21,10 +21,12 @@ function App() {
   return (
     <>
       <QueryClientProvider client={client}>
-        <Provider store={store}>
-          <RouterProvider router={router}></RouterProvider>
-          <Toaster />
-        </Provider>
+        <Suspense fallback={<div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin"/>}>
+          <Provider store={store}>
+            <RouterProvider router={router}></RouterProvider>
+            <Toaster />
+          </Provider>
+        </Suspense>
       </QueryClientProvider>
     </>
   );

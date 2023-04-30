@@ -15,11 +15,11 @@ const FacultyRoute = ({ children }) => {
     if (user?.user?.role === 'adminDept') {
         return <Navigate to="/adminDept/dashboard" state={{ from: location }} replace />;
     }
-    if (user?.user?.role !== 'faculty') {
-        return <Navigate to="/auth/login" state={{ from: location }} replace />;
+    if (user?.user?.role === 'faculty') {
+        return children;
     }
-
-    return children;
+    
+    return <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 
 export default FacultyRoute;

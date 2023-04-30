@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Auth from "../layouts/Auth";
 import HodDashboard from "../layouts/deptLayout/HodDasboard";
@@ -23,6 +23,9 @@ import TimeTable from "../layouts/facultyLayout/TimeTable";
 import CompleteRegister from "../components/auth/CompleteRegister";
 import FacultyRoute from "./FacultyRoutes";
 import AdminDeptRoute from "./AdminDeptRoutes";
+import DeptFaculties from "../layouts/deptLayout/FacultyPage";
+import DeptRoute from "./DeptRoutes";
+import TimeTables from "../layouts/deptLayout/TimeTables";
 const AdminDeptDashboard = lazy(()=> import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
@@ -35,7 +38,7 @@ export const router = createBrowserRouter([
   //Admin Dept Dashboard
   {
     path: "/adminDept",
-    element:<Suspense fallback={<div>loading...</div>}><AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute></Suspense>,
+    element:<AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -64,7 +67,7 @@ export const router = createBrowserRouter([
   //Hod Dept Dashboard
   {
     path: "/Dept",
-    element: <HodDashboard />,
+    element:<DeptRoute> <HodDashboard /> </DeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -73,14 +76,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/Dept/Timetables",
-        element: <SalaryApplicationLayout />,
+        element: <TimeTables/>,
       },
       {
         path: "/Dept/Faculties",
         element: (
-          <>
-            <div>abc</div>
-          </>
+          <DeptFaculties/>
         ),
       },
     ],

@@ -23,7 +23,7 @@ export default function CompleteRegister() {
     onSuccess: (res) => {
       setSubmitting(false);
       if (res.data.success) {
-        toast.success(`Welcome to VizFaculty, ${res.data.user.name}`);
+        toast.success(`Welcome to VizFaculty, ${res.data?.user?.name}`);
         setRegResp(true);
         setResponse(res.data);
         // navigate('/auth/login');
