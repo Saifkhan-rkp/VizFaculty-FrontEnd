@@ -18,7 +18,6 @@ import SalaryApplicationLayout from "../layouts/adminDeptLayouts/SalaryApplicati
 import DepartmentsAndFaculties from "../layouts/adminDeptLayouts/DepartmentsAndFaculties";
 import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 
-import Landing2 from "../pages/Landing2";
 import FacultySetting from "../layouts/facultyLayout/FacultySetting";
 import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 import TimeTable from "../layouts/facultyLayout/TimeTable";
