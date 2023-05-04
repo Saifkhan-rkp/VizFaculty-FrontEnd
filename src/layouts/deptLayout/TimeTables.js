@@ -1,10 +1,10 @@
-import "./TimeTable.css";
-import { useState } from "react";
+import React, { useState } from 'react'
 
-import Table from "../../components/TableFac/Table";
-import Modal from "../../components/TableFac/Modal";
+//components
+import TimeTableComponent from '../../components/Timetable/TimeTableComponent'
+import EditTimeTableModel from '../../models/EditTimeTableModel';
 
-function TimeTable() {
+export default function Timetables() {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     {
@@ -73,7 +73,6 @@ function TimeTable() {
   ]);
 
   const [rowToEdit, setRowToEdit] = useState(null);
-
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
 
@@ -94,7 +93,7 @@ function TimeTable() {
 
   return (
     <>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
             <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
@@ -106,26 +105,29 @@ function TimeTable() {
                   {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  
+
                 </div>
               </div>
             </div>
-            <Table rows={rows} editRow={handleEditRow} />
+            <TimeTableComponent rows={rows} editRow={handleEditRow} />
           </div>
         </div>
-        {modalOpen && (
-          <Modal
-            closeModal={() => {
+        { modalOpen &&
+          <EditTimeTableModel
+             closeModal={() => {
               setModalOpen(false);
               setRowToEdit(null);
             }}
             onSubmit={handleSubmit}
             defaultValue={rowToEdit !== null && rows[rowToEdit]}
           />
-        )}
+
+        }
+        {/* <div className="w-full xl:w-11/12 min-lg:w-11/12 mb-12 xl:mb-0 px-4">
+        </div>
+        <div className="w-full xl:w-11/12 min-lg:w-11/12 mb-12 xl:mb-0 px-4">
+        </div> */}
       </div>
     </>
-  );
+  )
 }
-
-export default TimeTable;

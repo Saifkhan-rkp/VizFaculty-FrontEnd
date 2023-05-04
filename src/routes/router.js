@@ -1,6 +1,5 @@
-import React from "react";
+import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
 import Auth from "../layouts/Auth";
 import HodDashboard from "../layouts/deptLayout/HodDasboard";
 import Login from "../components/auth/Login";
@@ -21,6 +20,13 @@ import DashboardIndexDept from "../layouts/deptLayout/DashboardIndexDept";
 import FacultySetting from "../layouts/facultyLayout/FacultySetting";
 import AdminDeptSetting from "../layouts/adminDeptLayouts/AdminDeptSetting";
 import TimeTable from "../layouts/facultyLayout/TimeTable";
+import CompleteRegister from "../components/auth/CompleteRegister";
+import FacultyRoute from "./FacultyRoutes";
+import AdminDeptRoute from "./AdminDeptRoutes";
+import DeptFaculties from "../layouts/deptLayout/FacultyPage";
+import DeptRoute from "./DeptRoutes";
+import TimeTables from "../layouts/deptLayout/TimeTables";
+const AdminDeptDashboard = lazy(()=> import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +38,7 @@ export const router = createBrowserRouter([
   //Admin Dept Dashboard
   {
     path: "/adminDept",
-    element: <AdminDeptDashboard />,
+    element:<AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -61,7 +67,7 @@ export const router = createBrowserRouter([
   //Hod Dept Dashboard
   {
     path: "/Dept",
-    element: <HodDashboard />,
+    element:<DeptRoute> <HodDashboard /> </DeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -70,14 +76,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/Dept/Timetables",
-        element: <SalaryApplicationLayout />,
+        element: <TimeTables/>,
       },
       {
         path: "/Dept/Faculties",
         element: (
-          <>
-            <div>abc</div>
-          </>
+          <DeptFaculties/>
         ),
       },
     ],
@@ -86,7 +90,7 @@ export const router = createBrowserRouter([
   //Faculty Dashboard
   {
     path: "/faculty",
-    element: <FacultyDashboard />,
+    element:<FacultyRoute> <FacultyDashboard /></FacultyRoute> ,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -137,6 +141,10 @@ export const router = createBrowserRouter([
       {
         path: "/auth/reset-password/:token",
         element: <ResetPassword />,
+      },
+      {
+        path: "/auth/completeRegister/:email/:token",
+        element: <CompleteRegister />,
       },
     ],
   },

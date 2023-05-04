@@ -1,75 +1,83 @@
 import React from 'react'
 import AddUserForm from '../../models/AddUserForm';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
-const deptStatic = [
-    {
-        deptHead: {
-            avatar: require('../../assets/img/team-4-470x470.png'),
-            name: "dont know",
-            email: "lgm@gcoen.ac.in"
-        },
-        deptName: "CSE",
-        cade:"MM",
-        vizFaculties: 9,
-        totalExpence: 72345,
-    },
-    {
-        deptHead: {
-            avatar: require('../../assets/img/team-3-800x800.jpg'),
-            name: "dont Know",
-            email: "dk@gcoen.ac.in"
-        },
-        deptName: "ETC",
-        cade:"MM",
-        vizFaculties: 8,
-        totalExpence: 65345,
-    },
-    {
-        deptHead: {
-            avatar: require('../../assets/img/team-2-800x800.jpg'),
-            name: "dont Know",
-            email: "dk@gcoen.ac.in"
-        },
-        deptName: "ELECTRICAL",
-        cade:"MM",
-        vizFaculties: 8,
-        totalExpence: 65345,
-    },
-    {
-        deptHead: {
-            avatar: require('../../assets/img/team-4-470x470.png'),
-            name: "dont Know",
-            email: "dk@gcoen.ac.in"
-        },
-        deptName: "CIVIL",
-        cade:"MM",
-        vizFaculties: 8,
-        totalExpence: 65345,
-    },
-    {
-        deptHead: {
-            avatar: require('../../assets/img/team-4-470x470.png'),
-            name: "dont Know",
-            email: "dk@gcoen.ac.in"
-        },
-        deptName: "MECH",
-        cade:"MM",
-        vizFaculties: 8,
-        totalExpence: 65345,
-    },
-    // {
-    //   deptHead: {
-    //     avatar: require('../../assets/img/team-4-470x470.png'),
-    //     name: "dont Know",
-    //     email: "dk@gcoen.ac.in"
-    //   },
-    //   deptName: "SCIENCE",
-    //   vizFaculties: 8,
-    //   totalExpence: 65345,
-    // },
-];
-
+// const deptStatic = [
+//     {
+//         deptHead: {
+//             avatar: require('../../assets/img/team-4-470x470.png'),
+//             name: "dont know",
+//             email: "lgm@gcoen.ac.in"
+//         },
+//         deptName: "CSE",
+//         cade:"MM",
+//         vizFaculties: 9,
+//         totalExpence: 72345,
+//     },
+//     {
+//         deptHead: {
+//             avatar: require('../../assets/img/team-3-800x800.jpg'),
+//             name: "dont Know",
+//             email: "dk@gcoen.ac.in"
+//         },
+//         deptName: "ETC",
+//         cade:"MM",
+//         vizFaculties: 8,
+//         totalExpence: 65345,
+//     },
+//     {
+//         deptHead: {
+//             avatar: require('../../assets/img/team-2-800x800.jpg'),
+//             name: "dont Know",
+//             email: "dk@gcoen.ac.in"
+//         },
+//         deptName: "ELECTRICAL",
+//         cade:"MM",
+//         vizFaculties: 8,
+//         totalExpence: 65345,
+//     },
+//     {
+//         deptHead: {
+//             avatar: require('../../assets/img/team-4-470x470.png'),
+//             name: "dont Know",
+//             email: "dk@gcoen.ac.in"
+//         },
+//         deptName: "CIVIL",
+//         cade:"MM",
+//         vizFaculties: 8,
+//         totalExpence: 65345,
+//     },
+//     {
+//         deptHead: {
+//             avatar: require('../../assets/img/team-4-470x470.png'),
+//             name: "dont Know",
+//             email: "dk@gcoen.ac.in"
+//         },
+//         deptName: "MECH",
+//         cade:"MM",
+//         vizFaculties: 8,
+//         totalExpence: 65345,
+//     },
+//     // {
+//     //   deptHead: {
+//     //     avatar: require('../../assets/img/team-4-470x470.png'),
+//     //     name: "dont Know",
+//     //     email: "dk@gcoen.ac.in"
+//     //   },
+//     //   deptName: "SCIENCE",
+//     //   vizFaculties: 8,
+//     //   totalExpence: 65345,
+//     // },
+// ];
 export default function CardDepartments() {
+    const { data: departments, isLoading } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
+        headers: {
+          authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      }).then(res => res.data));
+      console.log(departments);
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-700">
@@ -124,20 +132,20 @@ export default function CardDepartments() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {deptStatic.map(data => (
-                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                {departments?.depts?.map(data => (
+                                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={data._id}>
                                         <td className="px-6 py-4 dark:text-white">
-                                            {data.deptName}
+                                            {data?.deptName}
                                         </td>
                                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                            <img className="w-10 h-10 rounded-full" src={data.deptHead.avatar} alt="avatar" />
+                                            <img className="w-10 h-10 rounded-full" src={data?.deptHeadId?.profilePhoto!=="default"?data?.deptHeadId?.profilePhoto:require("../../assets/img/user_Icon.png")} alt="avatar" />
                                             <div className="pl-3">
-                                                <div className="text-base font-semibold">{data.deptHead.name}</div>
-                                                <div className="font-normal text-gray-500">{data.deptHead.email}</div>
+                                                <div className="text-base font-semibold">{data?.deptHeadId?.name}</div>
+                                                <div className="font-normal text-gray-500">{data?.deptHeadId?.email}</div>
                                             </div>
                                         </th>
                                         <td className="px-4 py-3">
-                                            {data.vizFaculties}
+                                            {data?.faculties?.length}
                                         </td>
                                         <td className="px-3 py-4">
                                             <div className='space-x-2 items-center lg:space-x-3 xl:space-x-4'>

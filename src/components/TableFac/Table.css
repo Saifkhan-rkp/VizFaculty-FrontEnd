@@ -8,7 +8,8 @@
 }
 
 .table-wrapper {
-  width: 77%;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .table {
