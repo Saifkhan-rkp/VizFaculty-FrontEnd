@@ -33,34 +33,34 @@ export default function CardCalendar(props) {
                   data.DayNum === new Date().getDay() && (
                     <div className="my-2 border-b pb-4 border-gray-400 border-dashed">
                       <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                        9:00 AM
+                        10:30-11:30
                       </p>
                       <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 pt-2">
                         {data["10:30-11:30"]}
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                          9:00 AM
+                          11:30-12:30
                         </p>
                         {data["11:30-12:30"]}
 
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                          9:00 AM
+                          1:00-2:00
                         </p>
                         {data["1-2"]}
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                          9:00 AM
+                          2:00-3:00
                         </p>
                         {data["2-3"]}
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                          9:00 AM
+                          3:15-4:15
                         </p>
                         {data["3:15-4:15"]}
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                          9:00 AM
+                          4:15-5:15
                         </p>
                         {data["4:15-5:15"]}
                       </p>

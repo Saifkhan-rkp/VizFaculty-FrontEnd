@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie"
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,16 +11,18 @@ export default function Login() {
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: 'onChange' });
+  const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation
   const from = location.state?.from?.pathname || '/';
   const onSubmit = (data) => {
     console.log(data);
     // mutate(data);
-
+    setLoading(true);
     axios
       .post(`${process.env.REACT_APP_API_KEY}/api/auth/login`, data)
       .then((res) => {
+        setLoading(false);
         if (res.data.success) {
           toast.success(res.data.message);
           console.log(res.data.token);
@@ -36,6 +38,7 @@ export default function Login() {
       // .then(() => refetch())
       .catch((e) => {
         // console.log(e);
+        setLoading(false);
         toast.error(e.response.data.message);
       });
   };
@@ -64,7 +67,7 @@ export default function Login() {
                     Github
                   </button> */}
                   <button
-                    className="bg-white active:bg-slate-50 text-slate-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
+                    className="bg-white active:bg-slate-50 text-slate-700 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
                     type="button"
                   >
                     <img
@@ -168,6 +171,11 @@ export default function Login() {
                 </Link>
               </div>
             </div>
+            {isLoading &&
+              <div role="status" class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+                <div className="w-12 h-12 rounded-full animate-spin border-y-2 border-solid border-yellow-500 border-t-transparent shadow-md"></div>
+              </div>
+            }
           </div>
         </div>
       </div>

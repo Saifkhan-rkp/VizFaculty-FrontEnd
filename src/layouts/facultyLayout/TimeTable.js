@@ -1,131 +1,131 @@
-import React from "react";
+import "./TimeTable.css";
+import { useState } from "react";
 
-const TimeTableData = [
-  {
-    DayNum: 1,
-    Day: "Monday",
-    "10:30-11:30": "Open-Elective-1 Faculty : NN , AS",
-    "11:30-12:30": "Elective-2 Faculty : PJ , RG",
-    "1-2": "Professional Skills : B1 Faculty : RG, H/W Lab : B2 Faculty : PU",
-    "2-3": "Professional Skills : B1 Faculty : RG, H/W Lab : B2 Faculty : PU",
-    "3:15-4:15": "Elective-3 Faculty : LB",
-    "4:15-5:15": "None",
-  },
-  {
-    DayNum: 2,
-    Day: "Tuesday",
-    "10:30-11:30": "Open-Elective-1 Faculty : NN , AS",
-    "11:30-12:30": "Elective-2 Faculty : PJ , RG",
-    "1-2": "Professional Skills : B2 Faculty : RG, H/W Lab : B3 Faculty : PU",
-    "2-3": "Professional Skills : B2 Faculty : RG, H/W Lab : B3 Faculty : PU",
-    "3:15-4:15": "Elective-3 Faculty : LB",
-    "4:15-5:15": "None",
-  },
-  {
-    DayNum: 3,
-    Day: "Wednesday",
-    "10:30-11:30": "Open-Elective-1 Faculty : NN , AS",
-    "11:30-12:30": "Elective-2 Faculty : PJ , RG",
-    "1-2": "Professional Skills : B3 Faculty : CB, H/W Lab : B4 Faculty : AG",
-    "2-3": "Professional Skills : B3 Faculty : CB, H/W Lab : B4 Faculty : AG",
-    "3:15-4:15": "Elective-3 Faculty : LB",
-    "4:15-5:15": "None",
-  },
-  {
-    DayNum: 4,
-    Day: "Thursday",
-    "10:30-11:30": "None",
-    "11:30-12:30": "None",
-    "1-2": "None",
-    "2-3": "None",
-    "3:15-4:15": "None",
-    "4:15-5:15": "None",
-  },
-  {
-    DayNum: 5,
-    Day: "Friday",
-    "10:30-11:30":
-      "Professional Skills : B4 Faculty : RG, H/W Lab : B1 Faculty : AG, Compiler : B3 Faculty : NC",
-    "11:30-12:30":
-      "Professional Skills : B4 Faculty : RG, H/W Lab : B1 Faculty : AG, Compiler : B3 Faculty : NC",
-    "1-2": "Compiler Design Faculty : NC",
-    "2-3": "Compiler Design Faculty : NC",
-    "3:15-4:15": "Compiler Design PR Faculty : NC",
-    "4:15-5:15": "Compiler Design PR Faculty : NC",
-  },
+import Table from "../../components/TableFac/Table";
+import Modal from "../../components/TableFac/Modal";
 
-  {
-    DayNum: 7,
-    Day: "Saturday",
-    "10:30-11:30": "Compiler Design Faculty : NC",
-    "11:30-12:30": "Compiler Design Faculty : NC",
-    "1-2": "Compiler Design PR : B1 Faculty : NC",
-    "2-3": "Compiler Design PR : B1 Faculty : NC",
-    "3:15-4:15": "Compiler Design PR : B4 Faculty : MG",
-    "4:15-5:15": "Compiler Design PR : B4 Faculty : MG",
-  },
-  {
-    DayNum: 0,
-    Day: "Sunday",
-    "10:30-11:30": "Intellectual Property Rights",
-    "11:30-12:30": "Intellectual Property Rights",
-    "1-2": "Economic Of It",
-    "2-3": "Economic Of It",
-    "3:15-4:15": "None",
-    "4:15-5:15": "None",
-  },
-];
+function TimeTable() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [rows, setRows] = useState([
+    {
+      Day: "Monday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Tuesday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Wednesday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Thursday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Friday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Saturday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+    {
+      Day: "Sunday",
+      "10:30-11:30": "",
+      "11:30-12:30 ": "",
+      "1:00-2:00": "",
+      "2:00-3:00": "",
+      "3:15-4:15": "",
+      "4:15-5:15": "",
+    },
+  ]);
 
-export default function TimeTable() {
+  const [rowToEdit, setRowToEdit] = useState(null);
+
+  const handleEditRow = (idx) => {
+    setRowToEdit(idx);
+
+    setModalOpen(true);
+  };
+
+  const handleSubmit = (newRow) => {
+    rowToEdit === null
+      ? setRows([...rows, newRow])
+      : setRows(
+        rows.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+
+          return newRow;
+        })
+      );
+  };
+
   return (
     <>
-      <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                DAY
-              </th>
-              <th scope="col" className="px-6 py-3">
-                10:30-11:30
-              </th>
-              <th scope="col" className="px-6 py-3">
-                11:30-12:30
-              </th>
-              <th scope="col" class="px-6 py-3">
-                1:00-2:00
-              </th>
-              <th scope="col" className="px-6 py-3">
-                2:00-3:00
-              </th>
-              <th scope="col" className="px-6 py-3">
-                3:15-4:15
-              </th>
-              <th scope="col" className="px-6 py-3">
-                4:15-5:15
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {TimeTableData.map((data) => (
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {data.Day}
-                </th>
-                <td class="px-6 py-4">{data["10:30-11:30"]}</td>
-                <td class="px-6 py-4">{data["11:30-12:30"]}</td>
-                <td class="px-6 py-4">{data["1-2"]}</td>
-                <td class="px-6 py-4">{data["2-3"]}</td>
-                <td class="px-6 py-4">{data["3:15-4:15"]}</td>
-                <td class="px-6 py-4">{data["4:15-5:15"]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="flex flex-wrap">
+        <div className="w-full mb-12 px-4">
+          <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+            <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+              <div className="flex flex-wrap items-center">
+                <div className="relative w-full max-w-full flex-grow flex-1">
+                  <h6 className="uppercase text-slate-700 mb-1 text-sm font-semibold">
+                    TimeTables
+                  </h6>
+                  {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
+                </div>
+                <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                  
+                </div>
+              </div>
+            </div>
+            <Table rows={rows} editRow={handleEditRow} />
+          </div>
+        </div>
+        {modalOpen && (
+          <Modal
+            closeModal={() => {
+              setModalOpen(false);
+              setRowToEdit(null);
+            }}
+            onSubmit={handleSubmit}
+            defaultValue={rowToEdit !== null && rows[rowToEdit]}
+          />
+        )}
       </div>
     </>
   );
 }
+
+export default TimeTable;

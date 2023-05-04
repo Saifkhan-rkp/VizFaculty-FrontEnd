@@ -122,17 +122,18 @@ export default function CompleteRegister() {
                     <div className="relative w-full mb-3">
                       <label
                         className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
+                        htmlFor="email"
                       >
                         Email
                       </label>
                       <input
-                        {...register('email', { required: true })}
+                        // {...register('email', { required: true })}
                         type="email"
                         id="email"
                         name="email"
                         className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 disable"
                         defaultValue={email}
+                        disabled
                       />
                     </div>
 
