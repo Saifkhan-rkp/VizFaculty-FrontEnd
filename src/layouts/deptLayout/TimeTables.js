@@ -124,7 +124,12 @@ export default function Timetables() {
                 </div>
               </div>
             </div>
-            <TimeTableComponent rows={rows} editRow={handleEditRow} />
+            { timetables?.ttCount<1 &&
+              <div className='h-350-px items-center top-1/2 text-center'>No TimeTable Found, Add TimeTable By clicking "+ Add TimeTable" button</div>
+            }
+            {/* { timetables?.ttCount>0  && */}
+              <TimeTableComponent rows={rows} editRow={handleEditRow} />
+            {/* } */}
           </div>
         </div>
         {modalOpen &&

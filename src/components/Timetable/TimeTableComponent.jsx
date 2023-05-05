@@ -1,11 +1,39 @@
 import React from 'react'
 
-export default function TimeTableComponent({ rows, deleteRow, editRow }) {
+export default function TimeTableComponent({ ttData, rows, deleteRow, editRow }) {
+    const str = "\t";
+    // const schedules = ttData?.schedule;
+    // const days = Object.keys(schedules);
+    // const restRows = Object.values(schedules);
+    // const aryFinal = []
+    // restRows.forEach(row => {
+    //     // console.log(row);
+    //     const newObj = {};
+    //     const temp = row.reduce((r, o) => {
+    //         const key = o.timeFrom + "-" + o.timeTo;
+    //         if (!newObj[key]) {
+    //             newObj[key] = Object.assign({ data: (o.teachingType + "-" + o.subject + ":" + o.assignTo + "; ") }, { key }); // create a copy of okey
+    //             r.push(newObj[key]);
+    //         } else {
+    //             newObj[key].data += (o.teachingType + "-" + o.subject + ":" + o.assignTo + "; ");
+    //             // newObj[key].instances += o.instances;
+    //         }
+    //         return r;
+    //     }, []);
+
+    //     aryFinal.push(temp);
+    // })
     return (
         <>
             <div className="py-8 px-4 lg:px-4 md:px-2 sm:px-1">
                 <div className="relative content-center overflow-x-auto shadow-md sm:rounded-lg">
-                    <table className="w-auto text-sm text-left text-gray-500">
+                    <table className="w-full text-sm text-left text-gray-500">
+                        <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white">{/*dark:text-white dark:bg-gray-800*/}
+                            {ttData?.name}
+                            <p class="mt-1 text-sm font-normal text-gray-500 " // dark:text-gray-400
+                            > Created By: {ttData?.createdBy?.name+str} Last Modified By: {ttData?.lastModifiedBy?.name+str}
+                            </p>
+                        </caption>
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr className="bold">
                                 <th scope="col" className="px-6 py-3">Day</th>
