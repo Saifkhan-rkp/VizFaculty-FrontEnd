@@ -6,9 +6,10 @@ import Cookies from "js-cookie";
 //components
 import TimeTableComponent from '../../components/Timetable/TimeTableComponent'
 import EditTimeTableModel from '../../models/EditTimeTableModel';
+import AddTimeTableModal from '../../models/AddTimeTableModal';
 
 export default function Timetables() {
-  const { data: timetables, isLoading, } = useQuery(['timetables'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/timetables`, {
+  const { data: timetables, isLoading, refetch } = useQuery(['timetables'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/timetables`, {
     headers: {
       authorization: `Bearer ${Cookies.get('token')}`,
     },
@@ -114,13 +115,7 @@ export default function Timetables() {
                   {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <button
-                    className={"bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"}
-                    type="button"
-                  >
-                    <i className='fas fa-plus' style={{ color: "white" }} />
-                    Add TimeTable
-                  </button>
+                  <AddTimeTableModal refetch={refetch} />
                 </div>
               </div>
             </div>
@@ -128,21 +123,12 @@ export default function Timetables() {
               <div className='h-350-px items-center top-1/2 text-center'>No TimeTable Found, Add TimeTable By clicking "+ Add TimeTable" button</div>
             }
             { timetables?.ttCount>0  &&
-              <TimeTableComponent rows={rows} editRow={handleEditRow} />
+              timetables?.timetables?.map( tt => (
+              <TimeTableComponent editRow={handleEditRow} ttData={tt} refetch={refetch}/>
+              ))
             }
           </div>
         </div>
-        {modalOpen &&
-          <EditTimeTableModel
-            closeModal={() => {
-              setModalOpen(false);
-              setRowToEdit(null);
-            }}
-            onSubmit={handleSubmit}
-            defaultValue={rowToEdit !== null && rows[rowToEdit]}
-          />
-
-        }
         {/* <div className="w-full xl:w-11/12 min-lg:w-11/12 mb-12 xl:mb-0 px-4">
         </div>
         <div className="w-full xl:w-11/12 min-lg:w-11/12 mb-12 xl:mb-0 px-4">

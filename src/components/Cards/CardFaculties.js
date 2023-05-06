@@ -96,7 +96,7 @@ export default function CardFaculties() {
                 toast.error(err?.response?.data?.message);
             });
     }
-    console.log(faculties);
+    // console.log(faculties);
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">

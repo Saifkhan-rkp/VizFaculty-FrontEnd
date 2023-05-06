@@ -10,7 +10,7 @@ import BlogCards from "../components/Blogs/BlogCards";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import LandingNav from "../components/Navbars/LandingNav";
+// import LandingNav from "../components/Navbars/LandingNav";
 
 export default function Landing() {
 
