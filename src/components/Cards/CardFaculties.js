@@ -3,6 +3,8 @@ import AddUserForm from '../../models/AddUserForm';
 import { useQuery } from '@tanstack/react-query';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import DeleteModel from '../../models/DeleteModel';
+import { toast } from 'react-hot-toast';
 const deptStatic = [
     {
         deptHead: {
@@ -11,7 +13,7 @@ const deptStatic = [
             email: "lgm@gcoen.ac.in"
         },
         deptName: "CSE",
-        code:"MM",
+        code: "MM",
         vizFaculties: 9,
         totalExpence: 72345,
     },
@@ -22,7 +24,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ETC",
-        code:"MM",
+        code: "MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -33,7 +35,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "ELECTRICAL",
-        code:"MM",
+        code: "MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -44,7 +46,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "CIVIL",
-        code:"MM",
+        code: "MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -55,7 +57,7 @@ const deptStatic = [
             email: "dk@gcoen.ac.in"
         },
         deptName: "MECH",
-        code:"MM",
+        code: "MM",
         vizFaculties: 8,
         totalExpence: 65345,
     },
@@ -72,12 +74,29 @@ const deptStatic = [
 ];
 
 export default function CardFaculties() {
-    const { data: faculties, isLoading, } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
+    const { data: faculties, isLoading, refetch } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
         headers: {
-          authorization: `Bearer ${Cookies.get('token')}`,
+            authorization: `Bearer ${Cookies.get('token')}`,
         },
-      }).then(res => res.data));
-      console.log(faculties);
+    }).then(res => res.data));
+
+    const deleteConfirm = (id) => {
+        axios.delete(`${process.env.REACT_APP_API_KEY}/api/faculty/${id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data?.success) {
+                    toast.success(res.data?.message);
+                    refetch();
+                }
+                if (!res.data?.success) {
+                    toast.error(res.data?.message);
+                }
+            }).catch(err =>{
+                console.log(err);
+                toast.error(err?.response?.data?.message);
+            });
+    }
+    // console.log(faculties);
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
@@ -90,7 +109,7 @@ export default function CardFaculties() {
                             {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
                         </div>
                         <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                            <AddUserForm/>
+                            <AddUserForm />
                         </div>
                     </div>
                 </div>
@@ -124,8 +143,8 @@ export default function CardFaculties() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {faculties?.faculties?.map(data => (
-                                    <tr className="bg-white border-b">{/**dark:bg-gray-800 dark:border-gray-700 */}
+                                {faculties?.faculties?.map((data,idx) => (
+                                    <tr className="bg-white border-b" key={data?._id}>{/**dark:bg-gray-800 dark:border-gray-700 */}
                                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">{/**dark:text-white */}
                                             <img className="w-10 h-10 rounded-full" src={data?.faculty?.ProfilePhoto} alt="avatar" />
                                             <div className="pl-3">
@@ -145,7 +164,7 @@ export default function CardFaculties() {
                                                     type="button"
                                                     className="fas fa-eye fa-md"
                                                     style={{ color: "blue" }}
-                                                    // onClick={setPopup}
+                                                // onClick={setPopup}
                                                 >
                                                 </button>
                                                 <button
@@ -154,12 +173,7 @@ export default function CardFaculties() {
                                                     style={{ color: "gray" }}
                                                 >
                                                 </button>
-                                                <button
-                                                    type="button"
-                                                    className="fas fa-trash fa-md"
-                                                    style={{ color: "red" }}
-                                                >
-                                                </button>
+                                                <DeleteModel dialog='Are you sure You want to delete this faculty ?' id={data?._id} name={data?.faculty?.name} confirmDelete={deleteConfirm}  />
                                             </div>
                                         </td>
                                         {/* <td className="px-6 py-4 text-right">
