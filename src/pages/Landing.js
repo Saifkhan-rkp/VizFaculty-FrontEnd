@@ -11,7 +11,6 @@ import BlogCards from "../components/Blogs/BlogCards";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-
 export default function Landing() {
 
   // typedjs

@@ -85,8 +85,8 @@ export default function Sidebar({ linksAndHeadings }) {
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-              {linksAndHeadings?.map(item => (
-                <li className="items-center">
+              {linksAndHeadings?.map((item,idx) => (
+                <li className="items-center" key={idx} >
                   <Link
                     className={
                       "text-xs uppercase py-3 font-bold block " +

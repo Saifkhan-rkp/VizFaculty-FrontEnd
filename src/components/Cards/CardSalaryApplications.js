@@ -77,10 +77,10 @@ let appData = [
 
 export default function CardSalaryApplications({ color }) {
     const [isDataAvail, setIsDataAvail] = useState(true);
-    const [selectedFaculty,setFaculty] = useState({});
+    // const [selectedFaculty,setFaculty] = useState({});
     const [openModel,setOpenModel] = useState(false);
     const [data, setData] = useState(appData);
-    const [refId,setID] = useState("");
+    // const [refId,setID] = useState("");
     console.log(openModel);
     const handleChange = (element) => {
         if (element.target.value==="all") return setData(appData);
