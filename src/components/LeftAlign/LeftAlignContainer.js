@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 import React, { useRef, useEffect, useState } from 'react';
-import LandingNav from "../Navbars/LandingNav";
+// import LandingNav from "../Navbars/LandingNav";
 import Typed from 'typed.js';
 
 function IndexPage() {
@@ -16,28 +16,29 @@ function IndexPage() {
     const typedElementRef = useRef(null);
 
 
-    useEffect(() => {
-        const options = {
-            strings: ['Are you struggling to manage the salaries and attendance of visiting faculty members in your institution?', 'VizFaculty automate the process for you!'],
-            typeSpeed: 80,
-            backSpeed: 150,
-            loop: true,
-            showCursor: false,
+    // useEffect(() => {
+    //     const options = {
+    //         strings: ['Are you struggling to manage the salaries and attendance of visiting faculty members in your institution?', 'VizFaculty automate the process for you!'],
+    //         typeSpeed: 120,
+    //         backSpeed: 150,
+    //         loop: true,
+    //         showCursor: false,
 
-            smartBackspace: true,
-        };
+    //         smartBackspace: true,
+    //     };
 
-        const typed = new Typed(typedElementRef.current, options);
+    //     const typed = new Typed(typedElementRef.current, options);
 
-        return () => {
-            typed.destroy();
-        };
-    }, []);
+    //     return () => {
+    //         typed.destroy();
+    //     };
+    // }, []);
 
 
     return (
         <>
-            <div className="lg:px-6 xl:px-0   bg-slate-200 shadow-lg  shadow-md  shadow-inner shadow-black">
+
+            <div className="lg:px-6 xl:px-0   bg-slate-200   shadow-inner shadow-black">
                 <div className="container  ">
 
                     <nav className="w-full  fixed bg-fixed top-0 z-30    shadow-xl bg-slate-300">
@@ -51,10 +52,10 @@ function IndexPage() {
                                         <a href="/">Home</a>
                                     </li>
                                     <li className="border-b-4 border-transparent  link font-medium">
-                                        <a href>About Us</a>
+                                        <a href="/pages/About">About Us</a>
                                     </li>
                                     <li className="border-b-4 border-transparent  link font-medium">
-                                        <a href="#blogCards">Blogs</a>
+                                        <a href="/pages/About">Blogs</a>
                                     </li>
                                     <li className="transition-none">
                                         <a href="/auth/login" >
@@ -87,17 +88,17 @@ function IndexPage() {
                                         </li>
 
                                         <li className="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none  justify-center" onclick="dropdownHandler(this)">
-                                            <a href="javascript:void(0)">
+                                            <a href="/pages/About">
                                                 <span className="ml-2 font-bold">Blog</span>
                                             </a>
                                         </li>
                                         <li className="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal pt-2 pb-4 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none  justify-center" onclick="dropdownHandler(this)">
-                                            <a href="javascript:void(0)">
+                                            <a href="/pages/About">
                                                 <span className="ml-2 font-bold">About Us</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#LogIn" >
+                                            <a href="/auth/login" >
                                                 <button type="button" class="active text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-3 py-2 text-center mr-1 mb-1">Log In</button>
                                             </a>
                                         </li>

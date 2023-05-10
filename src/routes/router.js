@@ -26,7 +26,11 @@ import AdminDeptRoute from "./AdminDeptRoutes";
 import DeptFaculties from "../layouts/deptLayout/FacultyPage";
 import DeptRoute from "./DeptRoutes";
 import TimeTables from "../layouts/deptLayout/TimeTables";
-const AdminDeptDashboard = lazy(()=> import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
+import Blog from "../pages/Blog";
+import About from "../pages/About";
+import Pages from "../pages/PagesLayout";
+
+const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {
@@ -35,10 +39,24 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
 
+  {
+    path:"/pages",
+    element: <Pages />,
+    errorElement: <ErrorPage />,
+     children: [
+
+      {
+        path: "/pages/About",
+        element: <About />,
+      }
+     ]
+  },
+
+
   //Admin Dept Dashboard
   {
     path: "/adminDept",
-    element:<AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute>,
+    element: <AdminDeptRoute><AdminDeptDashboard /></AdminDeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -67,7 +85,7 @@ export const router = createBrowserRouter([
   //Hod Dept Dashboard
   {
     path: "/Dept",
-    element:<DeptRoute> <HodDashboard /> </DeptRoute>,
+    element: <DeptRoute> <HodDashboard /> </DeptRoute>,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -76,12 +94,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/Dept/Timetables",
-        element: <TimeTables/>,
+        element: <TimeTables />,
       },
       {
         path: "/Dept/Faculties",
         element: (
-          <DeptFaculties/>
+          <DeptFaculties />
         ),
       },
     ],
@@ -90,7 +108,7 @@ export const router = createBrowserRouter([
   //Faculty Dashboard
   {
     path: "/faculty",
-    element:<FacultyRoute> <FacultyDashboard /></FacultyRoute> ,
+    element: <FacultyRoute> <FacultyDashboard /></FacultyRoute>,
     errorElement: <ErrorPage />,
     children: [
       {

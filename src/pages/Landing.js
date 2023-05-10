@@ -1,16 +1,15 @@
 import React from "react";
-// import React, { useRef, useEffect } from 'react';
+
 // import { Link } from "react-router-dom";
 
 // components
-
+import LandingNav from "../components/Navbars/LandingNav";
 import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-// import LandingNav from "../components/Navbars/LandingNav";
 
 export default function Landing() {
 
@@ -22,18 +21,19 @@ export default function Landing() {
 
   });
 
-  const Mystyle = {
-    width: "100%",
-    height: "0",
-    paddingBottom: "91%",
-    position: "relative",
-  }
+  // const Mystyle = {
+  //   width: "100%",
+  //   height: "0",
+  //   paddingBottom: "91%",
+  //   position: "relative",
+  // }
 
   return (
     <>
+        {/* <LandingNav>  </LandingNav> */}
       {/* <Navbar /> */}
       <main className=" w-full">
-
+      
         <LeftAlignContainer> </LeftAlignContainer>
 
         {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
@@ -351,10 +351,11 @@ export default function Landing() {
           </div>
         </section>
 
+{/* our contributors */}
 
 
         {/* Contact Us */}
-        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-md shadow-inner  justify-between" id="contact"  >
+        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-md shadow-inner  justify-between " id="contact"  >
           <div className="container  px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4 inline-flex">
@@ -394,6 +395,19 @@ export default function Landing() {
                         placeholder="Email"
                       />
                     </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block uppercase text-slate-600 text-xs font-bold mb-2"
+                        htmlFor="contactNo"
+                      >
+                        Contact No
+                      </label>
+                      <input
+                        type="tel"
+                        className="border-0 px-3 py-3 placeholder-slate-500 text-slate-600 bg-slate-50 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        placeholder="Phone Number"
+                      />
+                    </div>
 
                     <div className="relative w-full mb-3">
                       <label
@@ -422,7 +436,7 @@ export default function Landing() {
 
               </div>
               <div className="hidden lg:block  h-40 bg-slate-100 " data-aos="fade-left" data-aos-duration="2000">
-                <div className="bg-slate-200 inline-flex items-center " style={{ width: "120%", paddingTop: "80px" }}><img src="https://media.giphy.com/media/h5xrs0EiXM0bvlWxOd/giphy.gif" width="100%" height="100%" style={{}} frameBorder="0" class="giphy-embed" allowFullScreen></img></div>
+                <div className="bg-slate-200 inline-flex items-center " style={{ width: "120%", paddingTop: "80px" }}><img src="https://media.giphy.com/media/h5xrs0EiXM0bvlWxOd/giphy.gif" width="100%" height="100%" style={{}} frameBorder="0" class="giphy-embed" allowFullScreen alt="gif"></img></div>
               </div>
             </div>
 
