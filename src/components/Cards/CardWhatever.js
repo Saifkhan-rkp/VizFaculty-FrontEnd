@@ -110,7 +110,7 @@ export default function CardWhatever() {
                 Performance
               </h6>
               <h2 className="text-slate-700 text-xl font-semibold">
-                Total orders
+                
               </h2>
             </div>
           </div>
@@ -119,7 +119,8 @@ export default function CardWhatever() {
           {/* Chart */}
           <div className="relative h-350-px">
             {/* <canvas id="bar-chart"></canvas> */}
-            <AddUserForm />
+            {/* <AddUserForm /> */}
+            <div className=" text-center justify-center py-28 text-gray-400"> <span> New Feature Comming Soon </span></div>
           </div>
         </div>
       </div>

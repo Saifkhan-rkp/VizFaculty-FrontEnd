@@ -47,7 +47,7 @@ export default function Login() {
             from = "/faculty";
           else if (res.data?.user?.role === "adminDept")
             from = "adminDept";
-          navigate(from);
+          navigate(from, {replace:true});
         }
         if (!res.data.success) {
           toast.error(res.data.message);
