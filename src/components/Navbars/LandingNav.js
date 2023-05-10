@@ -8,7 +8,8 @@ export default function LandingNav() {
 
         return (
             <>
-                <div className="container  z-40 absolute">
+                <div className="container z-50">
+
                     <nav className="w-full  fixed bg-fixed top-0 z-30    shadow-xl bg-slate-300">
                         <div className="  hidden lg:flex w-full f-f-p justify-between items-center py-3 relative ">
                             <div className="w-2/3">
@@ -43,7 +44,7 @@ export default function LandingNav() {
                         <div className="flex py-4 z-0 justify-between items-center px-4">
                             <div>
                                 <div className="w-2/3">
-                                    <h1 className="text-4xl">VizFaculty</h1>
+                                    <h1 className="text-4xl"  >VizFaculty</h1>
                                 </div>
                             </div>
                             <div className=" flex items-center">
