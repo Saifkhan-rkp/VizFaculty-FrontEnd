@@ -28,6 +28,7 @@ export default function Login() {
   } = useForm({ mode: 'onChange' });
   const [isItLoading, setLoading] = useState(false);
   let from = location.state?.from?.pathname || '/';
+  console.log(location.state?.from?.pathname);
   const onSubmit = (data) => {
     console.log(data);
     // mutate(data);
@@ -46,7 +47,7 @@ export default function Login() {
           else if (res.data?.user?.role === "faculty")
             from = "/faculty";
           else if (res.data?.user?.role === "adminDept")
-            from = "adminDept";
+            from = "/adminDept";
           navigate(from, {replace:true});
         }
         if (!res.data.success) {
