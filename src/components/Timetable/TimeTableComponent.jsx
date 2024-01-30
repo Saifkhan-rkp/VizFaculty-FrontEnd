@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EditTimeTableModel from '../../models/EditTimeTableModel';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import DeleteModel from "../../models/DeleteModel";
 import Cookies from 'js-cookie';
+import InputModel from '../../models/InputModel';
 
 export default function TimeTableComponent({ ttData, refetch = () => { } }) {
+    const [thTimeArray, setTimeArray] = useState([]);
+    // console.log(ttData);
     const str = "\t";
     const schedules = ttData?.schedule;
     const days = Object.keys(schedules);
     const restRows = Object.values(schedules);
     const aryFinal = []
+
+    const onClickAddTime = (data)=>{
+        setTimeArray(vals => [...vals,data])
+    }
     restRows?.forEach(row => {
         // console.log(row);
         const newObj = {};
@@ -27,6 +34,7 @@ export default function TimeTableComponent({ ttData, refetch = () => { } }) {
         }, []);
         aryFinal.push(temp);
     })
+    // console.log(aryFinal);
     const confirmDelete = (id) => {
         axios.delete(`${process.env.REACT_APP_API_KEY}/api/tt/${id}`, {
             headers: {
@@ -76,13 +84,19 @@ export default function TimeTableComponent({ ttData, refetch = () => { } }) {
 
 
                             <p className="mt-1 text-sm font-normal text-gray-500 " // dark:text-gray-400
-                            > <strong >Created By:</strong> {ttData?.createdBy?.name + str} <strong>Last Modified By: </strong>{ttData?.lastModifiedBy?.name + str}
+                            > <strong >Created By:{" "}</strong> {ttData?.createdBy?.name + str} <strong>Last Modified By:{" "}</strong>{ttData?.lastModifiedBy?.name + str}
                             </p>
                         </caption>
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr className="bold">
                                 <th scope="col" className="px-6 py-3">Day</th>
-                                <th scope="col" className="px-6 py-3">
+                                {thTimeArray.map((val, idx) =>
+                                (<th scope="col" className="px-6 py-3" key={idx}>
+                                    <div className=''>
+                                        {val?.from +" - "+ val?.to}
+                                    </div>
+                                </th>))}
+                                {/* <th scope="col" className="px-6 py-3">
                                     <div className='grid grid-cols-2 gap-1'>
                                         <div >10:30-11:30</div>
                                         <div >11:30-12:30</div>
@@ -99,7 +113,8 @@ export default function TimeTableComponent({ ttData, refetch = () => { } }) {
                                         <div >03:15-04:15</div>
                                         <div >04:15-05:15</div>
                                     </div>
-                                </th>
+                                </th> */}
+                                <th scope="col" className="px-6 py-3"><InputModel saveFunction={onClickAddTime}/></th>
                                 <th scope="col" className="px-6 py-3">Edit</th>
                             </tr>
                         </thead>

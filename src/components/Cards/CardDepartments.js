@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 //         deptHead: {
 //             avatar: require('../../assets/img/team-4-470x470.png'),
 //             name: "dont know",
-//             email: "lgm@gcoen.ac.in"
+//             email: "lgm@academy.ac.in"
 //         },
 //         deptName: "CSE",
 //         cade:"MM",
@@ -20,7 +20,7 @@ import Cookies from 'js-cookie';
 //         deptHead: {
 //             avatar: require('../../assets/img/team-3-800x800.jpg'),
 //             name: "dont Know",
-//             email: "dk@gcoen.ac.in"
+//             email: "dk@academy.ac.in"
 //         },
 //         deptName: "ETC",
 //         cade:"MM",
@@ -31,7 +31,7 @@ import Cookies from 'js-cookie';
 //         deptHead: {
 //             avatar: require('../../assets/img/team-2-800x800.jpg'),
 //             name: "dont Know",
-//             email: "dk@gcoen.ac.in"
+//             email: "dk@academy.ac.in"
 //         },
 //         deptName: "ELECTRICAL",
 //         cade:"MM",
@@ -42,7 +42,7 @@ import Cookies from 'js-cookie';
 //         deptHead: {
 //             avatar: require('../../assets/img/team-4-470x470.png'),
 //             name: "dont Know",
-//             email: "dk@gcoen.ac.in"
+//             email: "dk@academy.ac.in"
 //         },
 //         deptName: "CIVIL",
 //         cade:"MM",
@@ -53,7 +53,7 @@ import Cookies from 'js-cookie';
 //         deptHead: {
 //             avatar: require('../../assets/img/team-4-470x470.png'),
 //             name: "dont Know",
-//             email: "dk@gcoen.ac.in"
+//             email: "dk@academy.ac.in"
 //         },
 //         deptName: "MECH",
 //         cade:"MM",
@@ -64,7 +64,7 @@ import Cookies from 'js-cookie';
 //     //   deptHead: {
 //     //     avatar: require('../../assets/img/team-4-470x470.png'),
 //     //     name: "dont Know",
-//     //     email: "dk@gcoen.ac.in"
+//     //     email: "dk@academy.ac.in"
 //     //   },
 //     //   deptName: "SCIENCE",
 //     //   vizFaculties: 8,
