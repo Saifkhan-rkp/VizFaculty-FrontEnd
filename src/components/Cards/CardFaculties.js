@@ -10,7 +10,7 @@ const deptStatic = [
         deptHead: {
             avatar: require('../../assets/img/team-4-470x470.png'),
             name: "dont know",
-            email: "lgm@gcoen.ac.in"
+            email: "lgm@academy.ac.in"
         },
         deptName: "CSE",
         code: "MM",
@@ -21,7 +21,7 @@ const deptStatic = [
         deptHead: {
             avatar: require('../../assets/img/team-3-800x800.jpg'),
             name: "dont Know",
-            email: "dk@gcoen.ac.in"
+            email: "dk@academy.ac.in"
         },
         deptName: "ETC",
         code: "MM",
@@ -32,7 +32,7 @@ const deptStatic = [
         deptHead: {
             avatar: require('../../assets/img/team-2-800x800.jpg'),
             name: "dont Know",
-            email: "dk@gcoen.ac.in"
+            email: "dk@academy.ac.in"
         },
         deptName: "ELECTRICAL",
         code: "MM",
@@ -43,7 +43,7 @@ const deptStatic = [
         deptHead: {
             avatar: require('../../assets/img/team-4-470x470.png'),
             name: "dont Know",
-            email: "dk@gcoen.ac.in"
+            email: "dk@academy.ac.in"
         },
         deptName: "CIVIL",
         code: "MM",
@@ -54,7 +54,7 @@ const deptStatic = [
         deptHead: {
             avatar: require('../../assets/img/team-4-470x470.png'),
             name: "dont Know",
-            email: "dk@gcoen.ac.in"
+            email: "dk@academy.ac.in"
         },
         deptName: "MECH",
         code: "MM",
@@ -65,7 +65,7 @@ const deptStatic = [
     //   deptHead: {
     //     avatar: require('../../assets/img/team-4-470x470.png'),
     //     name: "dont Know",
-    //     email: "dk@gcoen.ac.in"
+    //     email: "dk@academy.ac.in"
     //   },
     //   deptName: "SCIENCE",
     //   vizFaculties: 8,

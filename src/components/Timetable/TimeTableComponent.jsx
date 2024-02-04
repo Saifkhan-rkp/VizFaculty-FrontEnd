@@ -1,38 +1,78 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EditTimeTableModel from '../../models/EditTimeTableModel';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import DeleteModel from "../../models/DeleteModel";
 import Cookies from 'js-cookie';
+import InputModel from '../../models/InputModel';
+import _ from "lodash";
 
-export default function TimeTableComponent({ ttData, refetch = () => { } }) {
+export default function TimeTableComponent({ faculties, ttData, refetch = () => { } }) {
+    // console.log(ttData);
     const str = "\t";
     const schedules = ttData?.schedule;
-    const days = Object.keys(schedules);
     const restRows = Object.values(schedules);
-    const aryFinal = []
-    restRows?.forEach(row => {
-        // console.log(row);
+    // const [currentRow, setCurrentRow] = 
+    // Extract and format the schedule data
+    const formattedSchedule = Object.entries(ttData?.schedule).map(([day, schedule]) => {
         const newObj = {};
-        const temp = row?.reduce((r, o) => {
-            const key = o.timeFrom + "-" + o.timeTo;
-            if (!newObj[key]) {
-                newObj[key] = Object.assign({ data: (o.teachingType + "-" + o.subject + ":" + o.assignTo + "; ") }, { key }); // create a copy of okey
-                r.push(newObj[key]);
-            } else {
-                newObj[key].data += (o.teachingType + "-" + o.subject + ":" + o.assignTo + "; ");
-                // newObj[key].instances += o.instances;
+        return ({
+            day,
+            schedule: schedule.reduce((r, o) => {
+                const key = o.timeFrom + "-" + o.timeTo;
+                const time = { from: o.timeFrom, to: o.timeTo }
+                if (!newObj[key]) {
+                    newObj[key] = Object.assign({ data: (o.teachingType + "-" + o.subject + "; ") }, { key }, { time }); // create a copy of okey
+                    r.push(newObj[key]);
+                } else {
+                    newObj[key].data += (o.teachingType + "-" + o.subject + "; ");
+                    // newObj[key].instances += o.instances;
+                }
+                return r;
+            }, [])
+        })
+    });
+    console.log(formattedSchedule);
+    const onClickAddTime = (data) => {
+        setTimeArray(vals => [...vals, data])
+    }
+
+    //for Time Array table cols
+    const timeAry = [];
+    restRows?.forEach(row => {
+        row.map((val) => {
+            const timeString = val.timeFrom + "-" + val.timeTo;
+            if (!timeAry.some(existingSlot => existingSlot.from + "-" + existingSlot.to === timeString)) {
+                timeAry.push({ from: val.timeFrom, to: val.timeTo });
             }
-            return r;
-        }, []);
-        aryFinal.push(temp);
-    })
+        })
+    });
+
+    const [thTimeArray, setTimeArray] = useState(timeAry);
+    // console.log(restRows);
     const confirmDelete = (id) => {
         axios.delete(`${process.env.REACT_APP_API_KEY}/api/tt/${id}`, {
             headers: {
                 authorization: `Bearer ${Cookies.get('token')}`,
             },
         })
+            .then(res => {
+                console.log(res.data);
+                if (res.data?.success) {
+                    refetch();
+                    toast.success(res.data?.message);
+                }
+                if (!res.data?.success) {
+                    toast.error(res.data?.message);
+                }
+            }).catch(err => {
+                console.log(err);
+                toast.error(err?.response?.data?.message);
+            });
+    }
+
+    const onClickSave = (data, day) => {
+        axios.put(`${process.env.REACT_APP_API_KEY}/api/tt/updateSchedule/${ttData?._id}`, { day, schedule: data },)
             .then(res => {
                 console.log(res.data);
                 if (res.data?.success) {
@@ -76,67 +116,40 @@ export default function TimeTableComponent({ ttData, refetch = () => { } }) {
 
 
                             <p className="mt-1 text-sm font-normal text-gray-500 " // dark:text-gray-400
-                            > <strong >Created By:</strong> {ttData?.createdBy?.name + str} <strong>Last Modified By: </strong>{ttData?.lastModifiedBy?.name + str}
+                            > <strong >Created By:{" "}</strong> {ttData?.createdBy?.name + str} <strong>Last Modified By:{" "}</strong>{ttData?.lastModifiedBy?.name + str}
                             </p>
                         </caption>
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr className="bold">
                                 <th scope="col" className="px-6 py-3">Day</th>
-                                <th scope="col" className="px-6 py-3">
-                                    <div className='grid grid-cols-2 gap-1'>
-                                        <div >10:30-11:30</div>
-                                        <div >11:30-12:30</div>
-                                    </div>
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    <div className='grid grid-cols-2 gap-1'>
-                                        <div >01:00-02:00</div>
-                                        <div >02:00-03:00</div>
-                                    </div>
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    <div className='grid grid-cols-2 gap-1'>
-                                        <div >03:15-04:15</div>
-                                        <div >04:15-05:15</div>
-                                    </div>
-                                </th>
+                                {thTimeArray.map((val, idx) => (
+                                    <th scope="col" className="px-6 py-3" key={idx}>
+                                        <div className=''>
+                                            {val?.from + " - " + val?.to}
+                                        </div>
+                                    </th>
+                                ))}
                                 <th scope="col" className="px-6 py-3">Edit</th>
+                                <th scope="col" className="px-6 py-3"><InputModel saveFunction={onClickAddTime} /></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {aryFinal.map((row, idx) => {
-                                return (
-                                    <tr key={idx} className="bg-white border-b">
-                                        <td className="px-4 py-3 uppercase">{days[idx]}</td>
-                                        <td className="px-4 py-3">
-                                            <div className="grid grid-cols-2 grid-rows-2">
-                                                <div className="col-span-1 row-span-1">{row?.key === "10:30-11:30" ? row?.data : " "}</div>
-                                                <div className="col-span-1 row-span-1">{row?.key === "11:30-12:30" ? row?.data : " "}</div>
-                                                <div className="col-span-2 row-span-1 bg-slate-300">{row?.key === "10:30-12:30" ? row?.data : " "}</div>
-                                            </div>
+                            {formattedSchedule.map(({ day, schedule }, dayIdx) => (
+                                <tr key={dayIdx} className="bg-white border-b">
+                                    <td className="px-4 py-3 uppercase">{day}</td>
+                                    {thTimeArray.map((timeSlot, timeIdx) => (
+                                        <td className="px-4 py-3" key={timeIdx}>
+                                            {schedule.find(slot => _.isEqual(slot.time, timeSlot))?.data || " "}
                                         </td>
-                                        <td className="px-4 py-3">
-                                            <div className="grid grid-cols-2 grid-rows-2">
-                                                <div className="col-span-1 row-span-1">{row?.key === "01:00-02:00" ? row?.data : " "}</div>
-                                                <div className="col-span-1 row-span-1">{row?.key === "02:00-03:00" ? row?.data : " "}</div>
-                                                <div className="col-span-2 row-span-1 bg-slate-300">{row?.key === "01:00-03:00" ? row?.data : " "}</div>
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <div className="grid grid-cols-2 grid-rows-2 outline-2">
-                                                <div className="col-span-1 row-span-1">{row?.key === "03:15-04:15" ? row?.data : " "}</div>
-                                                <div className="col-span-1 row-span-1">{row?.key === "04:15-05:15" ? row?.data : " "}</div>
-                                                <div className="col-span-2 row-span-1 bg-slate-300">{row?.key === "03:15-05:15" ? row?.data : " "}</div>
-                                            </div>
-                                        </td>
-                                        <td className="px-4 py-3">
-                                            <span className="actions">
-                                                <EditTimeTableModel />
-                                            </span>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
+                                    ))}
+                                    {/* ... other columns ... */}
+                                    <td className="px-4 py-3">
+                                        <span className="actions">
+                                            <EditTimeTableModel times={thTimeArray} faculties={faculties} onClickSave={(data) => onClickSave(data, day) } title={"Edit Timetable for " + day?.toUpperCase()} currentData={restRows[dayIdx]} />
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

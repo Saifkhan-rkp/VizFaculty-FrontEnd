@@ -4,7 +4,7 @@ const EditableTable = () => {
     const [data, setData] = useState([
         { id: 1, name: "John", age: 25 },
         { id: 2, name: "Mary", age: 30 },
-        { id: 3, name: "Jane", age: 35 },
+        { id: 3, name: "Marlo", age: 35 },
     ]);
 
     const handleNameChange = (id, value) => {
