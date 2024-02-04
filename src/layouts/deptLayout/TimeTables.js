@@ -14,7 +14,13 @@ export default function Timetables() {
       authorization: `Bearer ${Cookies.get('token')}`,
     },
   }).then(res => res.data));
-  console.log(timetables);
+  const { data: faculties, isLoading: loadingFaculties, } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
+    headers: {
+      authorization: `Bearer ${Cookies.get('token')}`,
+    },
+  }).then(res => res.data));
+
+  // console.log(timetables);
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     {
@@ -122,9 +128,9 @@ export default function Timetables() {
             { timetables?.ttCount<1 &&
               <div className='h-350-px items-center top-1/2 text-center'>No TimeTable Found, Add TimeTable By clicking "+ Add TimeTable" button</div>
             }
-            { timetables?.ttCount>0  &&
+            { !loadingFaculties && timetables?.ttCount>0  &&
               timetables?.timetables?.map( tt => (
-              <TimeTableComponent editRow={handleEditRow} ttData={tt} refetch={refetch}/>
+              <TimeTableComponent faculties={faculties} editRow={handleEditRow} ttData={tt} refetch={refetch}/>
               ))
             }
           </div>
