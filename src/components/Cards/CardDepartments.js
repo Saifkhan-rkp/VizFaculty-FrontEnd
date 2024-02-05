@@ -2,7 +2,7 @@ import React from 'react'
 import AddUserForm from '../../models/AddUserForm';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getAuthData } from '../../utils/utils';
 
 // const deptStatic = [
 //     {
@@ -71,10 +71,11 @@ import Cookies from 'js-cookie';
 //     //   totalExpence: 65345,
 //     // },
 // ];
+
 export default function CardDepartments() {
     const { data: departments, isLoading } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
         headers: {
-          authorization: `Bearer ${Cookies.get('token')}`,
+          authorization: `Bearer ${getAuthData()?.accessToken}`,
         },
       }).then(res => res.data));
       console.log(departments);

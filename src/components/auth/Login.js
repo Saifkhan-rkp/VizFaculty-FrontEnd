@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "js-cookie"
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -38,9 +37,9 @@ export default function Login() {
       .then((res) => {
         setLoading(false);
         if (res.data.success) {
-          toast.success(res.data.message);
-          console.log(res.data.token);
-          Cookies.set('token', res.data.token);
+          toast.success(res.data);
+          const authData = res?.data?.user;
+          localStorage.setItem("auth", JSON.stringify(authData))
           console.log(res.data);
           if (res.data?.user?.role === "deptHead")
             from = "/dept";

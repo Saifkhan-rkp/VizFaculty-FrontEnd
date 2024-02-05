@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { getAuthData } from "../utils/utils";
 // import Head from "next/head";
 function AddUserForm({ type, depts }) {
     const { register, handleSubmit, getValues, formState: { errors }, } = useForm({ mode: "onChange" });
     const [flag, setFlag] = useState(false);
     // const [data , setData] = useState({})
     const onSubmit = () => {
-        console.log("im clicked..!");
+        console.log("im clicked..!"); 
         try {
             const { deptName, headName, code, email, name, abbrivation, deptId } = getValues()
             console.log(getValues());
@@ -18,7 +18,7 @@ function AddUserForm({ type, depts }) {
                 axios.post(`${process.env.REACT_APP_API_KEY}/api/dept`, getValues(), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'authorization': `Bearer ${Cookies.get('token')}`,
+                        'authorization': `Bearer ${getAuthData()?.accessToken}`,
                     },
                     data: { deptName, headName, email, code }
                 }).then(res => {
@@ -37,7 +37,7 @@ function AddUserForm({ type, depts }) {
                 axios.post(`${process.env.REACT_APP_API_KEY}/api/faculty`, getValues(), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'authorization': `Bearer ${Cookies.get('token')}`,
+                        'authorization': `Bearer ${getAuthData()?.accessToken}`,
                     },
                     data: { deptId, name, email, abbrivation }
                 }).then(res => {

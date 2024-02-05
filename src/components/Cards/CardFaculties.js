@@ -1,10 +1,10 @@
 import React from 'react'
 import AddUserForm from '../../models/AddUserForm';
 import { useQuery } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
 import axios from 'axios';
 import DeleteModel from '../../models/DeleteModel';
 import { toast } from 'react-hot-toast';
+import { getAuthData } from '../../utils/utils';
 const deptStatic = [
     {
         deptHead: {
@@ -76,7 +76,7 @@ const deptStatic = [
 export default function CardFaculties() {
     const { data: faculties, isLoading, refetch } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
         headers: {
-            authorization: `Bearer ${Cookies.get('token')}`,
+            authorization: `Bearer ${getAuthData()?.accessToken}`,
         },
     }).then(res => res.data));
 
