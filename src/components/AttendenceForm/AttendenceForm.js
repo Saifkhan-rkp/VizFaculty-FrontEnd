@@ -100,18 +100,16 @@ export default function AttendenceForm() {
           </h2>
           <div className="mb-10 grid grid-cols-2 divide-x">
             <div>
-              <input
-                id="Theory-checkbox-1"
-                type="checkbox"
-                value=""
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="Theory-checkbox-1"
-                class="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
-              >
-                10-12 Compiler Design
-              </label>
+              <div className="flex items-center ps-4 border border-gray-200 rounded ">
+                <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                {/* <label for="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
+                <div class="w-full py-2 ms-2 text-sm">
+                  <label for="bordered-checkbox-1"  class="font-medium text-gray-900 ">
+                    Compiler Design
+                    <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500"> 10:30 - 11:30</p>
+                  </label>
+                </div>
+              </div>
             </div>
             <div>
               <input
