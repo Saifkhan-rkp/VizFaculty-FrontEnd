@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 //components
 import TimeTableComponent from '../../components/Timetable/TimeTableComponent'
-import EditTimeTableModel from '../../models/EditTimeTableModel';
 import AddTimeTableModal from '../../models/AddTimeTableModal';
+import { getAuthData } from '../../utils/utils';
 
 export default function Timetables() {
   const { data: timetables, isLoading, refetch } = useQuery(['timetables'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/timetables`, {
     headers: {
-      authorization: `Bearer ${Cookies.get('token')}`,
+      authorization: `Bearer ${getAuthData()?.accessToken}`,
     },
   }).then(res => res.data));
   const { data: faculties, isLoading: loadingFaculties, } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
     headers: {
-      authorization: `Bearer ${Cookies.get('token')}`,
+      authorization: `Bearer ${getAuthData()?.accessToken}`,
     },
   }).then(res => res.data));
 

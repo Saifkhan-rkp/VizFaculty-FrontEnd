@@ -8,7 +8,7 @@ const FacultyRoute = ({ children }) => {
     if (loading || isLoading) {
         return (
             <div className="grid min-h-50v place-items-center">
-                <div className="w-16 h-16 border-4 border-dashed rounded-full border-sky-700 animate-spin  " />
+                <div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin" />
             </div>
         );
     }
@@ -18,7 +18,7 @@ const FacultyRoute = ({ children }) => {
     if (user?.user?.role === 'faculty') {
         return children;
     }
-    
+
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 

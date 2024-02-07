@@ -3,9 +3,9 @@ import EditTimeTableModel from '../../models/EditTimeTableModel';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import DeleteModel from "../../models/DeleteModel";
-import Cookies from 'js-cookie';
 import InputModel from '../../models/InputModel';
 import _ from "lodash";
+import { getAuthData } from '../../utils/utils';
 
 export default function TimeTableComponent({ faculties, ttData, refetch = () => { } }) {
     // console.log(ttData);
@@ -53,7 +53,7 @@ export default function TimeTableComponent({ faculties, ttData, refetch = () => 
     const confirmDelete = (id) => {
         axios.delete(`${process.env.REACT_APP_API_KEY}/api/tt/${id}`, {
             headers: {
-                authorization: `Bearer ${Cookies.get('token')}`,
+                authorization: `Bearer ${getAuthData()?.accessToken}`,
             },
         })
             .then(res => {

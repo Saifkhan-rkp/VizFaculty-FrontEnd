@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { getAuthData } from '../utils/utils';
 // import { Modal, Ripple, initTE } from "tw-elements";
 export default function AddTimeTableModal({refetch = ()=>{}}) {
     // initTE({ Modal, Ripple });
@@ -19,7 +19,7 @@ export default function AddTimeTableModal({refetch = ()=>{}}) {
         axios.post(`${process.env.REACT_APP_API_KEY}/api/tt`, data, {
             headers: {
                 'Content-Type': 'application/json',
-                'authorization': `Bearer ${Cookies.get('token')}`,
+                'authorization': `Bearer ${getAuthData()?.accessToken}`,
             },
             data
         }).then(res => {
