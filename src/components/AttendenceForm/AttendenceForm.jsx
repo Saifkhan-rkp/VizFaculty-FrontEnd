@@ -26,7 +26,7 @@ export default function AttendenceForm() {
     //             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
     //           />
     //           <label
-    //             for="default-radio-1"
+    //             htmlFor="default-radio-1"
     //             className="ml-2 my-10 text-sm font-medium text-gray-900 dark:text-gray-300"
     //           >
     //             10-12 Compiler Design Theory
@@ -42,7 +42,7 @@ export default function AttendenceForm() {
     //             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
     //           />
     //           <label
-    //             for="default-radio-2"
+    //             htmlFor="default-radio-2"
     //             className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
     //           >
     //             3-5 Compiler Design Theory
@@ -62,7 +62,7 @@ export default function AttendenceForm() {
     //             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
     //           />
     //           <label
-    //             for="default-checkbox"
+    //             htmlFor="default-checkbox"
     //             class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
     //           >
     //             Default checkbox
@@ -102,9 +102,9 @@ export default function AttendenceForm() {
             <div>
               <div className="flex items-center ps-4 border border-gray-200 rounded ">
                 <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
-                {/* <label for="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
+                {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                 <div class="w-full py-2 ms-2 text-sm">
-                  <label for="bordered-checkbox-1"  class="font-medium text-gray-900 ">
+                  <label htmlFor="bordered-checkbox-1"  class="font-medium text-gray-900 ">
                     Compiler Design
                     <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500"> 10:30 - 11:30</p>
                   </label>
@@ -119,7 +119,7 @@ export default function AttendenceForm() {
                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <label
-                for="Theory-checkbox-2"
+                htmlFor="Theory-checkbox-2"
                 class="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
               >
                 3-5 Compiler Design
@@ -137,7 +137,7 @@ export default function AttendenceForm() {
               className="mb-10 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
-              for="default-checkbox"
+              htmlFor="default-checkbox"
               className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
             >
               Default checkbox
@@ -157,7 +157,7 @@ export default function AttendenceForm() {
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
                   <label
-                    for="default-radio-mode-1"
+                    htmlFor="default-radio-mode-1"
                     className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
                   >
                     Online
@@ -173,7 +173,7 @@ export default function AttendenceForm() {
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                   />
                   <label
-                    for="default-radio-mode-2"
+                    htmlFor="default-radio-mode-2"
                     className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
                   >
                     Offline

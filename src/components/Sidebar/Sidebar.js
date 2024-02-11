@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
+import { LogoutUser, logoutUser } from "../../utils/utils";
 
 
 export default function Sidebar({ linksAndHeadings }) {
@@ -121,13 +122,14 @@ export default function Sidebar({ linksAndHeadings }) {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link
+                <div
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/logout"
+                  // to="/auth/logout"
+                  onClick={LogoutUser}
                 >
                   <i className="fas fa-sign-out text-slate-400 mr-2 text-sm"></i>{" "}
                   Logout
-                </Link>
+                </div>
               </li>
               {/* <li className="items-center">
                 <Link
