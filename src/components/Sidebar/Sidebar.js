@@ -1,14 +1,15 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
-import { LogoutUser, logoutUser } from "../../utils/utils";
+import { LogoutUser } from "../../utils/utils";
 
 
 export default function Sidebar({ linksAndHeadings }) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const location = useLocation();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -91,7 +92,7 @@ export default function Sidebar({ linksAndHeadings }) {
                   <Link
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (window.location.href.indexOf(item.link) !== -1
+                      (location.pathname.includes(item.link)
                         ? "text-sky-500 hover:text-sky-600"
                         : "text-slate-700 hover:text-slate-500")
                     }
@@ -100,7 +101,7 @@ export default function Sidebar({ linksAndHeadings }) {
                     <i
                       className={
                         item.icon+ " mr-2 text-sm " +
-                        (window.location.href.indexOf(item.link) !== -1
+                        (location.pathname.includes(item.link)
                           ? "opacity-75"
                           : "text-slate-300")
                       }

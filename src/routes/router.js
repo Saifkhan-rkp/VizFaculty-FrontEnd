@@ -29,6 +29,7 @@ import TimeTables from "../layouts/deptLayout/TimeTables";
 import Blog from "../pages/Blog";
 import About from "../pages/About";
 import Pages from "../pages/PagesLayout";
+import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";
 
 const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
@@ -100,6 +101,12 @@ export const router = createBrowserRouter([
         path: "/Dept/Faculties",
         element: (
           <DeptFaculties />
+        ),
+      },
+      {
+        path: "/Dept/settings",
+        element: (
+          <DepartmentSettings />
         ),
       },
     ],

@@ -1,17 +1,108 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { getAuthData } from "../../utils/utils";
 // components
 
-export default function CardSettings(props) {
+const RatesInput = ({ initRates }) => {
+  const [rates, setRates] = useState({ TH: 0, PR: 0, TU: 0 });
+  const onChangeRates = (e) =>  setRates({ ...rates, [e.target?.name]: e.target?.value }) ;
+  const ratesSubmit = () => {
+    axios.put(`${process.env.REACT_APP_API_KEY}/api/dept/${getAuthData()?.roleId}`, { rates: rates }).then(res => {
+      if (res.data?.success) {
+        toast.success(res.data?.message);
+      }
+    })
+  }
+  return (
+    <>
+      <hr className="mt-6 border-b-1 border-slate-300" />
+
+      <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
+        Change Rates
+      </h6>
+      <div className="flex flex-wrap justify-center">
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="th"
+            >
+              Theory
+            </label>
+            <input
+              id="TH"
+              type="number"
+              name="TH"
+              value={rates.TH}
+              onChange={onChangeRates}
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="300"
+            />
+          </div>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="TU"
+            >
+              Tutorial
+            </label>
+            <input
+              type="number"
+              value={rates.TU}
+              onChange={onChangeRates}
+              id="TU"
+              name="TU"
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="300"
+            // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+            />
+          </div>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="PR"
+            >
+              Practical
+            </label>
+            <input
+              type="number"
+              value={rates.PR}
+              onChange={onChangeRates}
+              id="PR"
+              name="PR"
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+            // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+            />
+          </div>
+        </div>
+
+        <button
+          className="mt-5 mb-3 bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex justify-center"
+          type="button"
+          onClick={ratesSubmit}
+        >
+          Submit
+        </button>
+      </div>
+
+    </>)
+}
+
+
+export default function CardSettings({ settingsFor, ...props }) {
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-  const { password } = getValues();
-
+  const { password, } = getValues();
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-100 border-0">
@@ -120,13 +211,13 @@ export default function CardSettings(props) {
                 </div>
               </div>
             </div>
-
+            {settingsFor === "dept" && <RatesInput register={register} errors={errors} handleSubmit={handleSubmit} />}
             <hr className="mt-6 border-b-1 border-slate-300" />
 
             <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
               Change Password
             </h6>
-            <div className="flex flex-wrap flex justify-center">
+            <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-4/12 px-4">
                 <div className="relative w-full mb-3">
                   <label
@@ -172,7 +263,7 @@ export default function CardSettings(props) {
                     name="NewPassword"
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="New Password"
-                    // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+                  // onChange={(self)=>{ document.getElementById("password").value === self.value}}
                   />
                   {errors?.NewPassword && (
                     <p className="text-red-500">
@@ -199,7 +290,7 @@ export default function CardSettings(props) {
                     name="confirmPassword"
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Retype Password"
-                    // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+                  // onChange={(self)=>{ document.getElementById("password").value === self.value}}
                   />
                   {errors?.confirmPassword && (
                     <p className="text-red-500">
