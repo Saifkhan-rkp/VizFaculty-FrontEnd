@@ -1,13 +1,15 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
+import { LogoutUser } from "../../utils/utils";
 
 
 export default function Sidebar({ linksAndHeadings }) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
+  const location = useLocation();
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
@@ -90,7 +92,7 @@ export default function Sidebar({ linksAndHeadings }) {
                   <Link
                     className={
                       "text-xs uppercase py-3 font-bold block " +
-                      (window.location.href.indexOf(item.link) !== -1
+                      (location.pathname.includes(item.link)
                         ? "text-sky-500 hover:text-sky-600"
                         : "text-slate-700 hover:text-slate-500")
                     }
@@ -99,7 +101,7 @@ export default function Sidebar({ linksAndHeadings }) {
                     <i
                       className={
                         item.icon+ " mr-2 text-sm " +
-                        (window.location.href.indexOf(item.link) !== -1
+                        (location.pathname.includes(item.link)
                           ? "opacity-75"
                           : "text-slate-300")
                       }
@@ -121,13 +123,14 @@ export default function Sidebar({ linksAndHeadings }) {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link
+                <div
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
-                  to="/auth/logout"
+                  // to="/auth/logout"
+                  onClick={LogoutUser}
                 >
                   <i className="fas fa-sign-out text-slate-400 mr-2 text-sm"></i>{" "}
                   Logout
-                </Link>
+                </div>
               </li>
               {/* <li className="items-center">
                 <Link
