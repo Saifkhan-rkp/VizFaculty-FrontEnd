@@ -123,14 +123,14 @@ export default function Sidebar({ linksAndHeadings }) {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <div
+                <button
                   className="text-slate-700 hover:text-slate-500 text-xs uppercase py-3 font-bold block"
                   // to="/auth/logout"
                   onClick={LogoutUser}
                 >
                   <i className="fas fa-sign-out text-slate-400 mr-2 text-sm"></i>{" "}
                   Logout
-                </div>
+                </button>
               </li>
               {/* <li className="items-center">
                 <Link
