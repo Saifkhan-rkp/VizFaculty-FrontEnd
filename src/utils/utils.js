@@ -7,7 +7,6 @@ export const getAuthData = () => {
 
 
 export const LogoutUser = () => { 
-    const navigate = useNavigate();
-    localStorage.removeItem("auth");
-    navigate("/");
+    window.localStorage.removeItem("auth");
+    window.location.reload();
 }
