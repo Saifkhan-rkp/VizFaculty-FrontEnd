@@ -13,7 +13,7 @@ export default function DashboardIndexFaculty() {
     },
   }).then(res => res?.data));
   const today = new Date();
-  const { data: todaysAttendance, isLoading: todaysAttendanceLoading  } = useQuery(["todaysAttendance"], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/attendance/todays/${new Date().toDateString()}`, {
+  const { data: todaysAttendance, isLoading: todaysAttendanceLoading } = useQuery(["todaysAttendance"], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/attendance/todays/${new Date().toDateString()}`, {
     headers: {
       authorization: `Bearer ${getAuthData()?.accessToken}`,
       // 'X-DATE':new Date().toDateString()
@@ -21,20 +21,21 @@ export default function DashboardIndexFaculty() {
   }).then(res => res?.data));
   console.log(todaysAttendance);
 
-  useEffect(()=>{
+  useEffect(() => {
     refetch();
-  },[date, refetch])
+  }, [date, refetch])
   return (
     <>
-      <div className="flex flex-wrap">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-          <AttendenceForm isSubmitted={true} attendanceData={todaysAttendance}
-          />
-        </div>
-        <div className="w-full xl:w-4/12 px-4">
-          <CardCalendar scheduleData={mySchedule} isLoading={isLoading} setDate={setDate} />
-        </div>
-      </div>
+      {!isLoading && !todaysAttendanceLoading &&
+        <div className="flex flex-wrap">
+          <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
+            <AttendenceForm isSubmitted={true} attendanceData={todaysAttendance}
+            />
+          </div>
+          <div className="w-full xl:w-4/12 px-4">
+            <CardCalendar scheduleData={mySchedule} isLoading={isLoading} setDate={setDate} />
+          </div>
+        </div>}
     </>
   );
 }

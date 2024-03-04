@@ -2,9 +2,10 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getAuthData } from '../utils/utils';
 
 export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
-    const auth = JSON.parse(localStorage.getItem('auth'));
+    const auth = getAuthData();
     const res = await axios.get(`${process.env.REACT_APP_API_KEY}/api/auth/user/self`, {
         headers: {
             authorization: `Bearer ${auth?.accessToken}`,

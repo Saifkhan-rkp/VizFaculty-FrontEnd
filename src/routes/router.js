@@ -85,7 +85,7 @@ export const router = createBrowserRouter([
 
   //Hod Dept Dashboard
   {
-    path: "/Dept",
+    path: "/dept",
     element: <DeptRoute> <HodDashboard /> </DeptRoute>,
     errorElement: <ErrorPage />,
     children: [
@@ -94,17 +94,17 @@ export const router = createBrowserRouter([
         element: <DashboardIndexDept></DashboardIndexDept>,
       },
       {
-        path: "/Dept/Timetables",
+        path: "/dept/Timetables",
         element: <TimeTables />,
       },
       {
-        path: "/Dept/Faculties",
+        path: "/dept/Faculties",
         element: (
           <DeptFaculties />
         ),
       },
       {
-        path: "/Dept/settings",
+        path: "/dept/settings",
         element: (
           <DepartmentSettings />
         ),

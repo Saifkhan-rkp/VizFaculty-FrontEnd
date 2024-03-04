@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,26 +9,29 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation
   const { isLoading, user, loading } = useAuth();
-  
-  if (user?.user) {
-    let from = "/";
-    if (user?.user?.role === "deptHead")
-      from = "/dept";
-    else if (user?.user?.role === "faculty")
-      from = "/faculty";
-    else if (user?.user?.role === "adminDept")
-      from = "/adminDept";
-    navigate(from);
-  }
+
+  useEffect(() => {
+    if (!isLoading && !loading && user?.user) {
+      let from = "/";
+      if (user?.user?.role === "deptHead")
+        from = "/dept";
+      else if (user?.user?.role === "faculty")
+        from = "/faculty";
+      else if (user?.user?.role === "adminDept")
+        from = "/adminDept";
+      navigate(from);
+    }
+  }, [isLoading, loading, user]);
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: 'onChange' });
   const [isItLoading, setLoading] = useState(false);
-  let from = location.state?.from?.pathname || '/';
   console.log(location.state?.from?.pathname);
   const onSubmit = (data) => {
+    let from = '/';
     console.log(data);
     // mutate(data);
     setLoading(true);
@@ -47,11 +50,11 @@ export default function Login() {
             from = "/faculty";
           else if (res.data?.user?.role === "adminDept")
             from = "/adminDept";
-          navigate(from, {replace:true});
+          navigate(from);
         }
-        if (!res.data.success) {
-          toast.error(res.data.message);
-        }
+        // if (!res.data.success) {
+        //   toast.error(res.data.message);
+        // }
 
       })
       // .then(() => refetch())
