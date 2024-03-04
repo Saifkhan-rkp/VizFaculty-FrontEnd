@@ -6,10 +6,10 @@ import AdminNavBar from "../../components/Navbars/AdminNavbar";
 import FooterAdmin from "../../components/Footers/FooterAdmin";
 
 const links = [
-  { heading: "My Dashboard", link: "/Dept", icon: "fas fa-tv" },
-  { heading: "Settings", link: "/Dept/settings", icon: "fas fa-tools" },
-  { heading: "Timetables", link: "/Dept/Timetables", icon: "fas fa-table" },
-  { heading: "Faculties", link: "/Dept/Faculties", icon: "fas fa-map-marked" },
+  { heading: "My Dashboard", link: "/dept", icon: "fas fa-tv" },
+  { heading: "Settings", link: "/dept/settings", icon: "fas fa-tools" },
+  { heading: "Timetables", link: "/dept/Timetables", icon: "fas fa-table" },
+  { heading: "Faculties", link: "/dept/Faculties", icon: "fas fa-map-marked" },
   // {heading:"Settings", link:"/adminDept/settings", icon:""},
 ];
 

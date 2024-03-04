@@ -13,14 +13,15 @@ export default function SettingsLayout({ settingsFor, ...props }) {
           <CardSettings
             settingsFor={settingsFor}
             name={props.name}
-            Email={props.Email}
+            Email={props.email}
             name2={props.name2}
             code={props.code}
             codeVal={props.codeVal}
+            rates={props?.rates}
           />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
+          <CardProfile name={ props?.name } deptName={props?.deptName} orgName={props?.orgName} />
         </div>
       </div>
     </>

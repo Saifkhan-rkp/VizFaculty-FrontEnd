@@ -91,7 +91,7 @@ export default function CardFaculties() {
                 if (!res.data?.success) {
                     toast.error(res.data?.message);
                 }
-            }).catch(err =>{
+            }).catch(err => {
                 console.log(err);
                 toast.error(err?.response?.data?.message);
             });
@@ -143,10 +143,10 @@ export default function CardFaculties() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {faculties?.faculties?.map((data,idx) => (
+                                {!isLoading && faculties?.faculties?.map((data, idx) => (
                                     <tr className="bg-white border-b" key={data?._id}>{/**dark:bg-gray-800 dark:border-gray-700 */}
                                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap">{/**dark:text-white */}
-                                            <img className="w-10 h-10 rounded-full" src={data?.faculty?.ProfilePhoto} alt="avatar" />
+                                            <img className="w-10 h-10 rounded-full" src={data?.faculty?.profilePhoto === "default" || !data?.faculty?.profilePhoto ? require("../../assets/img/user_avtar.png") : data?.faculty?.profilePhoto} alt="avatar" />
                                             <div className="pl-3">
                                                 <div className="text-base font-semibold">{data?.faculty?.name}</div>
                                                 <div className="font-normal text-gray-500">{data?.faculty?.email}</div>
@@ -173,7 +173,7 @@ export default function CardFaculties() {
                                                     style={{ color: "gray" }}
                                                 >
                                                 </button>
-                                                <DeleteModel dialog='Are you sure You want to delete this faculty ?' id={data?._id} name={data?.faculty?.name} confirmDelete={deleteConfirm}  />
+                                                <DeleteModel dialog='Are you sure You want to delete this faculty ?' id={data?._id} name={data?.faculty?.name} confirmDelete={deleteConfirm} />
                                             </div>
                                         </td>
                                         {/* <td className="px-6 py-4 text-right">

@@ -122,8 +122,8 @@ export default function CardPerformanceGraph() {
                 </tr>
               </thead>
               <tbody>
-                {deptStatic.map(data => (
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                {deptStatic.map((data, idx) => (
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={idx}>
                     <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                       <img className="w-10 h-10 rounded-full" src={data.deptHead.avatar} alt="avatar" />
                       <div className="pl-3">

@@ -102,7 +102,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
             {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
               <div key={idx}>
                 <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                  <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                  <input id="bordered-checkbox-1" type="checkbox" value="" name="THCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                   {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                   <div class="w-full py-2 ms-2 text-sm">
                     <label htmlFor="bordered-checkbox-1" class="font-medium text-gray-900 ">
@@ -119,10 +119,10 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
               Practical
             </h2>
             <div className="mb-10 grid grid-cols-2 divide-x">
-              {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
+              {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "PR" ? (
                 <div key={idx}>
                   <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                    <input id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                    <input id="bordered-checkbox-1" type="checkbox" value="" name="PRCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                     {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                     <div class="w-full py-2 ms-2 text-sm">
                       <label htmlFor="bordered-checkbox-1" class="font-medium text-gray-900 ">

@@ -78,7 +78,7 @@ export default function CardDepartments() {
           authorization: `Bearer ${getAuthData()?.accessToken}`,
         },
       }).then(res => res.data));
-      console.log(departments);
+    //   console.log(departments);
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-700">

@@ -11,22 +11,16 @@ import { Suspense } from "react";
 
 
 function App() {
-  const client = new QueryClient({
-    defaultOptions: {
-      queries: {
-        suspense: true,
-      },
-    },
-  });
+  const client = new QueryClient();
   return (
     <>
       <QueryClientProvider client={client}>
-        <Suspense fallback={(<div className="grid min-h-50v place-items-center"><div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin"/></div>)}>
+        {/* <Suspense fallback={<div className="grid min-h-50v place-items-center"><div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin"/></div>}> */}
           <Provider store={store}>
             <RouterProvider router={router}></RouterProvider>
             <Toaster />
           </Provider>
-        </Suspense>
+        {/* </Suspense> */}
       </QueryClientProvider>
     </>
   );
