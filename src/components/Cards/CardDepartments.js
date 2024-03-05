@@ -133,7 +133,7 @@ export default function CardDepartments() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {departments?.depts?.map(data => (
+                                {!isLoading && departments?.depts?.map(data => (
                                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={data._id}>
                                         <td className="px-6 py-4 dark:text-white">
                                             {data?.deptName}
