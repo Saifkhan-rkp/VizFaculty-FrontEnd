@@ -1,7 +1,53 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { getAuthData } from "../../utils/utils";
+import toast from "react-hot-toast";
 // import Chart from "chart.js";
 
 export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
+  const daysArray = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const auth = getAuthData();
+  const today = new Date();
+  const [attendanceBody, setAttendanceBody] = useState({
+    day: daysArray[today.getDay()],
+    date: today.toDateString(),//today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear(),
+    attendanceArray: []
+  });
+  // console.log(attendanceBody);
+  const onHandleChange = (e, body) => {
+    const { checked } = e.target;
+    // console.log(checked, body);
+
+    if (checked) {
+      const attendanceArray = [...attendanceBody.attendanceArray, body]
+      setAttendanceBody(state => ({
+        ...state,
+        attendanceArray
+      }));
+    } else {
+      setAttendanceBody(state => ({
+        ...state,
+        attendanceArray: state.attendanceArray.filter((attd) => attd._id !== body._id)
+      }));
+    }
+  }
+  const onSubmitAttendance = () => {
+    axios.post(`${process.env.REACT_APP_API_KEY}/api/attendance`, attendanceBody, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${auth?.accessToken}`,
+      }
+    }).then(res => {
+      if (res.data?.success) {
+        toast.success(res.data?.message);
+      }
+      console.log(res.data);
+    }).catch(err => {
+      console.log(err);
+      toast.error(err.message);
+    })
+  }
+  // useEffect(()=>{console.log(attendanceBody);},[attendanceBody])
   return (
     // <>
     //   <div className="h-full w-full max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -100,14 +146,18 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
           </h2>
           <div className="mb-10 grid grid-cols-2 divide-x">
             {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
-              <div key={idx}>
+              <div key={attendance?._id}>
                 <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                  <input id="bordered-checkbox-1" type="checkbox" value="" name="THCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                  <input id={`th-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="THCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                   {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
-                  <div class="w-full py-2 ms-2 text-sm">
-                    <label htmlFor="bordered-checkbox-1" class="font-medium text-gray-900 ">
+                  <div className="w-full py-2 ms-2 text-sm">
+                    <label htmlFor={`th-checkbox-${idx}`} className="font-medium text-gray-900 ">
                       {attendance?.subject}
-                      <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
+                      {attendance?.marked
+                        ? <i className="fa fa-check-circle" style={{ color: "green" }}></i>
+                        : <i className="fa fa-times-circle" style={{ color: "red" }}></i>
+                      }
+                      <p id="helper-checkbox-text" className="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
                     </label>
                   </div>
                 </div>
@@ -120,14 +170,18 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
             </h2>
             <div className="mb-10 grid grid-cols-2 divide-x">
               {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "PR" ? (
-                <div key={idx}>
+                <div key={attendance?._id}>
                   <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                    <input id="bordered-checkbox-1" type="checkbox" value="" name="PRCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                    <input id={`pr-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="PRCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                     {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
-                    <div class="w-full py-2 ms-2 text-sm">
-                      <label htmlFor="bordered-checkbox-1" class="font-medium text-gray-900 ">
+                    <div className="w-full py-2 ms-2 text-sm">
+                      <label htmlFor={`pr-checkbox-${idx}`} className="font-medium text-gray-900 ">
                         {attendance?.subject}
-                        <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
+                        {attendance?.marked
+                          ? <i className="fa fa-check-circle" style={{ color: "green" }}></i>
+                          : <i className="fa fa-times-circle" style={{ color: "red" }}></i>
+                        }
+                        <p id="helper-checkbox-text" className="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
                       </label>
                     </div>
                   </div>
@@ -156,12 +210,12 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
                 </div>
                 <div>
                   <input
-                    checked
                     id="default-radio-mode-2"
                     type="radio"
                     value=""
                     name="mode-radio"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    defaultChecked
                   />
                   <label
                     htmlFor="default-radio-mode-2"
@@ -175,12 +229,13 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
           </div>
 
           <div className="flex content-center items-center justify-center bottom-3">
-            <a
-              href="/"
+            <button
+              type="button"
+              onClick={onSubmitAttendance}
               className="mb-5 content-center mx-50 bottom-20 justify-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Submit
-            </a>
+            </button>
           </div>
         </div>
       </div>

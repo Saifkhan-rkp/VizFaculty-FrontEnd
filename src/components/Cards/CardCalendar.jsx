@@ -33,21 +33,20 @@ export default function CardCalendar({ scheduleData, isLoading, setDate }) {
               <div className="my-2 border-b pb-4 border-gray-400 border-dashed">
                 {!isLoading && scheduleData?.schedules?.map(
                   (data, index) =>
-                  (<>
-                    {/* <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
+                  (
+                    <div key={index}>
+                      {/* <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
                       10:30-11:30
                     </p> */}
-                    <div>
-                      <p className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100">
+                      <div className="text-lg font-medium leading-5 text-gray-800 dark:text-gray-100">
 
                         <div className="my-2 border-b pb-4 border-gray-400 border-dashed"></div>
                         <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
                           {data?.timeFrom + " - " + data?.timeTo}
                         </p>
                         {data?.teachingType + " : " + data?.subject}
-                      </p>
+                      </div>
                     </div>
-                  </>
                   )
                 )}
                 {!isLoading && !scheduleData?.schedules.length > 0 &&
