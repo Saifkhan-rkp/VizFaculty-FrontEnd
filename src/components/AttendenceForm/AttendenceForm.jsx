@@ -8,6 +8,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
   const daysArray = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const auth = getAuthData();
   const today = new Date();
+  const [isLoading, setIsLoading] = useState(false);
   const [attendanceBody, setAttendanceBody] = useState({
     day: daysArray[today.getDay()],
     date: today.toDateString(),//today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear(),
@@ -32,20 +33,28 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
     }
   }
   const onSubmitAttendance = () => {
-    axios.post(`${process.env.REACT_APP_API_KEY}/api/attendance`, attendanceBody, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${auth?.accessToken}`,
-      }
-    }).then(res => {
-      if (res.data?.success) {
-        toast.success(res.data?.message);
-      }
-      console.log(res.data);
-    }).catch(err => {
-      console.log(err);
-      toast.error(err.message);
-    })
+    if (attendanceBody.attendanceArray.length > 0){
+      setIsLoading(true);
+      axios.post(`${process.env.REACT_APP_API_KEY}/api/attendance`, attendanceBody, {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${auth?.accessToken}`,
+        }
+      }).then(res => {
+        if (res.data?.success) {
+          toast.success(res.data?.message);
+        }
+        setIsLoading(false);
+        console.log(res.data);
+      }).catch(err => {
+        setIsLoading(false);
+        console.log(err);
+        toast.error(err.message);
+      });
+    }
+    else {
+      toast.error("No Subject selected..!")
+    }
   }
   // useEffect(()=>{console.log(attendanceBody);},[attendanceBody])
   return (
@@ -148,7 +157,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
             {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
               <div key={attendance?._id}>
                 <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                  <input id={`th-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="THCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                  <input id={`th-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="THCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                   {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                   <div className="w-full py-2 ms-2 text-sm">
                     <label htmlFor={`th-checkbox-${idx}`} className="font-medium text-gray-900 ">
@@ -172,7 +181,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
               {attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "PR" ? (
                 <div key={attendance?._id}>
                   <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                    <input id={`pr-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="PRCheckbox" className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                    <input id={`pr-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="PRCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                     {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                     <div className="w-full py-2 ms-2 text-sm">
                       <label htmlFor={`pr-checkbox-${idx}`} className="font-medium text-gray-900 ">
