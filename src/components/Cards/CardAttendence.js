@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { getAuthData } from "../../utils/utils";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 export default function CardAttendence(props) {
   const auth = getAuthData();
@@ -12,7 +14,35 @@ export default function CardAttendence(props) {
       }
     })
     .then(res => res.data));
+  const downloadExcelFile = () => {
+    const data = attendanceData?.data.map((data) => (
+      data.attendance.map(att => (
+        {
+          Date: new Date(data.date).toDateString(),
+          Day: data.day,
+          Subject: att.subject,
+          "Year & Branch": att.yearAndBranch,
+          "Teaching Type": att.teachingType,
+          "Time From": att.timeFrom,
+          "Time To": att.timeTo,
+          "Total Hours": att.totalHours,
+          Rate: att.rate,
+          Amount: att.amount
+        }
+      ))
+    ));
 
+    // console.log(data.flat())
+    // const data =[{}]
+    const worksheet = XLSX.utils.json_to_sheet(data.flat());
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance");
+
+    // Buffer to store the generated Excel file
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+    saveAs(blob, `${auth?.name?.replace(" ","_")}_Attendance_Data_${new Date().toDateString().replace(" ","_")}.xlsx`);
+  }
   // console.log(attendanceData)
   return (
     <>
@@ -33,6 +63,7 @@ export default function CardAttendence(props) {
             </div>
             <button
               type="button"
+              onClick={downloadExcelFile}
               class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-1000 dark:focus:ring-gray-700 dark:border-gray-700"
             >
               Download
@@ -44,7 +75,7 @@ export default function CardAttendence(props) {
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
+            <tr name="attRows">
               <th scope="col" className="px-6 py-3">
                 Date
               </th>
@@ -78,10 +109,10 @@ export default function CardAttendence(props) {
             </tr>
           </thead>
           <tbody>
-            {!isLoading && attendanceData?.data.length===0 && <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"> No Attendence Data found</tr>}
+            {!isLoading && attendanceData?.data.length === 0 && <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"> No Attendence Data found</tr>}
             {!isLoading && attendanceData?.data.map((data) => (
               data.attendance.map(att => (
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={att?._id}>
+                <tr name="attRows" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={att?._id}>
                   <th
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
