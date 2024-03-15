@@ -5,6 +5,7 @@ export default function FacultySetting() {
   return (
     <>
       <SettingsLayout
+        settingsFor="faculty"
         name="Full Name"
         Email="Email"
         name2="Abbreviation"

@@ -21,7 +21,7 @@ export default function CardAttendence(props) {
           Date: new Date(data.date).toDateString(),
           Day: data.day,
           Subject: att.subject,
-          "Year & Branch": att.yearAndBranch,
+          "Year/Branch": att.yearAndBranch,
           "Teaching Type": att.teachingType,
           "Time From": att.timeFrom,
           "Time To": att.timeTo,
