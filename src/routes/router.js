@@ -30,8 +30,8 @@ import Blog from "../pages/Blog";
 import About from "../pages/About";
 import Pages from "../pages/PagesLayout";
 import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";
-
-const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
+import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
+// const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {

@@ -23,7 +23,7 @@
 
 import React from "react";
 import { Steps } from "rsuite";
-// import "rsuite/dist/rsuite.css";
+import "rsuite/dist/rsuite.css";
 
 const styles = {
   width: "200px",
