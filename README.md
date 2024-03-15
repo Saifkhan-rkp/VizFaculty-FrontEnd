@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## !!! Important
+
+routes for dashboards are -
+
+        http://localhost:3000/  - For Landing page, Footer, Navbar 
+        http://localhost:3000/faculty  - for faculty
+        http://localhost:3000/Dept  - for HoD 
+        http://localhost:3000/AdminDept  - for Admin Department
+
 ## Available Scripts
 
 In the project directory, you can run:
