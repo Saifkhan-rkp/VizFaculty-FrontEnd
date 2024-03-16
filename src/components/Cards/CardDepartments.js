@@ -3,6 +3,7 @@ import AddUserForm from '../../models/AddUserForm';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { getAuthData } from '../../utils/utils';
+import DeleteModel from '../../models/DeleteModel';
 
 // const deptStatic = [
 //     {
@@ -75,10 +76,26 @@ import { getAuthData } from '../../utils/utils';
 export default function CardDepartments() {
     const { data: departments, isLoading } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
         headers: {
-          authorization: `Bearer ${getAuthData()?.accessToken}`,
+            authorization: `Bearer ${getAuthData()?.accessToken}`,
         },
-      }).then(res => res.data));
+    }).then(res => res.data));
     //   console.log(departments);
+    const deleteConfirm = (id) => {
+        axios.delete(`${process.env.REACT_APP_API_KEY}/api/dept/${id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data?.success) {
+                    toast.success(res.data?.message);
+                    refetch();
+                }
+                if (!res.data?.success) {
+                    toast.error(res.data?.message);
+                }
+            }).catch(err => {
+                console.log(err);
+                toast.error(err?.response?.data?.message);
+            });
+    }
     return (
         <>
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-700">
@@ -139,7 +156,7 @@ export default function CardDepartments() {
                                             {data?.deptName}
                                         </td>
                                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                            <img className="w-10 h-10 rounded-full" src={data?.deptHeadId?.profilePhoto!=="default"?data?.deptHeadId?.profilePhoto:require("../../assets/img/user_Icon.png")} alt="avatar" />
+                                            <img className="w-10 h-10 rounded-full" src={data?.deptHeadId?.profilePhoto !== "default" ? data?.deptHeadId?.profilePhoto : require("../../assets/img/user_Icon.png")} alt="avatar" />
                                             <div className="pl-3">
                                                 <div className="text-base font-semibold">{data?.deptHeadId?.name}</div>
                                                 <div className="font-normal text-gray-500">{data?.deptHeadId?.email}</div>
@@ -163,12 +180,7 @@ export default function CardDepartments() {
                                                     style={{ color: "gray" }}
                                                 >
                                                 </button>
-                                                <button
-                                                    type="button"
-                                                    className="fas fa-trash fa-md"
-                                                    style={{ color: "red" }}
-                                                >
-                                                </button>
+                                                <DeleteModel dialog='Are you sure You want to delete this department?' id={data?._id} name={data?.deptHeadId?.name} confirmDelete={deleteConfirm} />
                                             </div>
                                         </td>
                                         {/* <td className="px-6 py-4 text-right">
