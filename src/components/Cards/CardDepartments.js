@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { getAuthData } from '../../utils/utils';
 import DeleteModel from '../../models/DeleteModel';
+import toast from 'react-hot-toast';
 
 // const deptStatic = [
 //     {
@@ -74,7 +75,7 @@ import DeleteModel from '../../models/DeleteModel';
 // ];
 
 export default function CardDepartments() {
-    const { data: departments, isLoading } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
+    const { data: departments, isLoading, refetch } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
         headers: {
             authorization: `Bearer ${getAuthData()?.accessToken}`,
         },
