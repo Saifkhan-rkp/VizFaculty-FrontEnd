@@ -94,6 +94,10 @@ export const router = createBrowserRouter([
         element: <DashboardIndexDept></DashboardIndexDept>,
       },
       {
+        path: "/dept/dashboard",
+        element: <DashboardIndexDept></DashboardIndexDept>,
+      },
+      {
         path: "/dept/Timetables",
         element: <TimeTables />,
       },
@@ -121,6 +125,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardIndexFaculty />,
+      },
+      {
+        path: "/faculty/dashboard",
+        element: <FacultyDashboard></FacultyDashboard>,
       },
       {
         path: "/faculty/settings",
