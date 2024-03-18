@@ -150,7 +150,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
           </div>
         </div>
         <div className="p-4 flex-auto">
-          <h2 className="mb-4 text-slate-700 font-semibold uppercase">
+          <h2 className="mb-4 text-slate-700 text-lg uppercase">
             Theory
           </h2>
           <div className="mb-10 grid grid-cols-2 divide-x">
@@ -174,7 +174,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
             ) : "")}
           </div>
           <div className="relative h-350-px">
-            <h2 className="mb-4 text-slate-700 font-semibold uppercase">
+          <h2 className="mb-4 text-slate-700 text-lg uppercase">
               Practical
             </h2>
             <div className="mb-10 grid grid-cols-2 divide-x">
@@ -198,7 +198,7 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted }) {
               ) : "")}
             </div>
             <div>
-              <h2 className="mb-5 text-slate-700 font-semibold uppercase">
+            <h2 className="mb-4 text-slate-700 text-lg uppercase">
                 Mode
               </h2>
               <div className="grid grid-cols-2 divide-x">
