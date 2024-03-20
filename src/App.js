@@ -16,7 +16,11 @@ function App() {
     <>
       <QueryClientProvider client={client}>
         <Provider store={store}>
-          <Suspense fallback={<div className="grid min-h-50v place-items-center"><div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin" /></div>}>
+          <Suspense fallback={
+            <div className="grid min-h-50v place-items-center">
+                <div className="w-16 h-16 border-4 border-dashed rounded-full border-sky-700 animate-spin  " />
+            </div>
+          }>
             <RouterProvider router={router}></RouterProvider>
             <Toaster />
           </Suspense>

@@ -74,14 +74,19 @@ const deptStatic = [
 ];
 
 export default function CardFaculties() {
+    const auth = getAuthData();
     const { data: faculties, isLoading, refetch } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
         headers: {
-            authorization: `Bearer ${getAuthData()?.accessToken}`,
+            authorization: `Bearer ${auth?.accessToken}`,
         },
     }).then(res => res.data));
 
     const deleteConfirm = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_KEY}/api/faculty/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_KEY}/api/faculty/${id}`,{
+            headers:{
+                authorization:`Bearer ${auth?.accessToken}`
+            }
+        })
             .then(res => {
                 console.log(res.data);
                 if (res.data?.success) {

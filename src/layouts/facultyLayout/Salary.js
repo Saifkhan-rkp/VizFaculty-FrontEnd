@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Panel, Steps } from "rsuite";
 import "rsuite/dist/rsuite.css";
 import "rsuite/Panel/styles/index.less"
@@ -10,6 +10,7 @@ import "rsuite/Panel/styles/index.less"
 // };
 
 export default function Salary() {
+  const [step, setStep] = useState(0);
   return (
     <>
       <div className="flex flex-wrap">
@@ -28,7 +29,7 @@ export default function Salary() {
             {/* Body card start */}
             <div className="p-4 flex-auto">
               <div className="relative h-350-px">
-                <Steps current={0} vertical={false}>
+                <Steps current={step} vertical={false}>
                   <Steps.Item title="Salary Request" description="Form" />
                   <Steps.Item title="Forwarded to" description="Hod" />
                   <Steps.Item title="Forwarded to" description="Admin" />
@@ -56,7 +57,9 @@ export default function Salary() {
                     Previous Salary Applications
                   </h2>
                   <div className="p-4 flex-auto">
-                    <div className="relative h-350-px"></div>
+                    <div className="relative h-350-px">
+
+                    </div>
                   </div>
 
                 </div>
