@@ -75,14 +75,19 @@ import toast from 'react-hot-toast';
 // ];
 
 export default function CardDepartments() {
+    const auth = getAuthData();
     const { data: departments, isLoading, refetch } = useQuery(['departments'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getDepartments`, {
         headers: {
-            authorization: `Bearer ${getAuthData()?.accessToken}`,
+            authorization: `Bearer ${auth?.accessToken}`,
         },
     }).then(res => res.data));
     //   console.log(departments);
     const deleteConfirm = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_KEY}/api/dept/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_KEY}/api/dept/${id}`,{
+            headers:{
+                authorization:`Bearer ${auth?.accessToken}`
+            }
+        })
             .then(res => {
                 console.log(res.data);
                 if (res.data?.success) {
