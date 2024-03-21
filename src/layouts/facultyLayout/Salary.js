@@ -60,7 +60,6 @@ export default function Salary() {
                 <hr />
                 <Panel header={"Salary Form"}>
                   <form>
-
                     <div className="flex flex-wrap -mx-3 mb-6">
                       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -94,18 +93,43 @@ export default function Salary() {
                     </div>
                     <div className="flex flex-wrap -mx-3 mb-6">
                       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                          Phoene Number
+                        <label htmlFor="amount" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                          Total Salary Amount
                         </label>
-
-                        <input name="contactNo" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-first-name" type="text" placeholder="Jane" />
+                        <div className="flex items-center mt-2">
+                          <div className="relative w-full">
+                            <input type="text" name="amount" id="contactNo" aria-describedby="helper-text-explanation" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 border-e-0 rounded-s-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="300000" required />
+                            {/* <input   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="30,0000" /> */}
+                          </div>
+                          <button id="dropdown-verification-option-button" data-dropdown-toggle="dropdown-verification-option" className="flex-shrink-0 z-10 inline-flex items-center space-y-1 py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-e-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">
+                            <p>Refetch</p> {" "} <i className="fa fa-refresh"></i>
+                          </button>
+                        </div>
                         {/* <p className="text-red-500 text-xs italic">Please fill out this field.</p> */}
                       </div>
                       <div className="w-full md:w-1/2 px-3">
-                        <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                          Total Salary Amount
+                        <label htmlFor="contactNo" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                          Contact No
                         </label>
-                        <input name="amount" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Doe" />
+                        <div className="flex items-center mt-2">
+                          <button id="dropdown-phone-button" value={"+91"} data-dropdown-toggle="dropdown-phone" className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center bg-gray-200 text-gray-700 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 " type="button">
+                            +91 <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" /></svg>
+                          </button>
+                          <div className="relative w-full">
+                            <input name="contactNo" aria-describedby="helper-text-explanation" className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="contactNo" type="text" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="md:flex md:items-center">
+                      <div className="md:w-1/3"></div>
+                      <div className="md:w-2/3">
+                        <button
+                          className="mt-5 mb-3 bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex justify-center"
+                          type="button"
+                        >
+                          Submit
+                        </button>
                       </div>
                     </div>
                   </form>
