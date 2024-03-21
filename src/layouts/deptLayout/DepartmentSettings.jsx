@@ -13,7 +13,7 @@ function DepartmentSettings() {
     })
         .then(res => res.data)
     );
-    console.log(getAuthData()?.accessToken, deptData);
+    // console.log(deptData);
     return (
         <>
            {!isLoading  && <SettingsLayout

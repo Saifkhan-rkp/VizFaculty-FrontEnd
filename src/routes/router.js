@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Auth from "../layouts/Auth";
 import HodDashboard from "../layouts/deptLayout/HodDasboard";
@@ -26,7 +26,7 @@ import AdminDeptRoute from "./AdminDeptRoutes";
 import DeptFaculties from "../layouts/deptLayout/FacultyPage";
 import DeptRoute from "./DeptRoutes";
 import TimeTables from "../layouts/deptLayout/TimeTables";
-import Blog from "../pages/Blog";
+// import Blog from "../pages/Blog";
 import About from "../pages/About";
 import Pages from "../pages/PagesLayout";
 import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";

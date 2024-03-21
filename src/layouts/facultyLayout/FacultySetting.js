@@ -6,7 +6,7 @@ export default function FacultySetting() {
     <SettingsLayout
       settingsFor="faculty"
       name="Full Name"
-      Email="Email"
+      email="Email"
       name2="Abbreviation"
       code="Authorization Of"
       codeVal="Can edit Time Table"
