@@ -13,17 +13,10 @@ import "rsuite/Panel/styles/index.less"
 export default function Salary() {
   const [step, setStep] = useState(0);
   const [dateError, setDateError] = useState(false);
-  const [salaryForm, setSalaryForm] = useState({
-    contactNo: "",
-    amount: 0
-  })
   const [rangeDate, setRangeDate] = useState({
     fromDate: new Date(),
     toDate: new Date().setMonth(new Date().getMonth() + 1)
   })
-  const handleFormChange = (e) => {
-
-  }
   const handleChangeDate = (selectedDate, dateType) => {
     if (dateType === "fromDate" && rangeDate.toDate < selectedDate) {
       setDateError(true);
