@@ -6,7 +6,7 @@ export default function AdminDeptSetting() {
     <>
       <SettingsLayout
         name="Department Name"
-        Email="Email"
+        email="Email"
         name2="Hod Name"
         code="Department Code"
       />
