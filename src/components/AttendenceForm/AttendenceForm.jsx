@@ -9,6 +9,9 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted, refet
   const auth = getAuthData();
   const today = new Date();
   const [isLoading, setIsLoading] = useState(false);
+  const [isTransfer, setIsTransfer] = useState(false);
+  const [faculties, setFaculties] = useState([]);
+  const [transferSchedule, setTransferSchedule] = useState([]);
   const [attendanceBody, setAttendanceBody] = useState({
     day: daysArray[today.getDay()],
     date: today.toDateString(),//today.getDate()+"-"+(today.getMonth()+1)+"-"+today.getFullYear(),
@@ -23,7 +26,24 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted, refet
         attendanceArray: attendanceData?.attendance?.attendance || []
       }))
     }
-  }, [isFormLoading])
+  }, [isFormLoading]);
+  useEffect(() => {
+    if (isTransfer) {
+      axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
+        headers: {
+          authorization: `Bearer ${auth?.accessToken}`
+        }
+      }).then(res => {
+        if (res.data?.success) {
+          setFaculties(res.data?.faculties);
+        }
+      }).catch(err => {
+        console.log(err);
+        toast.error("Unable to load faculties data");
+      })
+    }
+  }, [isTransfer, auth?.accessToken]);
+
   const onHandleChange = (e, body) => {
     const { checked } = e.target;
     // console.log(checked, body);
@@ -54,10 +74,14 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted, refet
           toast.success(res.data?.message);
         }
         setIsLoading(false);
+        setIsTransfer(false);
+        setTransferSchedule([]);
         refetch();
         console.log(res.data);
       }).catch(err => {
         setIsLoading(false);
+        setIsTransfer(false);
+        setTransferSchedule([]);
         console.log(err);
         toast.error(err.message);
       });
@@ -66,70 +90,59 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted, refet
       toast.error("No Subject selected..!")
     }
   }
+
+  const onClickTransfer = () => {
+    console.log(attendanceBody.attendanceArray);
+    if (attendanceBody.attendanceArray.find(sch => sch.marked))
+      return toast.error("Marked schedule is not transferable!");
+
+    if (attendanceBody.attendanceArray.length > 0) {
+      setIsTransfer(true);
+      setTransferSchedule(attendanceBody.attendanceArray);
+    } else {
+      toast.error("Please select schedule to transfer!")
+    }
+  }
+
+  const onConfirmTransfer = () => {
+
+  }
   // useEffect(()=>{console.log(attendanceBody);},[attendanceBody])
   return (
     <>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full shadow-lg rounded">
+      <div className="relative flex flex-col min-w-0 break-words bg-slate-100 w-full shadow-lg rounded">
         <div className="rounded-t mb-0 px-4 mt-10 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-slate-400 mb-1 text-xs font-semibold">
                 Attendance
               </h6>
-              <h2 className="uppercase text-slate-700 mb-10 text-xl font-semibold">
+              {/* <h2 className="uppercase text-slate-700 mb-10 text-xl font-semibold">
                 Today's Schedule
-              </h2>
+              </h2> */}
             </div>
           </div>
         </div>
-        <div className="p-4 flex-auto">
-          <h2 className="mb-4 text-slate-700 text-lg uppercase">
-            Theory
-          </h2>
-          <div className="mb-10 grid grid-cols-2 divide-x">
-            {!isFormLoading ? attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
-              <div key={attendance?._id}>
-                <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                  <input id={`th-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="THCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
-                  {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
-                  <div className="w-full py-2 ms-2 text-sm">
-                    <label htmlFor={`th-checkbox-${idx}`} className="font-medium text-gray-900 ">
-                      {attendance?.subject}
-                      {attendance?.marked
-                        ? <i className="fa fa-check-circle" style={{ color: "green" }}></i>
-                        : <i className="fa fa-times-circle" style={{ color: "red" }}></i>
-                      }
-                      <p id="helper-checkbox-text" className="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            ) : "")
-              :
-              <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                <input type="checkbox" value="" name="skeleton" disabled className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
-                {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
-                <div className="w-full py-2 ms-2 text-sm">
-                  <div>
-                    <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                    <div class="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-                  </div>
-                </div>
-              </div>
-            }
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-medium text-gray-800">Today's Schedule</h2>
+            {/* <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">VIEW ALL SCHEDULE</button> */}
           </div>
-          <div className="relative h-350-px">
-            <h2 className="mb-4 text-slate-700 text-lg uppercase">
-              Practical
-            </h2>
-            <div className="mb-10 grid grid-cols-2 divide-x">
-              {!isFormLoading ? attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "PR" ? (
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="px-4 py-5 border-b border-gray-200">
+              <h3 className="text-base font-medium text-gray-900">Theory</h3>
+            </div>
+            {!isFormLoading && !attendanceData?.schedule?.find(attendance => attendance.teachingType === "TH")
+              && <div className="flex items-center mt-5 content-center justify-center text-rose-700"><p>*No Theory Today</p></div>
+            }
+            <div className="mt-2 mx-2 gap-2 grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x">
+              {!isFormLoading ? attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "TH" ? (
                 <div key={attendance?._id}>
                   <div className="flex items-center ps-4 border border-gray-200 rounded ">
-                    <input id={`pr-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="PRCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                    <input id={`th-checkbox-${idx}`} type="checkbox" onChange={(e) => { onHandleChange(e, attendance) }} value="" name="THCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
                     {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                     <div className="w-full py-2 ms-2 text-sm">
-                      <label htmlFor={`pr-checkbox-${idx}`} className="font-medium text-gray-900 ">
+                      <label htmlFor={`th-checkbox-${idx}`} className="font-medium text-gray-900 ">
                         {attendance?.subject}
                         {attendance?.marked
                           ? <i className="fa fa-check-circle" style={{ color: "green" }}></i>
@@ -147,64 +160,138 @@ export default function AttendenceForm({ attendanceData = [], isSubmitted, refet
                   {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
                   <div className="w-full py-2 ms-2 text-sm">
                     <div>
-                      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                      <div class="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                      <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
+                      <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
                     </div>
                   </div>
                 </div>
               }
             </div>
-            <div>
-              <h2 className="mb-4 text-slate-700 text-lg uppercase">
-                Mode
-              </h2>
-              <div className="grid grid-cols-2 divide-x">
-                <div>
-                  <input
-                    id="default-radio-mode-1"
-                    type="radio"
-                    value=""
-                    name="mode-radio"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  />
-                  <label
-                    htmlFor="default-radio-mode-1"
-                    className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
-                  >
-                    Online
-                  </label>
+            <div className="px-4 py-5 border-b border-gray-200">
+              <h3 className="text-base font-medium text-gray-900">Practical</h3>
+            </div>
+            {!isFormLoading && !attendanceData?.schedule?.find(attendance => attendance.teachingType === "PR")
+              && <div className="flex items-center mt-5 content-center justify-center text-rose-700"><p>*No Practical Today</p></div>
+            }
+            <div className="mt-2 mx-2 gap-2 grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x">
+              {!isFormLoading ? attendanceData?.schedule.map((attendance, idx) => attendance.teachingType === "PR" ? (
+                <div key={attendance?._id}>
+                  <div className="flex items-center ps-4 border border-gray-200 rounded ">
+                    <input id={`pr-checkbox-${idx}`} type="checkbox" disabled={attendance?.transfered} onChange={(e) => { onHandleChange(e, attendance) }} value="" name="PRCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                    {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
+                    <div className="w-full py-2 ms-2 text-sm">
+                      <label htmlFor={`pr-checkbox-${idx}`} className="font-medium text-gray-900 ">
+                        {attendance?.subject}
+                        {!attendance?.transfered && attendance?.marked
+                          ? <i className="fa fa-check-circle" style={{ color: "green" }}></i>
+                          : <i className="fa fa-times-circle" style={{ color: "red" }}></i>
+                        }
+                        {attendance?.transfered && <i className="fa fa-reply fa-flip-horizontal" style={{ color: "orange" }}></i>}
+                        <p id="helper-checkbox-text" className="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
+                      </label>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    id="default-radio-mode-2"
-                    type="radio"
-                    value=""
-                    name="mode-radio"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    defaultChecked
-                  />
-                  <label
-                    htmlFor="default-radio-mode-2"
-                    className="ml-2 text-sm font-medium text-black-900 dark:text-black-300"
-                  >
-                    Offline
-                  </label>
+              ) : "")
+                :
+                <div className="flex items-center ps-4 border border-gray-200 rounded ">
+                  <input type="checkbox" value="" name="skeleton" disabled className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " />
+                  {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
+                  <div className="w-full py-2 ms-2 text-sm">
+                    <div>
+                      <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
+                      <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+            <div className="px-4 py-5 border-b border-gray-200">
+              <h3 className="text-base font-medium text-gray-900">Transfered Schedule</h3>
+            </div>
+            <div className="mt-2 mx-2 mb-5 gap-2 grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x">
+              comming soon...
+            </div>
+            <div className="px-4 py-5">
+              <h3 className="text-base font-medium text-gray-900">Mode</h3>
+              <div className="flex items-center mt-2">
+                <div className="flex items-center mr-4">
+                  <input type="radio" name="mode" id="online" value="online" className="w-5 h-5 accent-blue-500 focus:ring-0" />
+                  <label for="online" className="ml-2 text-sm text-gray-700">Online</label>
+                </div>
+                <div className="flex items-center">
+                  <input type="radio" name="mode" id="offline" value="offline" className="w-5 h-5 accent-blue-500 focus:ring-0" defaultChecked />
+                  <label for="offline" className="ml-2 text-sm text-gray-700">Offline</label>
                 </div>
               </div>
+              <button
+                type="button"
+                onClick={onClickTransfer}
+                className="my-5 mr-5 content-center bottom-20 justify-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                disabled={isLoading}
+              >
+                Transfer
+              </button>
+              <button
+                type="button"
+                onClick={onSubmitAttendance}
+                className="my-5 content-center mx-50 bottom-20 justify-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                disabled={isLoading}
+              >
+                {!isLoading ? "Submit" : "Submitting..."}
+              </button>
             </div>
           </div>
-
-          <div className="flex content-center items-center justify-center bottom-3">
-            <button
-              type="button"
-              onClick={onSubmitAttendance}
-              className="mb-5 content-center mx-50 bottom-20 justify-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              disabled={isLoading}
-            >
-              {!isLoading ? "Submit" : "Submitting..."}
-            </button>
-          </div>
         </div>
+        {isTransfer &&
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-medium text-gray-800">Transfer Schedule</h2>
+              {/* <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">VIEW ALL SCHEDULE</button> */}
+            </div>
+            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="px-4 py-5 border-b border-gray-200">
+                <h3 className="text-base font-medium text-gray-900">Selected Schedules to transfer</h3>
+              </div>
+              <div className="mt-2 mx-2 mb-5 gap-2 grid xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x">
+
+                {transferSchedule.map((attendance, idx) => (
+                  <div key={attendance?._id}>
+                    <div className="flex items-center ps-4 pe-4 border border-gray-200 rounded ">
+                      {/* <input id={`trnf-checkbox-${idx}`} type="checkbox" value="" name="TRNFCheckbox" defaultChecked={attendance.marked} className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 " /> */}
+                      {/* <label htmlFor="bordered-checkbox-1" className="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label> */}
+                      <div className="w-full py-2 ms-2 text-sm">
+                        <div htmlFor={`trnf-checkbox-${idx}`} className="font-medium text-gray-900 ">
+                          {attendance?.subject}
+                          <p id="helper-checkbox-text" className="text-xs font-normal text-gray-500"> {attendance?.timeFrom + " - " + attendance?.timeTo}</p>
+                          {/* {attendance?.transfered && <i className="fa fa-reply fa-flip-horizontal" style={{ color: "orange" }}></i>} */}
+                        </div>
+                      </div>
+                      <select id="countries" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option >Transfer To</option>
+                        {faculties.map(faculty => (
+                          <option key={faculty?._id} value={faculty?._id}>{faculty.code + ": " + faculty?.faculty?.name}</option>
+                        ))}
+                        {/* <option value="CA">Canada</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option> */}
+                      </select>
+                    </div>
+                  </div>
+                ))}
+
+              </div>
+              <button
+                type="button"
+                onClick={onConfirmTransfer}
+                className="my-5 mx-5 content-center bottom-20 justify-center inline-flex items-center px-5 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              // disabled={isLoading}
+              >
+                Confirm Transfer
+              </button>
+            </div>
+          </div>
+        }
       </div>
     </>
   );
