@@ -26,7 +26,7 @@ export default function DashboardIndexFaculty() {
   }, [date, refetch])
   return (
     <>
-      {!isLoading && !todaysAttendanceLoading &&
+      {/* {!isLoading && !todaysAttendanceLoading && */}
         <div className="flex flex-wrap">
           <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
             <AttendenceForm isSubmitted={true} attendanceData={todaysAttendance}
@@ -37,7 +37,7 @@ export default function DashboardIndexFaculty() {
           <div className="w-full xl:w-4/12 px-4">
             <CardCalendar scheduleData={mySchedule} isLoading={isLoading} setDate={setDate} />
           </div>
-        </div>}
+        </div>
     </>
   );
 }
