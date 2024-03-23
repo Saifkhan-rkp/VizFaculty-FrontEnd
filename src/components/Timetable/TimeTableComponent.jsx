@@ -7,7 +7,7 @@ import InputModel from '../../models/InputModel';
 import _ from "lodash";
 import { getAuthData } from '../../utils/utils';
 
-export default function TimeTableComponent({ faculties, ttData, refetch = () => { } }) {
+export default function TimeTableComponent({ faculties, ttData, onlyView = false, refetch = () => { } }) {
     // console.log(ttData);
     const str = "\t";
     const schedules = ttData?.schedule;
@@ -32,7 +32,7 @@ export default function TimeTableComponent({ faculties, ttData, refetch = () => 
             }, [])
         })
     });
-    console.log(formattedSchedule);
+    // console.log(formattedSchedule);
     const onClickAddTime = (data) => {
         setTimeArray(vals => [...vals, data])
     }
@@ -103,15 +103,17 @@ export default function TimeTableComponent({ faculties, ttData, refetch = () => 
                                         </h3>
                                     </div>
                                 </div>
-                                <div className="w-full flex flex-row lg:flex-row md:flex-row items-start lg:items-center justify-end">
-                                    <div className="text-gray-600 p-2 border-transparent border bg-gray-100 hover:bg-gray-200 cursor-pointer rounded focus:outline-none focus:border-gray-800 focus:shadow-outline-gray"> {/**dark:bg-gray-700 dark:hover:bg-gray-600 */}
-                                        {/* <DeleteModel name={ttData?.name} dialog='Are you sure you want to delete this timetable..?' confirmDelete={confirmDelete} id={ttData?._id} /> */}
-                                        <i className='fas fa-pen-to-square fa-md'></i>
+                                {!onlyView &&
+                                    <div className="w-full flex flex-row lg:flex-row md:flex-row items-start lg:items-center justify-end">
+                                        <div className="text-gray-600 p-2 border-transparent border bg-gray-100 hover:bg-gray-200 cursor-pointer rounded focus:outline-none focus:border-gray-800 focus:shadow-outline-gray"> {/**dark:bg-gray-700 dark:hover:bg-gray-600 */}
+                                            {/* <DeleteModel name={ttData?.name} dialog='Are you sure you want to delete this timetable..?' confirmDelete={confirmDelete} id={ttData?._id} /> */}
+                                            <i className='fas fa-pen-to-square fa-md'></i>
+                                        </div>
+                                        <button className="text-gray-600 mx-2 p-2 border-transparent border bg-gray-100 hover:bg-gray-200 cursor-pointer rounded focus:outline-none focus:border-gray-800 focus:shadow-outline-gray" href="javascript: void(0)">
+                                            <DeleteModel name={ttData?.name} dialog='Are you sure you want to delete this timetable..?' confirmDelete={confirmDelete} id={ttData?._id} />
+                                        </button>
                                     </div>
-                                    <button className="text-gray-600 mx-2 p-2 border-transparent border bg-gray-100 hover:bg-gray-200 cursor-pointer rounded focus:outline-none focus:border-gray-800 focus:shadow-outline-gray" href="javascript: void(0)">
-                                        <DeleteModel name={ttData?.name} dialog='Are you sure you want to delete this timetable..?' confirmDelete={confirmDelete} id={ttData?._id} />
-                                    </button>
-                                </div>
+                                }
                             </div>
 
 
@@ -129,8 +131,12 @@ export default function TimeTableComponent({ faculties, ttData, refetch = () => 
                                         </div>
                                     </th>
                                 ))}
-                                <th scope="col" className="px-6 py-3">Edit</th>
-                                <th scope="col" className="px-6 py-3"><InputModel saveFunction={onClickAddTime} /></th>
+                                {!onlyView &&
+                                    <>
+                                        <th scope="col" className="px-6 py-3">Edit</th>
+                                        <th scope="col" className="px-6 py-3"><InputModel saveFunction={onClickAddTime} /></th>
+                                    </>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -143,11 +149,13 @@ export default function TimeTableComponent({ faculties, ttData, refetch = () => 
                                         </td>
                                     ))}
                                     {/* ... other columns ... */}
-                                    <td className="px-4 py-3">
-                                        <span className="actions">
-                                            <EditTimeTableModel times={thTimeArray} faculties={faculties} onClickSave={(data) => onClickSave(data, day) } title={"Edit Timetable for " + day?.toUpperCase()} currentData={restRows[dayIdx]} />
-                                        </span>
-                                    </td>
+                                    {!onlyView &&
+                                        <td className="px-4 py-3">
+                                            <span className="actions">
+                                                <EditTimeTableModel times={thTimeArray} faculties={faculties} onClickSave={(data) => onClickSave(data, day)} title={"Edit Timetable for " + day?.toUpperCase()} currentData={restRows[dayIdx]} />
+                                            </span>
+                                        </td>
+                                    }
                                 </tr>
                             ))}
                         </tbody>
