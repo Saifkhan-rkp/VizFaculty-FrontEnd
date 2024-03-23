@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import store from "./authStore/store";
 import { Suspense } from "react";
+import Loader from "./components/loader/Loader";
 
 
 
@@ -17,9 +18,7 @@ function App() {
       <QueryClientProvider client={client}>
         <Provider store={store}>
           <Suspense fallback={
-            <div className="grid min-h-50v place-items-center">
-                <div className="w-16 h-16 border-4 border-dashed rounded-full border-sky-700 animate-spin  " />
-            </div>
+            <Loader/>
           }>
             <RouterProvider router={router}></RouterProvider>
             <Toaster />
