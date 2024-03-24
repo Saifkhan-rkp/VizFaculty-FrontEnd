@@ -35,7 +35,10 @@ export default function FacultyDashboard() {
     headers: {
       authorization: `Bearer ${auth?.accessToken}`
     }
-  }).then(res => res.data)
+  }).then(res => res.data),{
+    retryDelay:30*60,
+    refetchOnWindowFocus:false
+  }
   );
   const totalLoad = () => {
     if (headerStats?.totalSubject && headerStats?.totalSubject?.length > 0) {
@@ -43,7 +46,7 @@ export default function FacultyDashboard() {
     }
     else return 0;
   }
-  console.log(headerStats)
+  // console.log(headerStats)
   return (
     <>
       <Sidebar heading="Quick Accessibility" linksAndHeadings={links} />
