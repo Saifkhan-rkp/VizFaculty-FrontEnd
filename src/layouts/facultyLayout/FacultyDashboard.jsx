@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import AdminNavBar from "../../components/Navbars/AdminNavbar";
 import HeaderStats from "../../components/Headers/HeaderStats";
@@ -8,6 +8,8 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { getAuthData } from "../../utils/utils";
+import { setSubjects } from "../../apis/facultySlice";
+import { useDispatch } from "react-redux";
 
 const links = [
   { heading: "My Dashboard", link: "/faculty", icon: "fas fa-tv" },
@@ -31,11 +33,15 @@ const links = [
 
 export default function FacultyDashboard() {
   const auth = getAuthData();
+  const dispatch = useDispatch();
   const { data: headerStats, isLoading, refetch } = useQuery(["headerStats"], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/faculty/v1/headerstats?month=${new Date().getMonth() + 1}`, {
     headers: {
       authorization: `Bearer ${auth?.accessToken}`
     }
-  }).then(res => res.data)
+  }).then(res => res.data),{
+    retryDelay:30*60,
+    refetchOnWindowFocus:false
+  }
   );
   const totalLoad = () => {
     if (headerStats?.totalSubject && headerStats?.totalSubject?.length > 0) {
@@ -43,7 +49,12 @@ export default function FacultyDashboard() {
     }
     else return 0;
   }
-  console.log(headerStats)
+  useEffect(()=>{
+    if (!isLoading) {
+      dispatch(setSubjects(headerStats?.totalSubject));
+    }
+  },[isLoading, dispatch]);
+  
   return (
     <>
       <Sidebar heading="Quick Accessibility" linksAndHeadings={links} />
