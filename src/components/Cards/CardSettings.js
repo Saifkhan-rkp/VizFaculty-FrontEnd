@@ -94,9 +94,8 @@ const RatesInput = ({ initRates }) => {
     </>)
 }
 
-
-export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, ...props }) {
-  const auth = getAuthData()
+export const ChangePassword = () => {
+  const auth = getAuthData();
   const [changePasswordLoading, setChangePasswordLoading] = useState(false);
   const {
     register,
@@ -108,6 +107,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
   const { newPassword, } = getValues();
   const onClickChangePassword = (data) => {
     // console.log(data);
+    setChangePasswordLoading(true)
     axios.post(`${process.env.REACT_APP_API_KEY}/api/auth/change-password`, data, {
       headers: {
         authorization: `Bearer ${auth?.accessToken}`
@@ -117,8 +117,128 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
         toast.success(res.data?.message);
         reset();
       }
-    }).catch(err => { console.log(err); toast.error(err?.response.data?.message || err?.message || "Error: unable to update rates") });
+      setChangePasswordLoading(false)
+    }).catch(err => { setChangePasswordLoading(false); toast.error(err?.response.data?.message || err?.message || "Error: unable to update rates") });
   }
+
+  return (
+    <>
+      <hr className="mt-6 border-b-1 border-slate-300" />
+
+      <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
+        Change Password
+      </h6>
+      <div className="flex flex-wrap justify-center">
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="oldpassword"
+            >
+              Old Password
+            </label>
+            <input
+              {...register("oldPassword", {
+                required: true,
+              })}
+              id="oldPassword"
+              type="password"
+              name="oldPassword"
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="Old Password"
+            />
+            {errors?.oldPassword && (
+              <p className="text-red-500">
+                *Old password is required
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="newPassword"
+            >
+              New Password
+            </label>
+            <input
+              type="password"
+              {...register("newPassword", {
+                // validate: (val) => newPassword === val || "",
+                required: true,
+                pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+              })}
+              id="newPassword"
+              name="newPassword"
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="New Password"
+            // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+            />
+            {errors?.newPassword && (
+              <p className="text-red-500">
+                {errors?.newPassword?.message}
+              </p>
+            )}
+            {errors?.newPassword?.type === "pattern" && (
+              <p className="text-red-500">
+                *Minimum 8 characters required includnig symbol and alphanumeric words.
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="w-full lg:w-4/12 px-4">
+          <div className="relative w-full mb-3">
+            <label
+              className="block uppercase text-slate-600 text-xs font-bold mb-2"
+              htmlFor="grid-password"
+            >
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              {...register("confirmPassword", {
+                required: true,
+                validate: (val) =>
+                  newPassword === val || "Passwords should match!",
+              })}
+              id="confirmPassword"
+              name="confirmPassword"
+              className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="Retype Password"
+            // onChange={(self)=>{ document.getElementById("password").value === self.value}}
+            />
+            {errors?.confirmPassword && (
+              <p className="text-red-500">
+                {errors?.confirmPassword?.message}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <button
+          className="mt-5 mb-3 bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex justify-center"
+          type="button"
+          onClick={handleSubmit(onClickChangePassword)}
+          disabled={changePasswordLoading}
+        >
+          {changePasswordLoading ? "Submitting..." : "Change Password"}
+        </button>
+      </div>
+    </>
+  )
+}
+
+
+export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, ...props }) {
+  const auth = getAuthData();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors },
+    reset
+  } = useForm({ mode: "onChange" });
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-100 border-0">
@@ -216,124 +336,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
               </div>
             </div>
             {settingsFor === "dept" && <RatesInput initRates={rates} />}
-            <hr className="mt-6 border-b-1 border-slate-300" />
-
-            <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
-              Change Password
-            </h6>
-            <div className="flex flex-wrap justify-center">
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                    htmlFor="oldpassword"
-                  >
-                    Old Password
-                  </label>
-                  <input
-                    {...register("oldPassword", {
-                      required: true,
-                    })}
-                    id="oldPassword"
-                    type="password"
-                    name="oldPassword"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Old Password"
-                  />
-                  {errors?.oldPassword && (
-                    <p className="text-red-500">
-                      *Old password is required
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                    htmlFor="newPassword"
-                  >
-                    New Password
-                  </label>
-                  <input
-                    type="password"
-                    {...register("newPassword", {
-                      // validate: (val) => newPassword === val || "",
-                      required: true,
-                      pattern: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-                    })}
-                    id="newPassword"
-                    name="newPassword"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="New Password"
-                  // onChange={(self)=>{ document.getElementById("password").value === self.value}}
-                  />
-                  {errors?.newPassword && (
-                    <p className="text-red-500">
-                      {errors?.newPassword?.message}
-                    </p>
-                  )}
-                  {errors?.newPassword?.type === "pattern" && (
-                    <p className="text-red-500">
-                      *Minimum 8 characters required includnig symbol and alphanumeric words.
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="w-full lg:w-4/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    {...register("confirmPassword", {
-                      required: true,
-                      validate: (val) =>
-                        newPassword === val || "Passwords should match!",
-                    })}
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Retype Password"
-                  // onChange={(self)=>{ document.getElementById("password").value === self.value}}
-                  />
-                  {errors?.confirmPassword && (
-                    <p className="text-red-500">
-                      {errors?.confirmPassword?.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <button
-                className="mt-5 mb-3 bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 flex justify-center"
-                type="button"
-                onClick={handleSubmit(onClickChangePassword)}
-                disabled={changePasswordLoading}
-              >
-                {changePasswordLoading?"Submitting...":"Change Password"}
-              </button>
-              {/* <div className="w-full lg:w-12/12 px-4">
-                <div className="relative w-full mb-3">
-                  <label
-                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
-                    htmlFor="grid-password"
-                  >
-                    Address
-                  </label>
-                  <input
-                    type="text"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                  />
-                </div>
-              </div> */}
-            </div>
-
+            <ChangePassword />
             <hr className="mt-6 border-b-1 border-slate-300" />
 
             <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
