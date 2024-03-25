@@ -1,90 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import SingleFacultySalaryModel from "../../models/SingleFacultySalaryModel";
 
 // components
 
 // import TableDropdown from "../Dropdowns/TableDropdown";
-let appData = [
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Mia M",
-            profile: require('../../assets/img/team-3-800x800.jpg'),
-            email: "miami@whatever.com"
-        },
-        department: "CIVIL",
-        amount: 20500,
-        status: "paid"
-    },
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Jhon Doe",
-            profile: "default",
-            email: "miami@whatever.com"
-        },
-        department: "CSE",
-        amount: 20500,
-        status: "pending"
-    },
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Jane Doe",
-            profile: require('../../assets/img/team-4-470x470.png'),
-            email: "miami@whatever.com"
-        },
-        department: "MECH",
-        amount: 20500,
-        status: "pending"
-    },
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Billie eilish",
-            profile: "default",
-            email: "miami@whatever.com"
-        },
-        department: "ELECTRICAL",
-        amount: 20500,
-        status: "approved"
-    },
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Sia",
-            profile: "default",
-            email: "miami@whatever.com"
-        },
-        department: "CSE",
-        amount: 20500,
-        status: "approved"
-    },
-    {
-        applicationDate: new Date().toDateString(),
-        faculty: {
-            name: "Mia M",
-            profile: "default",
-            email: "miami@whatever.com"
-        },
-        department: "CIVIL",
-        amount: 20500,
-        status: "rejected"
-    }
-]
 
-
-export default function CardSalaryApplications({ color, isDeptView = false, requests, isLoading }) {
+export default function CardSalaryApplications({ color, isDeptView = false, requests=[], isLoading }) {
     // const [isDataAvail, setIsDataAvail] = useState(true);
     // const [selectedFaculty,setFaculty] = useState({});
-    const [openModel, setOpenModel] = useState(false);
-    const [data, setData] = useState(appData);
+    // const [openModel, setOpenModel] = useState(false);
+    // const [data, setData] = useState([]);
     // const [refId,setID] = useState("");
     // console.log(requests, isLoading);
     const handleChange = (element) => {
-        if (element.target.value === "all") return setData(appData);
-        setData(appData.filter(el => { if (el.status === element.target.value) return el; return }))
+        // if (element.target.value === "all") return setData(appData);
+        // setData(appData.filter(el => { if (el.status === element.target.value) return el; return }))
         // console.log(data);
     }
     // setIsDataAvail(true);
