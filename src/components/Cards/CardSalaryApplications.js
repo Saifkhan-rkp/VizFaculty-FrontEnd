@@ -75,16 +75,16 @@ let appData = [
 ]
 
 
-export default function CardSalaryApplications({ color }) {
-    const [isDataAvail, setIsDataAvail] = useState(true);
+export default function CardSalaryApplications({ color, isDeptView = false, requests, isLoading }) {
+    // const [isDataAvail, setIsDataAvail] = useState(true);
     // const [selectedFaculty,setFaculty] = useState({});
-    const [openModel,setOpenModel] = useState(false);
+    const [openModel, setOpenModel] = useState(false);
     const [data, setData] = useState(appData);
     // const [refId,setID] = useState("");
-    console.log(openModel);
+    // console.log(requests, isLoading);
     const handleChange = (element) => {
-        if (element.target.value==="all") return setData(appData);
-        setData(appData.filter(el => { if (el.status === element.target.value) return el; return}))
+        if (element.target.value === "all") return setData(appData);
+        setData(appData.filter(el => { if (el.status === element.target.value) return el; return }))
         // console.log(data);
     }
     // setIsDataAvail(true);
@@ -204,7 +204,7 @@ export default function CardSalaryApplications({ color }) {
                         </div>
                     </div>
                     <div className="w-full lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-end">
-                        <div className="flex items-center lg:border-l lg:border-r border-gray-300 dark:border-gray-200 py-3 lg:py-0 lg:px-6">
+                        {/* <div className="flex items-center lg:border-l lg:border-r border-gray-300 dark:border-gray-200 py-3 lg:py-0 lg:px-6">
                             <p className="text-base text-gray-600 dark:text-gray-400" id="page-view">
                                 Viewing 1 - 20 of 60
                             </p>
@@ -220,7 +220,7 @@ export default function CardSalaryApplications({ color }) {
                                     <polyline points="9 6 15 12 9 18" />
                                 </svg>
                             </a>
-                        </div>
+                        </div> */}
                         <div className="flex items-center lg:border-r border-gray-300 dark:border-gray-200 pb-3 lg:pb-0 lg:px-6">
                             <div className="relative w-32 z-10">
                                 <div className="pointer-events-none text-gray-600 dark:text-gray-400 absolute inset-0 m-auto mr-2 xl:mr-4 z-0 w-5 h-5">
@@ -243,7 +243,7 @@ export default function CardSalaryApplications({ color }) {
                         </div>
                     </div>
                 </div>
-                {!isDataAvail &&
+                {!requests?.length > 0 &&
                     <div className="rounded-t mb-0 px-4 py-3 border-0">
                         <div className="flex flex-wrap items-center h-350-px">
                             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-center">
@@ -307,49 +307,55 @@ export default function CardSalaryApplications({ color }) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {
-                                            data.map(appl => (
-                                                <tr>
+                                        {!isLoading &&
+                                            requests.map(appl => (
+                                                <tr key={appl?._id}>
                                                     <td className="px-5 py-3 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4">
-                                                        <input type="checkbox" className="cursor-pointer relative w-5 h-5 border rounded border-gray-400 dark:border-gray-200 bg-white dark:bg-gray-800 outline-none"/>
+                                                        <input type="checkbox" className="cursor-pointer relative w-5 h-5 border rounded border-gray-400 dark:border-gray-200 bg-white dark:bg-gray-800 outline-none" />
                                                     </td>
                                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                        <p className="text-gray-900 whitespace-no-wrap">{appl.applicationDate}</p>
+                                                        <p className="text-gray-900 whitespace-no-wrap">{new Date(appl?.applyDate).toDateString()}</p>
                                                     </td>
                                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                                         <div className="flex">
                                                             <div className="flex-shrink-0 w-10 h-10">
                                                                 <img
                                                                     className="w-full h-full rounded-full"
-                                                                    src={appl.faculty.profile === "default" ? require("../../assets/img/user_Icon.png") : appl.faculty.profile}
+                                                                    src={appl?.userId?.profilePhoto === "default" ? require("../../assets/img/user_avtar.png") : appl?.userId?.profile}
                                                                     alt="Profile photo"
                                                                 />
                                                             </div>
                                                             <div className="ml-3">
                                                                 <p className="text-gray-900 whitespace-no-wrap">
-                                                                    {appl.faculty.name}
+                                                                    {appl?.userId?.name}
                                                                 </p>
-                                                                <p className="text-gray-600 whitespace-no-wrap">{appl.faculty.email}</p>
+                                                                <p className="text-gray-600 whitespace-no-wrap">{"+91 " + appl?.contactNo}</p>
                                                             </div>
                                                         </div>
 
                                                     </td>
                                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                        <p className="text-gray-900 whitespace-no-wrap">{appl.department}</p>
+                                                        <p className="text-gray-900 whitespace-no-wrap">{appl?.department}</p>
                                                         {/* <p className="text-gray-600 whitespace-no-wrap">USD</p> */}
                                                     </td>
                                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                        <p className="text-gray-900 whitespace-no-wrap"><i className="fas fa-indian-rupee"></i>{appl.amount}</p>
+                                                        <p className="text-gray-900 whitespace-no-wrap"><i className="fas fa-indian-rupee"></i>{appl?.amount}</p>
                                                         {/* <p className="text-gray-600 whitespace-no-wrap">USD</p> */}
                                                     </td>
                                                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                                        {status[appl.status]}
+                                                        {isDeptView ? status[appl?.forwardToHead?.status] : status[appl?.forwardToAdminDept?.status]}
                                                     </td>
                                                     <td
                                                         className="px-5 py-5 border-b border-gray-200 bg-white text-md"
                                                     >
                                                         <div className="space-x-3 items-center">
-                                                        <SingleFacultySalaryModel faculty={appl.faculty} id={"sedgvrfesgthfvzdrsthz"} hidden={true}/>
+                                                            <SingleFacultySalaryModel
+                                                                totalAmount={appl?.amount}
+                                                                userDetail={{ ...appl?.userId, contactNo: appl?.contactNo }}
+                                                                range={{ dateFrom: appl?.dateFrom, dateTo: appl?.dateTo }}
+                                                                id={appl?.facultyId}
+                                                                hidden={true}
+                                                            />
                                                             {/* <button
                                                                 type="button"
                                                                 className="fas fa-eye fa-lg"
