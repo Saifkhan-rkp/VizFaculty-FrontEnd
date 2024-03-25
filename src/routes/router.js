@@ -31,6 +31,7 @@ import About from "../pages/About";
 import Pages from "../pages/PagesLayout";
 import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";
 import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
+import DeptSalaryApplicationLayout from "../layouts/deptLayout/DeptSalaryApplicationLayout";
 // const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
@@ -111,6 +112,12 @@ export const router = createBrowserRouter([
         path: "/dept/settings",
         element: (
           <DepartmentSettings />
+        ),
+      },
+      {
+        path: "/dept/forwarded-applications",
+        element: (
+          <DeptSalaryApplicationLayout/>
         ),
       },
     ],

@@ -13,7 +13,7 @@ const links = [
   { heading: "Settings", link: "/dept/settings", icon: "fas fa-tools" },
   { heading: "Timetables", link: "/dept/Timetables", icon: "fas fa-table" },
   { heading: "Faculties", link: "/dept/Faculties", icon: "fas fa-map-marked" },
-  // {heading:"Settings", link:"/adminDept/settings", icon:""},
+  { heading: "Salary Applications", link: "/dept/forwarded-applications", icon: "fas fa-table" },
 ];
 
 export default function HodDashboard() {
