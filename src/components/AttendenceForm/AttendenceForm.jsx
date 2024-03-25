@@ -52,7 +52,9 @@ export default function AttendenceForm({ attendanceData = { schedule: [], transf
   const onHandleChange = (e, body) => {
     const { checked } = e.target;
     // console.log(checked, body);
-
+    if (body?.transfered) {
+        return toast.error("Not Allowed: schedule already transfered!");
+    }
     if (checked && body?.isTransfered) {
       if (!selectedSubjects[body?._id] || selectedSubjects[body?._id] === "") {
         setErrors(state => ({ ...state, attendanceError: { ...state.attendanceError, [body?._id]: "*Required to select subject!" } }));
