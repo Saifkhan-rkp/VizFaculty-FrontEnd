@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
   const navigate = useNavigate();
-  const location = useLocation
+  // const location = useLocation();
   const { isLoading, user, loading } = useAuth();
 
   useEffect(() => {
@@ -29,10 +29,10 @@ export default function Login() {
     handleSubmit,
   } = useForm({ mode: 'onChange' });
   const [isItLoading, setLoading] = useState(false);
-  console.log(location.state?.from?.pathname);
+  // console.log(location.state?.from?.pathname);
   const onSubmit = (data) => {
-    let from = '/';
-    console.log(data);
+    // let from = '/';
+    // console.log(data);
     // mutate(data);
     setLoading(true);
     axios
@@ -40,17 +40,10 @@ export default function Login() {
       .then((res) => {
         setLoading(false);
         if (res.data.success) {
-          toast.success(res.data);
+          toast.success(res.data?.message);
           const authData = res?.data?.user;
           localStorage.setItem("auth", JSON.stringify(authData))
-          console.log(res.data);
-          if (res.data?.user?.role === "deptHead")
-            from = "/dept";
-          else if (res.data?.user?.role === "faculty")
-            from = "/faculty";
-          else if (res.data?.user?.role === "adminDept")
-            from = "/adminDept";
-          navigate(from);
+          window.location.reload();
         }
         // if (!res.data.success) {
         //   toast.error(res.data.message);
@@ -194,7 +187,7 @@ export default function Login() {
               </div>
             </div>
             {isItLoading &&
-              <div role="status" class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+              <div role="status" className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
                 <div className="w-12 h-12 rounded-full animate-spin border-y-2 border-solid border-yellow-500 border-t-transparent shadow-md"></div>
               </div>
             }

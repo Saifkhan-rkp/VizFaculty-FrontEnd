@@ -4,12 +4,10 @@ import PropTypes from "prop-types";
 export default function CardStats({
   statSubtitle,
   statTitle,
-  statArrow,
-  statPercent,
-  statPercentColor,
   statDescripiron,
   statIconName,
   statIconColor,
+  userType
 }) {
   return (
     <>
@@ -36,7 +34,7 @@ export default function CardStats({
             </div>
           </div>
           <p className="text-sm text-slate-400 mt-4">
-            <span className={statPercentColor + " mr-2"}>
+            {/* <span className={statPercentColor + " mr-2"}>
               <i
                 className={
                   statArrow === "up"
@@ -47,8 +45,10 @@ export default function CardStats({
                 }
               ></i>{" "}
               {statPercent}%
-            </span>
-            <span className="whitespace-nowrap">{statDescripiron}</span>
+            </span>*/}
+            {userType === "faculty" &&
+              <span className="whitespace-nowrap">{statDescripiron}</span>
+            }
           </p>
         </div>
       </div>

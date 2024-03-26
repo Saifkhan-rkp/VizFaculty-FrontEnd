@@ -14,13 +14,13 @@ const DeptRoute = ({ children }) => {
     //         </div>
     //     );
     // }
-    if (user?.role === 'adminDept') {
-        return <Navigate to="/adminDept/dashboard" state={{ from: location }} replace />;
-    }
+    // if (user?.role === 'adminDept') {
+    //     return <Navigate to="/adminDept/dashboard" state={{ from: location }} replace />;
+    // }
     if (user?.role === 'deptHead') {
         return children;
     }
-    
+
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 

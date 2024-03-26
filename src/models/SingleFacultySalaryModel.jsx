@@ -1,399 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from "prop-types";
+import axios from 'axios';
+import { getAuthData } from '../utils/utils';
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
-
-const attendenceData = [
-  {
-    date: "01-11-2022",
-    day: "TUE",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "01-11-2022",
-    day: "TUE",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "01-11-2022",
-    day: "TUE",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "02-11-2022",
-    day: "WED",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "11:30",
-    timeTo: "12:30",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "02-11-2022",
-    day: "WED",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "01:00",
-    timeTo: "03:00",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "03-11-2022",
-    day: "THU",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "04-11-2022",
-    day: "FRI",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "01:00",
-    timeTo: "02:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "07-11-2022",
-    day: "MON",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "07-11-2022",
-    day: "MON",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "09-11-2022",
-    day: "WED",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "11:30",
-    timeTo: "12:30",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "09-11-2022",
-    day: "WED",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "01:00",
-    timeTo: "03:00",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "10-11-2022",
-    day: "THU",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "11-11-2022",
-    day: "FRI",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "01:00",
-    timeTo: "02:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "14-11-2022",
-    day: "MON",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "14-11-2022",
-    day: "MON",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "15-11-2022",
-    day: "TUE",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "15-11-2022",
-    day: "TUE",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "15-11-2022",
-    day: "TUE",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "16-11-2022",
-    day: "WED",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "11:30",
-    timeTo: "12:30",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "16-11-2022",
-    day: "WED",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "01:00",
-    timeTo: "03:00",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "17-11-2022",
-    day: "THU",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "18-11-2022",
-    day: "FRI",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "01:00",
-    timeTo: "02:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "21-11-2022",
-    day: "MON",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "21-11-2022",
-    day: "MON",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "22-11-2022",
-    day: "TUE",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "22-11-2022",
-    day: "TUE",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "22-11-2022",
-    day: "TUE",
-    subject: "DW & M",
-    yearAndBranch: "4th yr,CSE",
-    teachingType: "PR",
-    timeFrom: "03:15",
-    timeTo: "05:15",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "23-11-2022",
-    day: "WED",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "11:30",
-    timeTo: "12:30",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "23-11-2022",
-    day: "WED",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "01:00",
-    timeTo: "03:00",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "24-11-2022",
-    day: "THU",
-    subject: "CW- I",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "PR",
-    timeFrom: "10:30",
-    timeTo: "12:30",
-    totalHours: "2HRS",
-    rate: 300,
-    amount: 600,
-  },
-  {
-    date: "25-11-2022",
-    day: "FRI",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "01:00",
-    timeTo: "02:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-  {
-    date: "29-11-2022",
-    day: "TUE",
-    subject: "CA & DS",
-    yearAndBranch: "2nd yr,CSE",
-    teachingType: "TH",
-    timeFrom: "02:00",
-    timeTo: "03:00",
-    totalHours: "1HR",
-    rate: 600,
-    amount: 600,
-  },
-];
-
-function SingleFacultySalaryModel({ faculty, id, hidden }) {
+function SingleFacultySalaryModel({ totalAmount = 0, id, range = {}, hidden, userDetail = {} }) {
   // const []
   // console.log(hidden);
   // console.log(id);
+  const auth = getAuthData();
   const [flag, setFlag] = useState(false);
+  const [attendenceData, setAttendenceData] = useState([]);
+  useEffect(() => {
+    if (flag) {
+      axios.post(`${process.env.REACT_APP_API_KEY}/api/attendance/view/byDateRange`, {
+        facultyId: id,
+        ...range
+      }, {
+        headers: {
+          authorization: `Bearer ${auth?.accessToken}`
+        }
+      }).then(res => {
+        if (res.data?.success) {
+          setAttendenceData(res.data?.attendances)
+        }
+      })
+    }
+  }, [flag, id, range, auth?.accessToken])
+
   const setPopup = () => {
     setFlag(!flag)
     // if (flag) {
@@ -402,30 +37,61 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
     //   document.getElementById("POPUP").classList.remove("hidden");
     // }
   };
-  let totalSalary = 0;
-  attendenceData.forEach(ele => totalSalary += ele.amount);
 
-  const findOcc = (arr, key) => {
-    let arr2 = [];
+  const downloadExcelFile = () => {
+    const data = attendenceData?.map((data) => (
+      data.attendance.map(att => (
+        {
+          Date: new Date(data.date).toDateString(),
+          Day: data.day,
+          Subject: att.subject,
+          "Year/Branch": att.yearAndBranch,
+          "Teaching Type": att.teachingType,
+          "Time From": att.timeFrom,
+          "Time To": att.timeTo,
+          "Total Hours": att.totalHours,
+          Rate: att.rate,
+          Amount: att.amount
+        }
+      ))
+    ));
 
-    arr.forEach((x) => {
-      if (arr2.some((val) => { return val[key] === x[key] })) {
-        arr2.forEach((k) => {
-          if (k[key] === x[key]) {
-            k.total++
-          }
-        })
-
-      } else {
-        let a = {}
-        a[key] = x[key]
-        a.total = 1
-        arr2.push(a);
-      }
-    })
-    return arr2
+    // console.log(data.flat())
+    // const data =[{}]
+    const worksheet = XLSX.utils.json_to_sheet(data.flat());
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance");
+    const dateRange = new Date(range?.dateFrom).toLocaleDateString().replace("/","-")+"_to_"+new Date(range?.dateTo).toLocaleDateString().replace("/","-")
+    // Buffer to store the generated Excel file
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8' });
+    saveAs(blob, `${userDetail?.name?.replace(" ", "_")}_Attendance_Data_${dateRange}.xlsx`);
   }
-  const teachingType = findOcc(attendenceData, "teachingType")
+  // attendenceData.forEach(ele => totalSalary += ele.amount);
+
+  // const findOcc = (arr, key) => {
+  //   let arr2 = [];
+
+  //   arr.forEach((att) => {
+  //     att?.attendance.forEach((x)=>{
+  //       if (arr2.some((val) => { return val[key] === x[key] })) {
+  //         arr2.forEach((k) => {
+  //           if (k[key] === x[key]) {
+  //             k.total++
+  //           }
+  //         })
+
+  //       } else {
+  //         let a = {}
+  //         a[key] = x[key]
+  //         a.total = 1
+  //         arr2.push(a);
+  //       }
+  //     })
+  //     })
+  //   // return arr2
+  // }
+  const teachingType = [];
   return (<>
     <button
       type="button"
@@ -434,7 +100,7 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
       onClick={setPopup}
     >
     </button>
-    {flag 
+    {flag
       &&
       <div id="POPUP" className="z-50 fixed w-full flex justify-center inset-0">
         <div onClick={setPopup} className="w-full h-full bg-transparent z-0 absolute inset-0" />
@@ -459,16 +125,16 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
 
                   <div className="flex items-center mb-4 sm:mb-0 md:mb-0 lg:mb-0 xl:mb-0">
                     <div className="relative w-12 h-12 rounded">
-                      <img className="w-full h-full object-cover inset-0 absolute rounded" src="https://tuk-cdn.s3.amazonaws.com/assets/components/card_headings/ch_1.png" alt="avatar" />
+                      <img className="w-full h-full object-cover inset-0 absolute rounded" src={userDetail?.profilePhoto === "default" ? require("../assets/img/user_avtar.png") : "https://tuk-cdn.s3.amazonaws.com/assets/components/card_headings/ch_1.png"} alt="avatar" />
                     </div>
                     <div className="ml-2">
-                      <h2 className="text-gray-800 dark:text-gray-100 text-sm font-bold">{faculty?.name}</h2>
-                      <p className="font-normal text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">{faculty?.email}</p>
+                      <h2 className="text-gray-800 dark:text-gray-100 text-sm font-bold">{userDetail?.name}</h2>
+                      <p className="font-normal text-xs text-gray-600 dark:text-gray-400 cursor-pointer hover:text-gray-700">{userDetail?.contactNo}</p>
                     </div>
                   </div>
                   <div>
                     {/* <button className="font-normal bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-indigo-600 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 rounded text-indigo-600 px-6 py-2 text-sm">Options</button> */}
-                    <button className="ml-2 sm:ml-3 font-normal focus:outline-none bg-indigo-700 dark:hover:bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 dark:bg-indigo-600 rounded text-white px-6 py-2 text-sm">Download Data</button>
+                    <button onClick={downloadExcelFile} className="ml-2 sm:ml-3 font-normal focus:outline-none bg-indigo-700 dark:hover:bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 dark:bg-indigo-600 rounded text-white px-6 py-2 text-sm">Download Data</button>
                   </div>
                 </div>
                 {/* Code block ends */}
@@ -479,11 +145,11 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
                   <div className="flex items-center flex-1 space-x-4">
                     <h5>
                       <span className="text-gray-500">Total TH:</span>
-                      <span className="dark:text-white">{teachingType.find(ele => ele.teachingType === "TH").total}</span>
+                      <span className="dark:text-white">{teachingType?.find(ele => ele.teachingType === "TH")?.total}</span>
                     </h5>
                     <h5>
                       <span className="text-gray-500">Total PR:</span>
-                      <span className="dark:text-white">{teachingType.find(ele => ele.teachingType === "PR").total}</span>
+                      <span className="dark:text-white">{teachingType?.find(ele => ele.teachingType === "PR")?.total}</span>
                     </h5>
                     <h5>
                       <span className="text-gray-500">Total TU:</span>
@@ -494,15 +160,15 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
                     <span className="dark:text-white">{ }</span>
                   </h5> */}
                     <h5>
-                      <span className="text-gray-500">Total Salary: </span>
-                      <span className="dark:text-white"><i className='fas fa-indian-rupee' style={{ color: 'gray' }} />{totalSalary}</span>
+                      <span className="text-gray-500">Total Amount: </span>
+                      <span className="dark:text-white"><i className='fas fa-indian-rupee' style={{ color: 'gray' }} />{totalAmount}</span>
                     </h5>
                   </div>
                 </div>
 
-                <div className="relative h-500-px lg:h-700px md:h-500-px sm:h-400-px overflow-x-auto overflow-y-auto shadow-md sm:rounded-lg">
+                <div className="relative h-350-px overflow-x-auto overflow-y-scroll shadow-md sm:rounded-lg">
                   <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
                       <tr>
                         <th scope="col" className="px-6 py-3">
                           <div className="flex items-center">
@@ -527,7 +193,10 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
                           Teaching Type
                         </th>
                         <th scope="col" className="px-6 py-3">
-                          Time
+                          Time From
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Time To
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Total Hours
@@ -543,25 +212,28 @@ function SingleFacultySalaryModel({ faculty, id, hidden }) {
                     </th> */}
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='h-96 overflow-y-auto'>
                       {
                         attendenceData.map(data => (
-                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th
-                              scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                            >
-                              {data.date}
-                            </th>
-                            <td className="px-6 py-4">{data.day}</td>
-                            <td className="px-6 py-4">{data.subject}</td>
-                            <td className="px-6 py-4">{data.yearAndBranch}</td>
-                            <td className="px-6 py-4">{data.teachingType}</td>
-                            <td className="px-6 py-4">{data.timeFrom + " - " + data.timeTo}</td>
-                            <td className="px-6 py-4">{data.totalHours}</td>
-                            <td className="px-6 py-4">{data.rate}</td>
-                            <td className="px-6 py-4">{data.amount}</td>
-                          </tr>
+                          data.attendance.map(att => (
+                            <tr name="attRows" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={att?._id}>
+                              <th
+                                scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                              >
+                                {new Date(data.date).toDateString()}
+                              </th>
+                              <td class="px-6 py-4">{data.day}</td>
+                              <td class="px-6 py-4">{att.subject}</td>
+                              <td class="px-6 py-4">{att.yearAndBranch}</td>
+                              <td class="px-6 py-4">{att.teachingType}</td>
+                              <td class="px-6 py-4">{att.timeFrom}</td>
+                              <td class="px-6 py-4">{att.timeTo}</td>
+                              <td class="px-6 py-4">{att.totalHours}</td>
+                              <td class="px-6 py-4">{att.rate}</td>
+                              <td class="px-6 py-4">{att.amount}</td>
+                            </tr>
+                          ))
                         ))
                       }
                     </tbody>

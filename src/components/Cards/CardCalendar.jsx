@@ -18,9 +18,9 @@ export default function CardCalendar({ scheduleData, isLoading, setDate }) {
       <div className="relative flex flex-col min-w-0 break-words bg-slate-700 w-full mb-6 shadow-lg rounded">
         <div className="p-4 flex-auto">
           <div className="px-4 flex items-center justify-evenly">
-            <h1 className="text-md font-bold dark:text-gray-100 text-gray-800">
+            <h2 className="text-lg font-semibold dark:text-gray-100 text-gray-800">
               My Calendar
-            </h1>
+            </h2>
           </div>
           <Calendar
             // value={value}

@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import Loader from '../components/loader/Loader';
 
 const FacultyRoute = ({ children }) => {
     const { isLoading, user, loading } = useAuth();
@@ -7,9 +8,7 @@ const FacultyRoute = ({ children }) => {
     const location = useLocation();
     if (loading || isLoading) {
         return (
-            <div className="grid min-h-50v place-items-center">
-                <div className="w-full h-full border-4 border-dashed rounded-full border-sky-700 animate-spin" />
-            </div>
+            <Loader/>
         );
     }
     if (user?.user?.role === 'adminDept') {

@@ -21,7 +21,8 @@ module.exports = {
       "./src/*.html",
       "./public/**/*.js",
       "./public/*.js",
-      "./src/**/*.{js,jsx,ts,tsx}"
+      "./src/**/*.{js,jsx,ts,tsx}",
+      "./node_modules/tailwind-datepicker-react/dist/**/*.js",
     ],
     options: {
       safelist: [],

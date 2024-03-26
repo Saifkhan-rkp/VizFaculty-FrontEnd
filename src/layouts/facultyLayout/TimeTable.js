@@ -1,98 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import "./TimeTable.css";
-import { useState } from "react";
-
-import Table from "../../components/TableFac/Table";
-import Modal from "../../components/TableFac/Modal";
+import React from "react";
+import axios from "axios";
+import { getAuthData } from "../../utils/utils";
+import TimeTableComponent from "../../components/Timetable/TimeTableComponent";
 
 function TimeTable() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const { data: timetables, isLoading, } = useQuery(['timetables'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/timetables/forFaculty`, {
+    headers: {
+      authorization: `Bearer ${getAuthData()?.accessToken}`,
+    },
+  }).then(res => res.data));
   
-  const [rows, setRows] = useState([
-    {
-      Day: "Monday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Tuesday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Wednesday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Thursday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Friday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Saturday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-    {
-      Day: "Sunday",
-      "10:30-11:30": "",
-      "11:30-12:30 ": "",
-      "1:00-2:00": "",
-      "2:00-3:00": "",
-      "3:15-4:15": "",
-      "4:15-5:15": "",
-    },
-  ]);
-
-  const [rowToEdit, setRowToEdit] = useState(null);
-
-  const handleEditRow = (idx) => {
-    setRowToEdit(idx);
-
-    setModalOpen(true);
-  };
-
-  const handleSubmit = (newRow) => {
-    rowToEdit === null
-      ? setRows([...rows, newRow])
-      : setRows(
-        rows.map((currRow, idx) => {
-          if (idx !== rowToEdit) return currRow;
-
-          return newRow;
-        })
-      );
-  };
-
   return (
     <>
       <div className="flex flex-wrap">
@@ -107,29 +26,20 @@ function TimeTable() {
                   {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
                 </div>
                 <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                  <button
-                    className={ "bg-blue-500 text-white active:bg-blue-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"}
-                    type="button"
-                  >
-                    <i className='fas fa-plus' style={{ color: "white" }} />
-                    Add TimeTable
-                  </button>
                 </div>
               </div>
             </div>
-            <Table rows={rows} editRow={handleEditRow} />
+            { timetables?.ttCount<1 &&
+              <div className='h-350-px items-center top-1/2 text-center'>No TimeTable Found, Contact Department to add Timetable.</div>
+            }
+            {/* <Table rows={rows} editRow={handleEditRow} /> */}
+            { !isLoading && timetables?.ttCount>0  &&
+              timetables?.timetables?.map( tt => (
+              <TimeTableComponent ttData={tt} onlyView={true} />
+              ))
+            }
           </div>
         </div>
-        {modalOpen && (
-          <Modal
-            closeModal={() => {
-              setModalOpen(false);
-              setRowToEdit(null);
-            }}
-            onSubmit={handleSubmit}
-            defaultValue={rowToEdit !== null && rows[rowToEdit]}
-          />
-        )}
       </div>
     </>
   );

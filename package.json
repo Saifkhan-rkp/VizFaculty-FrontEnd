@@ -27,6 +27,7 @@
     "react-scripts": "^5.0.1",
     "recharts": "^2.5.0",
     "rsuite": "^5.31.0",
+    "tailwind-datepicker-react": "^1.4.3",
     "typed.js": "^2.0.15",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"

@@ -21,7 +21,7 @@ export default function CardAttendence(props) {
           Date: new Date(data.date).toDateString(),
           Day: data.day,
           Subject: att.subject,
-          "Year & Branch": att.yearAndBranch,
+          "Year/Branch": att.yearAndBranch,
           "Teaching Type": att.teachingType,
           "Time From": att.timeFrom,
           "Time To": att.timeTo,
@@ -49,7 +49,7 @@ export default function CardAttendence(props) {
       <div className="relative overflow-x-auto bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <div className="px-4 md:px-10 py-4 md:py-7">
           <div className="flex items-center justify-between">
-            <div className="text-white bg-gray-800 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800  dark:border-gray-700py-3 px-4 flex items-center font-medium leading-none cursor-pointer ">
+            <div className="text-white bg-gray-800 rounded-lg text-sm py-2.5 mr-2 mb-2 dark:bg-gray-800  dark:border-gray-700py-3 px-4 flex items-center font-medium leading-none cursor-pointer ">
               <p>Filter By:</p>
               <select className="focus:outline-none bg-transparent ml-1">
                 <option className="text-sm text-indigo-800">

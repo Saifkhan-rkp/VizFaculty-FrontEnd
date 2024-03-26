@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## !!! Important
 
+use .env.example file for env reference
 routes for dashboards are -
 
         http://localhost:3000/  - For Landing page, Footer, Navbar 

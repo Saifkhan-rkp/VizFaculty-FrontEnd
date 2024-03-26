@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Auth from "../layouts/Auth";
 import HodDashboard from "../layouts/deptLayout/HodDasboard";
@@ -26,12 +26,13 @@ import AdminDeptRoute from "./AdminDeptRoutes";
 import DeptFaculties from "../layouts/deptLayout/FacultyPage";
 import DeptRoute from "./DeptRoutes";
 import TimeTables from "../layouts/deptLayout/TimeTables";
-import Blog from "../pages/Blog";
+// import Blog from "../pages/Blog";
 import About from "../pages/About";
 import Pages from "../pages/PagesLayout";
 import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";
-
-const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
+import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
+import DeptSalaryApplicationLayout from "../layouts/deptLayout/DeptSalaryApplicationLayout";
+// const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ export const router = createBrowserRouter([
         element: <DashboardIndexDept></DashboardIndexDept>,
       },
       {
+        path: "/dept/dashboard",
+        element: <DashboardIndexDept></DashboardIndexDept>,
+      },
+      {
         path: "/dept/Timetables",
         element: <TimeTables />,
       },
@@ -109,6 +114,12 @@ export const router = createBrowserRouter([
           <DepartmentSettings />
         ),
       },
+      {
+        path: "/dept/forwarded-applications",
+        element: (
+          <DeptSalaryApplicationLayout/>
+        ),
+      },
     ],
   },
 
@@ -121,6 +132,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardIndexFaculty />,
+      },
+      {
+        path: "/faculty/dashboard",
+        element: <FacultyDashboard></FacultyDashboard>,
       },
       {
         path: "/faculty/settings",
