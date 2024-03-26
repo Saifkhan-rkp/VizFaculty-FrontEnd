@@ -22,7 +22,11 @@ export default function HodDashboard() {
     headers: {
       authorization: `Bearer ${auth?.accessToken}`
     }
-  }).then(res => res.data)
+  }).then(res => res.data),
+    {
+      retryDelay: 30 * 60,
+      refetchOnWindowFocus: false
+    }
   );
   return (
     <>

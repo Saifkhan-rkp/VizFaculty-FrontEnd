@@ -231,8 +231,9 @@ export const ChangePassword = () => {
 }
 
 
-export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, input1, input2, input3, input4, refetch=()=>{} }) {
+export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, input1, input2, input3, input4, refetch = () => { } }) {
   const auth = getAuthData();
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [inputValues, setInputValues] = useState({
     [input1?.fieldName]: input1?.value,
     [input2?.fieldName]: input2?.value,
@@ -267,12 +268,14 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
   //   reset
   // } = useForm({ mode: "onChange" });
   const onClickSaveChange = () => {
-    
+    setSubmitLoading(true)
     if (inputValues[input1?.fieldName] === input1?.value && inputValues[input4?.fieldName] === input4?.value && inputValues[input3?.fieldName] === input3?.value) {
       toast.error("Seems no data changed to update!")
+      setSubmitLoading(false);
       return;
     }
     if (inputValues[input1?.fieldName] === "" && inputValues[input4?.fieldName] === "" && inputValues[input3?.fieldName] === "") {
+      setSubmitLoading(false);
       return toast.error("Value required in respetive field");
     }
     const data = inputValues;
@@ -282,6 +285,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
       }
     }).then(res => {
       if (res.data?.success) {
+        setSubmitLoading(false);
         toast.success(res.data?.message);
         refetch();
         if (Object.keys(res.data?.newAuth || {}).length > 0) {
@@ -289,7 +293,8 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
           window.location.reload(true);
         }
       }
-    }).catch(err => { toast.error(err?.response.data?.message || err?.message || "Error: unable to update at this moment") });
+
+    }).catch(err => { setSubmitLoading(false); toast.error(err?.response.data?.message || err?.message || "Error: unable to update at this moment") });
 
   }
   return (
@@ -308,8 +313,9 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
               className="bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
               onClick={onClickSaveChange}
+              disabled={submitLoading}
             >
-              Save Changes
+              {submitLoading?"Saving Changes...":"Save Changes"}
             </button>
           </div>
         </div>
@@ -417,7 +423,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                 }
               </div>
             </div>
-            {settingsFor === "dept" && <RatesInput initRates={rates} refetch={refetch}/>}
+            {settingsFor === "dept" && <RatesInput initRates={rates} refetch={refetch} />}
             <ChangePassword />
             <hr className="mt-6 border-b-1 border-slate-300" />
 

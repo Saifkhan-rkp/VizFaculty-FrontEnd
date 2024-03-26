@@ -12,7 +12,7 @@ export default function DepartmentsAndFaculties() {
             <CardDepartments />
           </div>
           <div className="w-full mb-12 px-4">
-            <CardFaculties />
+            <CardFaculties isAdminDeptview={true} />
           </div>
         {/* <div className="w-full xl:w-11/12 min-lg:w-11/12 mb-12 xl:mb-0 px-4">
         </div>

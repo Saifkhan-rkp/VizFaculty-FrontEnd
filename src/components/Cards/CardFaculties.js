@@ -73,7 +73,7 @@ const deptStatic = [
     // },
 ];
 
-export default function CardFaculties() {
+export default function CardFaculties({ isAdminDeptview = false }) {
     const auth = getAuthData();
     const { data: faculties, isLoading, refetch } = useQuery(['faculties'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/getFaculties`, {
         headers: {
@@ -82,9 +82,9 @@ export default function CardFaculties() {
     }).then(res => res.data));
 
     const deleteConfirm = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_KEY}/api/faculty/${id}`,{
-            headers:{
-                authorization:`Bearer ${auth?.accessToken}`
+        axios.delete(`${process.env.REACT_APP_API_KEY}/api/faculty/${id}`, {
+            headers: {
+                authorization: `Bearer ${auth?.accessToken}`
             }
         })
             .then(res => {
@@ -114,7 +114,7 @@ export default function CardFaculties() {
                             {/* <h2 className="text-white text-xl font-semibold">Expenditure vise</h2> */}
                         </div>
                         <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                            <AddUserForm />
+                            {!isAdminDeptview && <AddUserForm />}
                         </div>
                     </div>
                 </div>
