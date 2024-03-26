@@ -5,10 +5,10 @@ import axios from 'axios'
 import { getAuthData } from '../../utils/utils'
 
 function DepartmentSettings() {
-
+    const auth = getAuthData();
     const { data: deptData, isLoading } = useQuery(['deptData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/dept/${getAuthData()?.roleId}`, {
         headers: {
-            Authorization: `Bearer ${getAuthData()?.accessToken}`
+            Authorization: `Bearer ${auth?.accessToken}`
         }
     })
         .then(res => res.data)
@@ -16,15 +16,13 @@ function DepartmentSettings() {
     // console.log(deptData);
     return (
         <>
-           {!isLoading  && <SettingsLayout
+            {!isLoading && <SettingsLayout
                 settingsFor="dept"
-                name="Full Name"
-                email="Email"
-                name2="Abbreviation"
-                code="Authorization Of"
-                // name={deptData?.deptHeadId?.name}
-                deptCode={deptData?.code}
-                deptName={deptData?.deptName}
+                isLoading={isLoading}
+                input1={{ label: "Full Name", value: auth?.name, fieldName: "name" }}
+                input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
+                input3={{ label: "Department Name", value: deptData?.deptName, fieldName: "deptName" }}
+                input4={{ label: "Department Code", value: deptData?.code, fieldName: "code" }}
                 orgName={deptData?.orgId?.name}
                 rates={deptData?.rates}
                 codeVal="Can edit Time Table"

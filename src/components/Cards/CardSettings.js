@@ -230,7 +230,7 @@ export const ChangePassword = () => {
 }
 
 
-export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, ...props }) {
+export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, input1, input2, input3, input4, ...props }) {
   const auth = getAuthData();
   const {
     register,
@@ -271,15 +271,18 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.name}
+                    {input1?.label}
                   </label>
                   <input
+                    {...register("confirmPassword", {
+                      required: true,
+                    })}
                     type="text"
-                    id="name"
+                    id={input1?.fieldName}
                     name="name"
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Name"
-                    value={auth?.name}
+                    value={input1.value}
                   />
                 </div>
               </div>
@@ -289,7 +292,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.Email}
+                    {input2?.label}
                   </label>
                   <input
                     // {...register("email", { required: true })}
@@ -298,7 +301,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     name="email"
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                     placeholder="Email"
-                    value={auth?.email}
+                    value={input2?.value}
                     disabled={true}
                   />
                 </div>
@@ -309,12 +312,15 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.name2}
+                    {input3?.label}
                   </label>
                   <input
+                    {...register(input3?.fieldName)}
                     type="text"
+                    id={input3?.fieldName}
+                    name={input3?.fieldName}
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""
+                    value={input3?.value}
                   />
                 </div>
               </div>
@@ -324,13 +330,16 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.code}
+                    {input4?.label}
                   </label>
                   <input
-                    Disabled
+                    disabled={settingsFor === "faculty"}
+                    {...register(input4?.fieldName)}
                     type="text"
+                    id={input4?.fieldName}
+                    name={input4?.fieldName}
                     className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue={props.codeVal}
+                    value={input4?.value}
                   />
                 </div>
               </div>
