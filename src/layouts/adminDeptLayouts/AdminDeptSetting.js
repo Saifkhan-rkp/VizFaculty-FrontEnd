@@ -6,7 +6,7 @@ import { getAuthData } from "../../utils/utils";
 
 export default function AdminDeptSetting() {
   const auth = getAuthData();
-  const { data: orgData, isLoading } = useQuery(['orgData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/org/v1/for-settings`, {
+  const { data: orgData, isLoading, refetch } = useQuery(['orgData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/org/v1/for-settings`, {
     headers: {
       Authorization: `Bearer ${auth?.accessToken}`
     }
@@ -22,6 +22,7 @@ export default function AdminDeptSetting() {
         input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
         input3={{ label: "Organization Name", value: orgData?.name|| "", fieldName: "orgName" }}
         input4={{ label: "Organization Code", value: orgData?.code || "", fieldName: "code" }}
+        refetch={refetch}
         orgName={orgData?.name||""}
       />
     </>

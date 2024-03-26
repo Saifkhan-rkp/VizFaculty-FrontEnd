@@ -6,7 +6,7 @@ import { getAuthData } from "../../utils/utils";
 
 export default function FacultySetting() {
   const auth = getAuthData();
-  const { data: faculty, isLoading } = useQuery(['facultyData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/faculty/v1/for-settings`, {
+  const { data: faculty, isLoading, refetch } = useQuery(['facultyData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/faculty/v1/for-settings`, {
     headers: {
       Authorization: `Bearer ${auth?.accessToken}`
     }
@@ -21,6 +21,7 @@ export default function FacultySetting() {
       input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
       input3={{ label: "Abbrivation", value: faculty?.abbrivation, fieldName: "abbrivation" }}
       input4={{ label: "Has Access of", value: faculty?.hasAccessOf, fieldName: "hasAccessOf" }}
+      refetch={refetch}
       orgName={faculty?.inOrganization?.name}
       roleName={faculty?.inDepartment?.deptName||""}
       codeVal="Can edit Time Table"

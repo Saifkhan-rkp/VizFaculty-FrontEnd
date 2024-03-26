@@ -5,7 +5,7 @@ import React from "react";
 import CardSettings from "../components/Cards/CardSettings";
 import CardProfile from "../components/Cards/CardProfile";
 
-export default function SettingsLayout({ settingsFor, input1, input2, input3, input4, ...props }) {
+export default function SettingsLayout({ settingsFor, input1, input2, input3, input4, refetch = () => { }, ...props }) {
   return (
     <>
       <div className="flex flex-wrap">
@@ -18,10 +18,11 @@ export default function SettingsLayout({ settingsFor, input1, input2, input3, in
             input4={input4}
             codeVal={props.codeVal}
             rates={props?.rates}
+            refetch={refetch}
           />
         </div>
         <div className="w-full lg:w-4/12 px-4">
-          <CardProfile name={input1?.value} role={settingsFor === "dept" || settingsFor === "adminDept" ? input3?.value : props.roleName } orgName={props?.orgName} />
+          <CardProfile name={input1?.value} role={settingsFor === "dept" || settingsFor === "adminDept" ? input3?.value : props.roleName} orgName={props?.orgName} />
         </div>
       </div>
     </>

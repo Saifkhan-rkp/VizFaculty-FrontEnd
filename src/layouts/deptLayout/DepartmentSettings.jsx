@@ -6,7 +6,7 @@ import { getAuthData } from '../../utils/utils'
 
 function DepartmentSettings() {
     const auth = getAuthData();
-    const { data: deptData, isLoading } = useQuery(['deptData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/dept/${getAuthData()?.roleId}`, {
+    const { data: deptData, isLoading, refetch } = useQuery(['deptData'], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/dept/${getAuthData()?.roleId}`, {
         headers: {
             Authorization: `Bearer ${auth?.accessToken}`
         }
@@ -23,6 +23,7 @@ function DepartmentSettings() {
                 input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
                 input3={{ label: "Department Name", value: deptData?.deptName, fieldName: "deptName" }}
                 input4={{ label: "Department Code", value: deptData?.code, fieldName: "code" }}
+                refetch={refetch}
                 orgName={deptData?.orgId?.name}
                 rates={deptData?.rates}
                 codeVal="Can edit Time Table"
