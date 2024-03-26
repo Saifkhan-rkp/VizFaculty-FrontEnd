@@ -15,16 +15,17 @@ export default function AdminDeptSetting() {
   );
   return (
     <>
-      <SettingsLayout
-        isLoading={isLoading}
-        settingsFor={"adminDept"}
-        input1={{ label: "Full Name", value: auth?.name, fieldName: "name" }}
-        input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
-        input3={{ label: "Organization Name", value: orgData?.name|| "", fieldName: "orgName" }}
-        input4={{ label: "Organization Code", value: orgData?.code || "", fieldName: "code" }}
-        refetch={refetch}
-        orgName={orgData?.name||""}
-      />
+      {!isLoading &&
+        <SettingsLayout
+          isLoading={isLoading}
+          settingsFor={"adminDept"}
+          input1={{ label: "Full Name", value: auth?.name, fieldName: "name" }}
+          input2={{ label: "Email", value: auth?.email, fieldName: "email" }}
+          input3={{ label: "Organization Name", value: orgData?.name || "", fieldName: "orgName" }}
+          input4={{ label: "Organization Code", value: orgData?.code || "", fieldName: "code" }}
+          refetch={refetch}
+          orgName={orgData?.name || ""}
+        />}
     </>
   );
 }
