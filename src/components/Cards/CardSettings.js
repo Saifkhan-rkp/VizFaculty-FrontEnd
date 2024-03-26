@@ -5,13 +5,14 @@ import axios from "axios";
 import { getAuthData } from "../../utils/utils";
 // components
 
-const RatesInput = ({ initRates }) => {
+const RatesInput = ({ initRates, refetch }) => {
   const [rates, setRates] = useState(initRates);
   const onChangeRates = (e) => setRates({ ...rates, [e.target?.name]: e.target?.value });
   const ratesSubmit = () => {
     axios.put(`${process.env.REACT_APP_API_KEY}/api/dept/${getAuthData()?.roleId}`, { rates: rates }).then(res => {
       if (res.data?.success) {
         toast.success(res.data?.message);
+        refetch();
       }
     }).catch(err => toast.error(err?.message || "Error: unable to update rates"))
   }
@@ -106,7 +107,7 @@ export const ChangePassword = () => {
   } = useForm({ mode: "onChange" });
   const { newPassword, } = getValues();
   const onClickChangePassword = (data) => {
-    // console.log(data);
+    // console.log(inputValues);
     setChangePasswordLoading(true)
     axios.post(`${process.env.REACT_APP_API_KEY}/api/auth/change-password`, data, {
       headers: {
@@ -230,15 +231,67 @@ export const ChangePassword = () => {
 }
 
 
-export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, ...props }) {
+export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 0 }, input1, input2, input3, input4, refetch=()=>{} }) {
   const auth = getAuthData();
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-    reset
-  } = useForm({ mode: "onChange" });
+  const [inputValues, setInputValues] = useState({
+    [input1?.fieldName]: input1?.value,
+    [input2?.fieldName]: input2?.value,
+    [input3?.fieldName]: input3?.value,
+    [input4?.fieldName]: input4?.value,
+  })
+  const [inputError, setInputError] = useState({
+    [input1?.fieldName]: "",
+    [input2?.fieldName]: "",
+    [input3?.fieldName]: "",
+    [input4?.fieldName]: "",
+  })
+
+  const handleChangeInput = (e) => {
+    const regex = /^\s*$/;
+    // if (e.target.value==="") {
+    //   e.target.focused= true;
+    //   return
+    // }
+    setInputError(state => ({ ...state, [e.target.name]: "" }))
+    setInputValues(state => ({ ...state, [e.target.name]: e.target.value }))
+    if (regex.test(e.target.value)) {
+      // console.log("err");
+      setInputError(state => ({ ...state, [e.target.name]: "Error: This is non empty field" }))
+    }
+  }
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   getValues,
+  //   formState: { errors },
+  //   reset
+  // } = useForm({ mode: "onChange" });
+  const onClickSaveChange = () => {
+    
+    if (inputValues[input1?.fieldName] === input1?.value && inputValues[input4?.fieldName] === input4?.value && inputValues[input3?.fieldName] === input3?.value) {
+      toast.error("Seems no data changed to update!")
+      return;
+    }
+    if (inputValues[input1?.fieldName] === "" && inputValues[input4?.fieldName] === "" && inputValues[input3?.fieldName] === "") {
+      return toast.error("Value required in respetive field");
+    }
+    const data = inputValues;
+    axios.post(`${process.env.REACT_APP_API_KEY}/api/v1/settings/update`, data, {
+      headers: {
+        authorization: `Bearer ${auth?.accessToken}`
+      }
+    }).then(res => {
+      if (res.data?.success) {
+        toast.success(res.data?.message);
+        refetch();
+        if (Object.keys(res.data?.newAuth || {}).length > 0) {
+          localStorage.setItem("auth", JSON.stringify(res.data?.newAuth));
+          window.location.reload(true);
+        }
+      }
+    }).catch(err => { toast.error(err?.response.data?.message || err?.message || "Error: unable to update at this moment") });
+
+  }
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-slate-100 border-0">
@@ -254,6 +307,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
             <button
               className="bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
               type="button"
+              onClick={onClickSaveChange}
             >
               Save Changes
             </button>
@@ -271,17 +325,23 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.name}
+                    {input1?.label}
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    id={input1?.fieldName}
+                    name={input1?.fieldName}
+                    className={`border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded ${inputError[input1?.fieldName] !== "" ? "border-1 border-rose-700 focus:ring-rose-500" : ""} text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150`}
                     placeholder="Name"
-                    value={auth?.name}
+                    value={inputValues[input1?.fieldName]}
+                    onChange={handleChangeInput}
                   />
                 </div>
+                {inputError[input1?.fieldName] !== "" &&
+                  <p className="text-red-500">
+                    {inputError[input1?.fieldName]}
+                  </p>
+                }
               </div>
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
@@ -289,19 +349,25 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.Email}
+                    {input2?.label}
                   </label>
                   <input
                     // {...register("email", { required: true })}
                     type="email"
-                    id="email"
-                    name="email"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    id={input2?.fieldName}
+                    name={input2?.fieldName}
+                    className={`border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded ${inputError[input2?.fieldName] !== "" ? "border-1 border-rose-700 focus:ring-rose-500" : ""} text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150`}
                     placeholder="Email"
-                    value={auth?.email}
+                    value={inputValues[input2?.fieldName]}
                     disabled={true}
+                    onChange={handleChangeInput}
                   />
                 </div>
+                {inputError[input2?.fieldName] !== "" &&
+                  <p className="text-red-500">
+                    {inputError[input2?.fieldName]}
+                  </p>
+                }
               </div>
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
@@ -309,14 +375,22 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.name2}
+                    {input3?.label}
                   </label>
                   <input
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue=""
+                    id={input3?.fieldName}
+                    name={input3?.fieldName}
+                    className={`border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded ${inputError[input3?.fieldName] !== "" ? "border-1 border-rose-700 focus:ring-rose-500" : ""} text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150`}
+                    value={inputValues[input3?.fieldName]}
+                    onChange={handleChangeInput}
                   />
                 </div>
+                {inputError[input3?.fieldName] !== "" &&
+                  <p className="text-red-500">
+                    {inputError[input3?.fieldName]}
+                  </p>
+                }
               </div>
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative w-full mb-3">
@@ -324,18 +398,26 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                     className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-password"
                   >
-                    {props.code}
+                    {input4?.label}
                   </label>
                   <input
-                    Disabled
+                    disabled={settingsFor === "faculty"}
                     type="text"
-                    className="border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    defaultValue={props.codeVal}
+                    id={input4?.fieldName}
+                    name={input4?.fieldName}
+                    className={`border-0 px-3 py-3 placeholder-slate-300 text-slate-600 bg-white rounded ${inputError[input4?.fieldName] !== "" ? "border-1 border-rose-700 focus:ring-rose-500" : ""} text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150`}
+                    value={inputValues[input4?.fieldName]}
+                    onChange={handleChangeInput}
                   />
                 </div>
+                {inputError[input4?.fieldName] !== "" &&
+                  <p className="text-red-500">
+                    {inputError[input4?.fieldName]}
+                  </p>
+                }
               </div>
             </div>
-            {settingsFor === "dept" && <RatesInput initRates={rates} />}
+            {settingsFor === "dept" && <RatesInput initRates={rates} refetch={refetch}/>}
             <ChangePassword />
             <hr className="mt-6 border-b-1 border-slate-300" />
 

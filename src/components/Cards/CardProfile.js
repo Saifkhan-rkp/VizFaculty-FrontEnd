@@ -1,9 +1,10 @@
 import React from "react";
 import { getAuthData } from "../../utils/utils";
+import toast from "react-hot-toast";
 
 // components
 
-export default function CardProfile({ name = "Users Name", deptName = "", orgName = "" }) {
+export default function CardProfile({ name = "Users Name", role = "", orgName = "" }) {
   const auth = getAuthData();
   return (
     <>
@@ -25,6 +26,7 @@ export default function CardProfile({ name = "Users Name", deptName = "", orgNam
                   <button
                     className="bg-sky-500 text-white active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
+                    onClick={() => toast.error("this feature will develop soon..!")}
                   >
                     Change Profile Photo
                   </button>
@@ -38,7 +40,7 @@ export default function CardProfile({ name = "Users Name", deptName = "", orgNam
             </h3>
             <div className="mb-5 text-slate-600 mt-10">
               <i className="fas fa-briefcase mr-2 text-lg text-slate-400"></i>
-              Role - {auth?.role === "deptHead" ? "Head of " + deptName : (auth?.role === "faculty" ? "Visiting Faculty" : "College Admin")}
+              Role - {auth?.role === "deptHead" ? "Head of " + role : (auth?.role === "faculty" ? "Faculty of" + role : auth?.role==="adminDept"?"College Admin":"Normal User - Role not Assigned")}
             </div>
             <div className="mb-20 text-slate-600">
               <i className="fas fa-university mr-2 text-lg text-slate-400"></i>
