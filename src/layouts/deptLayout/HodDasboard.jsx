@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { getAuthData } from "../../utils/utils";
 
-const links = [
+export const Deptlinks = [
   { heading: "My Dashboard", link: "/dept", icon: "fas fa-tv" },
   { heading: "Settings", link: "/dept/settings", icon: "fas fa-tools" },
   { heading: "Timetables", link: "/dept/Timetables", icon: "fas fa-table" },
@@ -30,7 +30,7 @@ export default function HodDashboard() {
   );
   return (
     <>
-      <Sidebar linksAndHeadings={links} heading="HOD Layout Pages" />
+      <Sidebar linksAndHeadings={Deptlinks} heading="HOD Layout Pages" />
       <div className="relative md:ml-64 bg-slate-100">
         <AdminNavBar />
         {isLoading ? <HeaderStats

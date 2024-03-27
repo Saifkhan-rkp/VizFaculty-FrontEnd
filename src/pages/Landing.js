@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // import { Link } from "react-router-dom";
 
 // components
-import LandingNav from "../components/Navbars/LandingNav";
-import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
-
+import heroImg from "../assets/img/hero.png";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Typed from "typed.js";
 
 export default function Landing() {
 
@@ -20,7 +19,7 @@ export default function Landing() {
   AOS.init({
 
   });
-
+  const typedElementRef = useRef(null);
   // const Mystyle = {
   //   width: "100%",
   //   height: "0",
@@ -28,13 +27,97 @@ export default function Landing() {
   //   position: "relative",
   // }
 
+  useEffect(() => {
+    const options = {
+      strings: ['Are you struggling to manage the salaries and attendance of visiting faculty members in your institution?', 
+      'VizFaculty automate the process for you!',
+      "Revolutionize how educational institutions manage salaries for visiting faculty members with VizFaculty", 
+      "the web application that streamlines the process, simplifies tasks, and increases efficiency through automation"],
+      typeSpeed: 30,
+      backSpeed: 20,
+      loop: true,
+      showCursor: false,
+
+      smartBackspace: true,
+    };
+
+    const typed = new Typed(typedElementRef.current, options);
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   return (
     <>
-        {/* <LandingNav>  </LandingNav> */}
+      {/* <LandingNav>  </LandingNav> */}
       {/* <Navbar /> */}
+      <div className="container p-8 pt-12 mx-auto xl:px-0 flex flex-wrap h-screen">
+        <div className="flex items-center w-full lg:w-1/2">
+          <div className="max-w-2xl mb-8">
+            <div data-aos="zoom-in" data-aos-duration="1500" >
+              <h1 className="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight ">
+                VIZFACULTY A SALARY MANAGEMENT WEB-APP
+              </h1>
+            </div>
+            <p ref={typedElementRef} className="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl">
+              Are you struggling to manage the salaries and attendance of visiting faculty members in your institution?
+              Let <span className="font-semibold text-slate-700">VizFaculty </span>
+              automate the process for you!
+            </p>
+
+            <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
+              <a
+                href="#"
+                rel="noopener"
+                className="px-8 py-4 text-lg font-medium text-center text-white bg-sky-600 rounded-md ">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center justify-center w-full lg:w-1/2">
+          <div className="">
+
+            <img
+              src={"https://media.giphy.com/media/UeFFL2K5p6s0UJQUci/giphy.gif"}
+              width="616"
+              height="617"
+              className={"object-cover"}
+              alt="Hero Illustration"
+              loading="eager"
+              placeholder="blur"
+            />
+          </div>
+        </div>
+      </div>
       <main className=" w-full">
-      
-        <LeftAlignContainer> </LeftAlignContainer>
+        {/* <div className="container p-8 mx-auto xl:px-0 ">
+          <div className="flex flex-col justify-center">
+            <div className="text-xl text-center text-gray-700 dark:text-white">
+              Trusted by <span className="text-indigo-600">2000+</span>{" "}
+              customers worldwide
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-5 mt-10 md:justify-around">
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <AmazonLogo />
+              </div>
+              <div className="text-gray-400 dark:text-gray-400">
+                <VerizonLogo />
+              </div>
+              <div className="text-gray-400 dark:text-gray-400">
+                <MicrosoftLogo />
+              </div>
+              <div className="pt-1 text-gray-400 dark:text-gray-400">
+                <NetflixLogo />
+              </div>
+              <div className="pt-2 text-gray-400 dark:text-gray-400">
+                <SonyLogo />
+              </div>
+            </div>
+          </div>
+        </div> */}
 
         {/* <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 
@@ -185,7 +268,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20 bg-slate-300 shadow-lg  z-10 ">
+        <section className="relative py-20 bg-slate-300 shadow-lg z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
@@ -273,10 +356,7 @@ export default function Landing() {
         {/* contributors section  */}
 
 
-
-        <BlogCards id="blogCards"> </BlogCards>
-
-
+        {/* <BlogCards id="blogCards"> </BlogCards> */}
 
 
         <section className="pb-20 relative block bg-slate-300">
@@ -351,11 +431,11 @@ export default function Landing() {
           </div>
         </section>
 
-{/* our contributors */}
+        {/* our contributors */}
 
 
         {/* Contact Us */}
-        <section className="relative py-2 lg:pt-0 bg-slate-200  shadow-md shadow-inner  justify-between " id="contact"  >
+        <section className="relative py-2 lg:pt-0 bg-slate-200 shadow-inner justify-between " id="contact"  >
           <div className="container  px-4 ">
             <div className="flex flex-wrap justify-between lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4 inline-flex">

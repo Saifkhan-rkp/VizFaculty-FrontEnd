@@ -11,7 +11,7 @@ import { getAuthData } from "../../utils/utils";
 import { setSubjects } from "../../apis/facultySlice";
 import { useDispatch } from "react-redux";
 
-const links = [
+export const Facultylinks = [
   { heading: "My Dashboard", link: "/faculty", icon: "fas fa-tv" },
   { heading: "Settings", link: "/faculty/settings", icon: "fas fa-tools" },
   {
@@ -57,7 +57,7 @@ export default function FacultyDashboard() {
   
   return (
     <>
-      <Sidebar heading="Quick Accessibility" linksAndHeadings={links} />
+      <Sidebar heading="Quick Accessibility" linksAndHeadings={Facultylinks} />
       <div className="relative md:ml-64 bg-slate-100">
         <AdminNavBar />
         {isLoading ? <HeaderStats
