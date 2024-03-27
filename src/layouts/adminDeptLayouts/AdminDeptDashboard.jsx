@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { getAuthData } from "../../utils/utils";
 
-const links = [
+export const AdminDeptlinks = [
     { heading: "My Dashboard", link: "/adminDept/dashboard", icon: "fas fa-tv" },
     { heading: "Settings", link: "/adminDept/settings", icon: "fas fa-tools" },
     { heading: "SALARY APPLICATIONS", link: "/adminDept/applications", icon: "fas fa-table" },
@@ -32,7 +32,7 @@ export default function AdminDeptDashboard() {
         <>
             <Sidebar
                 heading="Quick Accessibility"
-                linksAndHeadings={links}
+                linksAndHeadings={AdminDeptlinks}
             />
             <div className="relative md:ml-64 bg-slate-100">
                 <AdminNavBar />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -18,15 +18,6 @@ export default function Timetables() {
       authorization: `Bearer ${getAuthData()?.accessToken}`,
     },
   }).then(res => res.data));
-
-  // console.log(timetables);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [rowToEdit, setRowToEdit] = useState(null);
-  const handleEditRow = (idx) => {
-    setRowToEdit(idx);
-
-    setModalOpen(true);
-  };
 
 
   return (
@@ -48,11 +39,11 @@ export default function Timetables() {
               </div>
             </div>
             { timetables?.ttCount<1 &&
-              <div className='h-350-px items-center top-1/2 text-center'>No TimeTable Found, Add TimeTable By clicking "+ Add TimeTable" button</div>
+              <div className='h-350-px items-center top-1/2 text-center justify-center content-center text-slate-500'>*No TimeTable Found, Add TimeTable By clicking "+ Add TimeTable" button</div>
             }
-            { !loadingFaculties && timetables?.ttCount>0  &&
+            { !isLoading && !loadingFaculties && timetables?.ttCount>0  &&
               timetables?.timetables?.map( tt => (
-              <TimeTableComponent faculties={faculties} editRow={handleEditRow} ttData={tt} refetch={refetch}/>
+              <TimeTableComponent faculties={faculties} ttData={tt} refetch={refetch}/>
               ))
             }
           </div>

@@ -32,26 +32,33 @@ import Pages from "../pages/PagesLayout";
 import DepartmentSettings from "../layouts/deptLayout/DepartmentSettings";
 import AdminDeptDashboard from "../layouts/adminDeptLayouts/AdminDeptDashboard";
 import DeptSalaryApplicationLayout from "../layouts/deptLayout/DeptSalaryApplicationLayout";
+import PageLayout from "../layouts/PageLayout";
 // const AdminDeptDashboard = lazy(() => import("../layouts/adminDeptLayouts/AdminDeptDashboard"));
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
+    element: <PageLayout></PageLayout>,
     errorElement: <ErrorPage />,
+    children:[
+      {
+        index:true,
+        element:<Landing />
+      }
+    ]
   },
 
   {
-    path:"/pages",
+    path: "/pages",
     element: <Pages />,
     errorElement: <ErrorPage />,
-     children: [
+    children: [
 
       {
         path: "/pages/About",
         element: <About />,
       }
-     ]
+    ]
   },
 
 
@@ -117,7 +124,7 @@ export const router = createBrowserRouter([
       {
         path: "/dept/forwarded-applications",
         element: (
-          <DeptSalaryApplicationLayout/>
+          <DeptSalaryApplicationLayout />
         ),
       },
     ],

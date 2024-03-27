@@ -54,7 +54,7 @@ export default function Login() {
       .catch((e) => {
         // console.log(e);
         setLoading(false);
-        toast.error(e.response.data.message);
+        toast.error(e?.response?.data?.message || e?.message || "Unable to login!");
       });
   };
   return (

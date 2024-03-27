@@ -3,7 +3,6 @@ import React from "react";
 // import { Link } from "react-router-dom";
 
 // components
-import LandingNav from "../components/Navbars/LandingNav";
 import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
 import BlogCards from "../components/Blogs/BlogCards";
@@ -185,7 +184,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20 bg-slate-300 shadow-lg  z-10 ">
+        <section className="relative py-20 bg-slate-300 shadow-lg z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
