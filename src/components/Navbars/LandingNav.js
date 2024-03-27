@@ -153,7 +153,7 @@ export default function LandingNav() {
                                         aria-current="page">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#blogs"
+                                    <a href="/#blogs"
                                         className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
                                         Blogs
                                     </a>
@@ -165,13 +165,13 @@ export default function LandingNav() {
                                     </a>
                                 </li> */}
                                 <li>
-                                    <a href="#features"
+                                    <a href="/#features"
                                         className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
                                         Features
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#contact-us"
+                                    <a href="/#contact"
                                         className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
                                         Contact
                                     </a>
