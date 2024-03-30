@@ -68,7 +68,7 @@ export default function Landing() {
 
             <div className="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
               <a
-                href="#"
+                href="#contact"
                 rel="noopener"
                 className="px-8 py-4 text-lg font-medium text-center text-white bg-sky-600 rounded-md ">
                 Get Started
@@ -268,7 +268,7 @@ export default function Landing() {
           </div>
         </section> */}
 
-        <section className="relative py-20 bg-slate-300 shadow-lg z-10 ">
+        <section id="features" className="relative py-20 bg-slate-300 shadow-lg z-10 ">
           <div
             className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20 h-20"
             style={{ transform: "translateZ(0)" }}
