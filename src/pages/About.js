@@ -1,12 +1,9 @@
 // import React from "react";
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 // import { Link } from "react-router-dom";
 
 // components
-import LandingNav from "../components/Navbars/LandingNav";
-import LeftAlignContainer from "../components/LeftAlign/LeftAlignContainer"
 import Footer from "../components/Footers/Footer";
-import BlogCards from "../components/Blogs/BlogCards";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';

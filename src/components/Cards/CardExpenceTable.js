@@ -1,69 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
-const deptStatic = [
-  {
-    deptHead: {
-      avatar: require('../../assets/img/team-4-470x470.png'),
-      name: "dont know",
-      email: "lgm@.academy.ac.in"
-    },
-    deptName: "CSE",
-    vizFaculties: 9,
-    totalExpence: 72345,
-  },
-  {
-    deptHead: {
-      avatar: require('../../assets/img/team-3-800x800.jpg'),
-      name: "dont Know",
-      email: "dk@.ac.in"
-    },
-    deptName: "ETC",
-    vizFaculties: 8,
-    totalExpence: 65345,
-  },
-  {
-    deptHead: {
-      avatar: require('../../assets/img/team-2-800x800.jpg'),
-      name: "dont Know",
-      email: "dk@.ac.in"
-    },
-    deptName: "ELECTRICAL",
-    vizFaculties: 8,
-    totalExpence: 65345,
-  },
-  {
-    deptHead: {
-      avatar: require('../../assets/img/team-4-470x470.png'),
-      name: "dont Know",
-      email: "dk@.ac.in"
-    },
-    deptName: "CIVIL",
-    vizFaculties: 8,
-    totalExpence: 65345,
-  },
-  {
-    deptHead: {
-      avatar: require('../../assets/img/team-4-470x470.png'),
-      name: "dont Know",
-      email: "dk@.ac.in"
-    },
-    deptName: "MECH",
-    vizFaculties: 8,
-    totalExpence: 65345,
-  },
-  // {
-  //   deptHead: {
-  //     avatar: require('../../assets/img/team-4-470x470.png'),
-  //     name: "dont Know",
-  //     email: "dk@.ac.in"
-  //   },
-  //   deptName: "SCIENCE",
-  //   vizFaculties: 8,
-  //   totalExpence: 65345,
-  // },
-];
+import { getAuthData } from "../../utils/utils";
 
 export default function CardExpenceTable() {
+  const auth = getAuthData();
+  const { data: expDepts, isLoading, } = useQuery(["expDepts"], () => axios.get(`${process.env.REACT_APP_API_KEY}/api/org/v1/dept-expence-wise`, {
+    headers: {
+      authorization: `Bearer ${auth?.accessToken}`,
+    },
+  }).then(res => res.data))
 
+  console.log(expDepts)
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-slate-700">
@@ -76,12 +24,12 @@ export default function CardExpenceTable() {
               <h2 className="text-white text-xl font-semibold">Expenditure vise</h2>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-              <button
+              {/* <button
                 className="bg-gray-500 text-white active:bg-gray-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
               >
                 Edit
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -122,24 +70,24 @@ export default function CardExpenceTable() {
                 </tr>
               </thead>
               <tbody>
-                {deptStatic.map((data,idx) => (
+                {!isLoading && expDepts?.expDepts.map((data, idx) => (
                   <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={idx}>
                     <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                      <img className="w-10 h-10 rounded-full" src={data.deptHead.avatar} alt="avatar" />
+                      <img className="w-10 h-10 rounded-full" src={!data.deptHeadId?.profilePhoto || data.deptHeadId?.profilePhoto==="default"? require("../../assets/img/user_avtar.png"):data.deptHeadId?.profilePhoto} alt="avatar" />
                       <div className="pl-3">
-                        <div className="text-base font-semibold">{data.deptHead.name}</div>
-                        <div className="font-normal text-gray-500">{data.deptHead.email}</div>
+                        <div className="text-base font-semibold">{data.deptHeadId?.name}</div>
+                        <div className="font-normal text-gray-500">{data.deptHeadId?.email}</div>
                       </div>
                     </th>
                     <td className="px-6 py-4 dark:text-white">
-                      {data.deptName}
+                      {data?.code}
                     </td>
                     <td className="px-4 py-3">
-                      {data.vizFaculties}
+                      {data.faculties?.length}
                     </td>
                     <td className="px-6 py-4">
                       <i className="fas fa-indian-rupee-sign">{" "}</i>
-                      {data.totalExpence}
+                      {data.totalExpence || 0}
                     </td>
                     {/* <td className="px-6 py-4 text-right">
                       <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
