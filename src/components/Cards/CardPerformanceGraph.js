@@ -3,7 +3,7 @@ const deptStatic = [
   {
     deptHead: {
       avatar: require('../../assets/img/team-4-470x470.png'),
-      name: "dont know",
+      name: "dont know shit",
       email: "lgm@academy.ac.in"
     },
     deptName: "CSE",
@@ -73,7 +73,7 @@ export default function CardPerformanceGraph() {
               <h6 className="uppercase text-slate-100 mb-1 text-xs font-semibold">
                 Departments
               </h6>
-              <h2 className="text-white text-xl font-semibold">Expenditure vise</h2>
+              <h2 className="text-white text-xl font-semibold">Performance Graph</h2>
             </div>
             <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
               <button
@@ -85,21 +85,23 @@ export default function CardPerformanceGraph() {
             </div>
           </div>
         </div>
-        <div className="p-4 flex-auto">
-          {/* Chart */}
-          {/* <div className="relative h-350-px"> */}
+        {/* <div className="p-4 flex-auto"> */}
+        {/* Chart */}
+        <div className="relative h-350-px">
+          <div className=" text-center justify-center py-28 text-gray-300"> <span> New Feature Comming Soon </span></div>
+
           {/* <canvas id="line-chart"></canvas> */}
 
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          {/* <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
 
                   <th scope="col" className="px-6 py-3">
                     <div className="flex items-center">
-                      Department Head
-                      {/* <a href="#"><svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" /></svg></a> */}
-                    </div>
+                      Department Head */}
+          {/* <a href="#"><svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512"><path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" /></svg></a> */}
+          {/* </div>
                   </th>
                   <th scope="col" className="px-6 py-3">
                     Department
@@ -115,11 +117,11 @@ export default function CardPerformanceGraph() {
                       Total Expenditure
                       <a href="#whohooo"><i className="fa-solid fa-sort" /></a>
                     </div>
-                  </th>
-                  {/* <th scope="col" className="px-6 py-3">
+                  </th> */}
+          {/* <th scope="col" className="px-6 py-3">
                       <span className="sr-only">Edit</span>
                     </th> */}
-                </tr>
+          {/* </tr>
               </thead>
               <tbody>
                 {deptStatic.map((data, idx) => (
@@ -140,20 +142,20 @@ export default function CardPerformanceGraph() {
                     <td className="px-6 py-4">
                       <i className="fas fa-indian-rupee-sign">{" "}</i>
                       {data.totalExpence}
-                    </td>
-                    {/* <td className="px-6 py-4 text-right">
+                    </td> */}
+          {/* <td className="px-6 py-4 text-right">
                       <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                     </td> */}
-                  </tr>
+          {/* </tr>
                 ))
                 }
               </tbody>
 
-            </table>
-          </div>
-
-          {/* </div> */}
+            </table> */}
         </div>
+
+        {/* </div> */}
+        {/* </div> */}
       </div>
     </>
   );

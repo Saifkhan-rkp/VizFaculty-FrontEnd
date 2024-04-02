@@ -1,5 +1,5 @@
 import React from "react";
-import AddUserForm from "../../models/AddUserForm";
+// import AddUserForm from "../../models/AddUserForm";
 // import Chart from "chart.js";
 
 export default function CardTimetables() {
@@ -110,7 +110,7 @@ export default function CardTimetables() {
                 Timetables
               </h6>
               <h2 className="text-slate-700 text-xl font-semibold">
-                Total orders
+                
               </h2>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function CardTimetables() {
           {/* Chart */}
           <div className="relative h-350-px">
             {/* <canvas id="bar-chart"></canvas> */}
-            <AddUserForm />
+            <div className=" text-center justify-center py-28 text-gray-400"> <span> New Feature Comming Soon </span></div>
           </div>
         </div>
       </div>
