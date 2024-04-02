@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
       {
         index:true,
         element:<Landing />
+      },
+      {
+        path: "/about",
+        element: <About />,
       }
     ]
   },

@@ -152,12 +152,6 @@ export default function LandingNav() {
                                         className="block py-2 pl-3 pr-4 text-white bg-sky-500 rounded lg:bg-transparent lg:text-sky-500 lg:p-0"
                                         aria-current="page">Home</a>
                                 </li>
-                                <li>
-                                    <a href="/#blogs"
-                                        className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
-                                        Blogs
-                                    </a>
-                                </li>
                                 {/* <li>
                                     <a href="#"
                                         className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
@@ -175,6 +169,12 @@ export default function LandingNav() {
                                         className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
                                         Contact
                                     </a>
+                                </li>
+                                <li>
+                                    <Link to="/about"
+                                        className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-sky-500 lg:p-0">
+                                        About 
+                                    </Link>
                                 </li>
                                 {!auth &&
                                     <li>
