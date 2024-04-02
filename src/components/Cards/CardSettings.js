@@ -427,7 +427,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
             <ChangePassword />
             <hr className="mt-6 border-b-1 border-slate-300" />
 
-            <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
+            {/* <h6 className="text-slate-400 text-sm mt-3 mb-6 font-bold uppercase">
               Add Template
             </h6>
             <div className="flex flex-wrap">
@@ -440,7 +440,7 @@ export default function CardSettings({ settingsFor, rates = { TH: 0, PR: 0, TU: 
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

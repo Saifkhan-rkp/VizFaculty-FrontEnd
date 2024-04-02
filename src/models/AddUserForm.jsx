@@ -8,9 +8,11 @@ import { getAuthData } from "../utils/utils";
 function AddUserForm({ type, depts }) {
     const { register, handleSubmit, getValues, formState: { errors }, } = useForm({ mode: "onChange" });
     const [flag, setFlag] = useState(false);
+    const [submittingForm, setSubmittingForm] = useState(false)
     // const [data , setData] = useState({})
     const onSubmit = () => {
-        console.log("im clicked..!"); 
+        console.log("im clicked..!");
+        setSubmittingForm(true);
         try {
             const { deptName, headName, code, email, name, abbrivation, deptId } = getValues()
             console.log(getValues());
@@ -22,16 +24,20 @@ function AddUserForm({ type, depts }) {
                     },
                     data: { deptName, headName, email, code }
                 }).then(res => {
-                    console.log("here..2");
+                    console.log("here..2", res.data);
                     if (res?.success) {
                         toast.success(res?.message);
                     }
+
                     if (!res?.success) {
-                        toast.error(res?.message)
+                        toast.error(res?.data?.message || "error occured")
                     }
+                    setSubmittingForm(false);
+                    setFlag(false);
                 }).catch(err => {
                     console.log(err);
-                    toast.error(err); console.log("here..3");
+                    toast.error(err?.message || "unable to add user at this moment"); console.log("here..3");
+                    setSubmittingForm(true);
                 });
             if (type === "faculty")
                 axios.post(`${process.env.REACT_APP_API_KEY}/api/faculty`, getValues(), {
@@ -41,21 +47,25 @@ function AddUserForm({ type, depts }) {
                     },
                     data: { deptId, name, email, abbrivation }
                 }).then(res => {
-                    console.log("here..2",res);
+                    console.log("here..2", res);
                     if (res?.data?.success) {
                         toast.success(res?.data?.message);
                     }
                     if (!res?.data?.success) {
                         toast.error(res?.data?.message)
                     }
+                    setSubmittingForm(false);
+                    setFlag(false);
                 }).catch(err => {
-                    toast.error(err); console.log(err);
+                    toast.error(err?.response?.data?.message || err?.message || "unable to add user at this moment"); console.log(err);
+                    setSubmittingForm(false);
+
                 });
         } catch (error) {
             console.log("here..4");
             toast.error(error?.message);
+            setSubmittingForm(false);
         }
-
 
     };
     const comps = {
@@ -252,10 +262,10 @@ function AddUserForm({ type, depts }) {
                                             {/* <textarea  className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none" defaultValue={""} /> */}
                                         </div>
                                         <div className="flex items-center justify-between mt-9">
-                                            <button type="cancel" onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
+                                            <button type="cancel" onClick={setPopup} className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white" disabled={submittingForm}>
                                                 Cancel
                                             </button>
-                                            <button type="submit" className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white">Add {(type === "dept" ? " Department" : " Faculty")}</button>
+                                            <button type="submit" className="px-6 py-3 bg-blue-700 hover:bg-opacity-80 shadow rounded text-sm text-white" disabled={submittingForm}>{submittingForm ? "Adding..." : "Add" + (type === "dept" ? " Department" : " Faculty")}</button>
                                         </div>
                                     </form>
                                 </div>
