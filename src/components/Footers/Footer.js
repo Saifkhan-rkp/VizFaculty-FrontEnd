@@ -65,7 +65,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-slate-600 hover:text-slate-800 font-semibold block pb-2 text-sm"
-                        href="https://github.com/Saifkhan-rkp/VizFaculty-FrontEnd"
+                        href="https://github.com/Sssakib880/VizFaculty-Backend.git"
                       >
                         Github
                       </a>
