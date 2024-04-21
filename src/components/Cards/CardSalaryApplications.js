@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import SingleFacultySalaryModel from "../../models/SingleFacultySalaryModel";
+import TableActionDropdown from "../Dropdowns/TableActionDropdown";
 
 // components
 
 // import TableDropdown from "../Dropdowns/TableDropdown";
 
-export default function CardSalaryApplications({ color, isDeptView = false, requests=[], isLoading }) {
+export default function CardSalaryApplications({ color, isDeptView = false, requests = [], isLoading }) {
     // const [isDataAvail, setIsDataAvail] = useState(true);
     // const [selectedFaculty,setFaculty] = useState({});
     // const [openModel, setOpenModel] = useState(false);
@@ -253,7 +254,7 @@ export default function CardSalaryApplications({ color, isDeptView = false, requ
                                                                 <img
                                                                     className="w-full h-full rounded-full"
                                                                     src={appl?.userId?.profilePhoto === "default" ? require("../../assets/img/user_avtar.png") : appl?.userId?.profile}
-                                                                    alt="Profile photo"
+                                                                    alt="Profile"
                                                                 />
                                                             </div>
                                                             <div className="ml-3">
@@ -305,12 +306,10 @@ export default function CardSalaryApplications({ color, isDeptView = false, requ
                                                     <td
                                                         className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right"
                                                     >
-                                                        <button
-                                                            type="button"
-                                                            className="inline-block text-gray-500 hover:text-gray-700"
-                                                        >
-                                                            <i className="fas fa-ellipsis-vertical fa-lg"></i>
-                                                        </button>
+
+                                                        {/* <i className="fas fa-ellipsis-vertical fa-lg"></i> */}
+                                                        <TableActionDropdown applicationId={appl?._id} isDeptView={isDeptView} />
+
                                                     </td>
                                                 </tr>
                                             ))
