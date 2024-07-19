@@ -28,12 +28,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### Home Page After Login
+## Home Page After Login
 
 ![Home_page_afterLogin](./screenshots/Home_page_login.png)
 
 
-### Admin Department (College Level)
+## Admin Department (College Level)
 
 <p align="center">
   <p>
@@ -46,7 +46,7 @@ You may also see any lint errors in the console.
   </p>
 </p>
 
-### Department (HoD)
+## Department (HoD)
 
 <p align="center">
   <p>
@@ -78,7 +78,7 @@ You may also see any lint errors in the console.
 </p>
 
 
-### Faculty
+## Faculty
 
 <p align="center">
 <b>Faculty Dashboard </b>
